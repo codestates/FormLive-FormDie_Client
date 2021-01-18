@@ -1,0 +1,96 @@
+@font-face {
+  font-family: MavenPro_Medium;
+  src: url("../../public/font/MavenPro_Medium.ttf");
+}
+
+@font-face {
+  font-family: MavenPro_Reugular;
+  src: url("../../public/font/MavenPro_Regular.ttf");
+}
+
+@font-face {
+  font-family: MavenPro_Black;
+  src: url("../../public/font/MavenPro_Black.ttf");
+}
+
+@font-face {
+  font-family: Multi_Colore;
+  src: url("../../public/font/Multicolor_700.otf");
+}
+
+@font-face {
+  font-family: KopubDotum_Pro_Light;
+  src: url("../../public/font/KoPubDotum_Pro_Light.otf");
+}
+
+@font-face {
+  font-family: Yoon_Gothic_710;
+  src: url("../../public/font/YoonGothic710.ttf");
+}
+
+@font-face {
+  font-family: Yoon_Gothic_720;
+  src: url("../../public/font/YoonGothic720.ttf");
+}
+
+@font-face {
+  font-family: Yoon_Gothic_730;
+  src: url("../../public/font/YoonGothic730.ttf");
+}
+
+@font-face {
+  font-family: Yoon_Gothic_740;
+  src: url("../../public/font/YoonGothic740.ttf");
+}
+
+@font-face {
+  font-family: Yoon_Gothic_750;
+  src: url("../../public/font/YoonGothic750.ttf");
+}
+
+@font-face {
+  font-family: Yoon_Gothic_760;
+  src: url("../../public/font/YoonGothic760.ttf");
+}
+
+@font-face {
+  font-family: Yoon_Gothic_770;
+  src: url("../../public/font/YoonGothic770.ttf");
+}
+
+@font-face {
+  font-family: Yoon_Gothic_780;
+  src: url("../../public/font/YoonGothic780.ttf");
+}
+
+@font-face {
+  font-family: Yoon_Gothic_790;
+  src: url("../../public/font/YoonGothic790.ttf");
+}
+
+@font-face {
+  font-family: Noto_Sans_CJK_Bold;
+  src: url("../../public/font/NotoSansCJKkr_Bold.otf");
+}
+
+@font-face {
+  font-family: Noto_Sans_CJK_Black;
+  src: url("../../public/font/NotoSansKR_Black.otf");
+}
+
+@value MavenPro_Medium: MavenPro_Medium;
+@value MavenPro_Reugular: MavenPro_Reugular;
+@value MavenPro_Black: MavenPro_Black;
+@value Multi_Colore: Multi_Colore;
+@value KopubDotum_Pro_Light: KopubDotum_Pro_Light;
+@value Yoon_Gothic_710: Yoon_Gothic_710;
+@value Yoon_Gothic_720: Yoon_Gothic_720;
+@value Yoon_Gothic_730: Yoon_Gothic_730;
+@value Yoon_Gothic_740: Yoon_Gothic_740;
+@value Yoon_Gothic_750: Yoon_Gothic_750;
+@value Yoon_Gothic_760: Yoon_Gothic_760;
+@value Yoon_Gothic_770: Yoon_Gothic_770;
+@value Yoon_Gothic_780: Yoon_Gothic_780;
+@value Yoon_Gothic_790: Yoon_Gothic_790;
+@value Noto_Sans_CJK_Bold: Noto_Sans_CJK_Bold;
+@value Noto_Sans_CJK_Black: Noto_Sans_CJK_Black;
