@@ -12,6 +12,8 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import reducer, { IReducerState } from "../reducers";
 import rootSaga from "../sagas";
 import { LOG_IN_REQUEST } from "../reducers/user";
+import "../styles/globals.css";
+import AppLayout from "../components/AppLayout";
 
 interface Props extends AppProps {
   store: Store<IReducerState>;
@@ -42,7 +44,9 @@ class YangSikDang extends App<Props> {
     const { Component, store, pageProps } = this.props;
     return (
       <Provider store={store}>
-        <Component {...pageProps} />
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
       </Provider>
     );
   }
