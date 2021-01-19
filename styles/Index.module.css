@@ -11,28 +11,33 @@
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
+	margin-top: 1rem;
 }
+
+.header div {
+	font-family: MavenPro_Medium;
+	color: makerWhite;
+	margin-right: 1.5rem;
+}
+
 .header button {
 	font-family: MavenPro_Medium;
 	background-color: makerLightGreen;
 	color: makerWhite;
 	border: 1px solid makerWhite;
 	margin-left: 1rem;
+	margin-right: 2.5rem;
 	box-sizing: border-box;
 	height: 2rem;
-	width: 5rem;
+	width: 6rem;
 }
-.header button:nth-child(2) {
-	margin-right: 1rem;
-}
-.header button:nth-child(1):hover {
-	border: 1px solid makerBlack;
+.header div:hover {
 	color: makerBlack;
 	cursor: pointer;
 }
-.header button:nth-child(2):hover {
+.header button:hover {
 	border: 1px solid makerBlack;
-	color: makerBlack;
+	background-color: makerBlack;
 	cursor: pointer;
 }
 .main {
@@ -41,31 +46,35 @@
 .main__headerWriting {
 	display: flex;
 }
-.main__headerWriting section {
+/* .main__headerWriting section {
 	display: flex;
 	justify-content: flex-end;
 	flex: 1;
 	border-bottom: 1px solid;
 	margin-right: 3rem;
+} */
+.main__headerWriting__blank {
+	flex: 1.3;
 }
-.main__headerWriting div {
+.main__article {
 	flex: 1;
+	display: flex;
+	border-bottom: 0.1rem solid;
+	padding-bottom: 0.5rem;
 }
-.main__article div {
+.main__article__text1 {
 	font-family: Yoon_Gothic_730;
+	display: flex;
+	justify-content: flex-end;
+	flex: 5;
 }
-.main__article h3 {
-	display: inline;
+.main__article__text2 {
+	display: flex;
+	justify-content: flex-end;
 	font-family: Yoon_Gothic_780;
 	margin: 0;
-	flex: 4.5;
-}
-.main__article div:nth-child(1) {
-	display: flex;
-}
-.main__article div:nth-child(2) {
-	/* background-color: red; */
 	flex: 1;
+	font-weight: 600;
 }
 .main__view {
 	display: flex;
@@ -80,7 +89,7 @@
 	height: 100%;
 	justify-content: center;
 	/* align-items: flex-end; */
-	margin-left: 10rem;
+	margin-left: 8rem;
 }
 .main__view__article div {
 	font-family: Yoon_Gothic_780;
@@ -90,22 +99,26 @@
 	font-weight: 900;
 }
 .main__view__article div:nth-child(2) {
-	margin-top: 2rem;
+	margin-top: 1rem;
 }
 .main__view__article button {
 	font-family: Yoon_Gothic_790;
-	font-size: 1rem;
+	font-size: 1.5rem;
 	font-weight: 700;
-	margin-top: 1rem;
-	width: 8rem;
+	margin-top: 2rem;
+	width: 12rem;
 	background-color: makerLightGreen;
-	border: 1px solid makerBlack;
-	padding: 4px;
+	border: 2px solid makerBlack;
+	padding: 5px;
 }
-
+.main__view__article button:hover {
+	color: makerWhite;
+	background-color: makerBlack;
+	cursor: pointer;
+}
 .main__view__animation {
 	display: flex;
-	flex: 1;
+	flex: 1.5;
 	height: 100%;
 	justify-content: center;
 }
@@ -118,14 +131,16 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 	flex: 1;
+	margin-left: 1rem;
 }
 
 .main__view__animation__buttonsSlide div {
-	margin-top: 2px;
-	width: 1rem;
-	height: 1rem;
-	background-color: makerBlack;
+	margin-top: 0.5rem;
+	width: 0.5rem;
+	height: 0.5rem;
+	background-color: makerWhite;
 	border-radius: 100px;
 }
 
@@ -141,14 +156,14 @@
 	animation-delay: 4.58s;
 }
 .main__view__animation__imgSlide {
-	height: 320px;
+	height: 324px;
 	overflow: hidden;
 	position: relative;
 	top: 5rem;
 	flex: 8;
 }
 .main__view__animation__imgSlide__img img {
-	width: 25rem;
+	width: 35rem;
 	height: 20rem;
 }
 .main__view__animation__imgSlide__img {
@@ -162,7 +177,10 @@
 }
 .footer__img {
 	height: 3rem;
+	margin-left: 1.5rem;
+	margin-bottom: 1rem;
 }
+
 @keyframes slide {
 	0% {
 		margin-top: 0px;
@@ -171,16 +189,16 @@
 		margin-top: 0px;
 	}
 	30% {
-		margin-top: -327px;
+		margin-top: -324px;
 	}
 	40% {
-		margin-top: -327px;
+		margin-top: -324px;
 	}
 	60% {
-		margin-top: -654px;
+		margin-top: -648px;
 	}
 	70% {
-		margin-top: -654px;
+		margin-top: -648px;
 	}
 }
 @keyframes buttonSlide1 {
@@ -191,7 +209,7 @@
 		background-color: red;
 	}
 	21% {
-		background-color: makerBlack;
+		background-color: makerWhite;
 	}
 }
 @keyframes buttonSlide2 {
@@ -202,7 +220,7 @@
 		background-color: red;
 	}
 	26% {
-		background-color: makerBlack;
+		background-color: makerWhite;
 	}
 }
 @keyframes buttonSlide3 {
@@ -216,6 +234,6 @@
 		background-color: red;
 	}
 	26% {
-		background-color: makerBlack;
+		background-color: makerWhite;
 	}
 }
