@@ -1,8 +1,7 @@
-import React, { FC, ReactElement, useState } from "react";
+import React, { FC, ReactElement } from "react";
 import styles from "../styles/AppLayout.module.css";
 import Link from "next/link";
-import { useSelector } from "react-redux";
-import Router from "next/router";
+import { useRouter } from "next/router";
 import {
   faHome,
   faFolderOpen,
@@ -34,18 +33,10 @@ const AppLayout: FC<Props> = ({ children }) => {
   
   */
 
-  const ICON_COLOR = "white";
-  const ICON_CLICK_COLOR = "#ffd465";
+  const router = useRouter();
+  const ICON_COLOR: string = "white";
+  const ICON_CLICK_COLOR: string = "#ffc000";
   const ICON_SIZE = "sm";
-
-  const [Color, setColor] = useState<string[]>([
-    ICON_CLICK_COLOR,
-    ICON_COLOR,
-    ICON_COLOR,
-    ICON_COLOR,
-    ICON_COLOR,
-    ICON_COLOR,
-  ]);
 
   interface ICategory {
     path: string;
@@ -93,35 +84,21 @@ const AppLayout: FC<Props> = ({ children }) => {
     },
   ];
 
-  const onChangeColor = (key: number): void => {
-    const newColor = Color.map((_, index) => {
-      if (index !== key) {
-        return ICON_COLOR;
-      } else {
-        return ICON_CLICK_COLOR;
-      }
-    });
-    setColor(newColor);
-  };
-
   const renderCategory = () =>
     categories.map((category, index) => {
+      const iconColor =
+        router.pathname === category.path ? ICON_CLICK_COLOR : ICON_COLOR;
       const textColor =
-        Color[index] === ICON_COLOR ? styles.white : styles.yellow;
+        router.pathname === category.path ? styles.yellow : styles.white;
 
       return (
         <Link href={category.path} key={index}>
           <a>
-            <div
-              className={styles.menubar__categories__category}
-              onClick={() => {
-                onChangeColor(index);
-              }}
-            >
+            <div className={styles.menubar__categories__category}>
               <FontAwesomeIcon
                 icon={category.icon}
                 size={category.size}
-                color={Color[index]}
+                color={iconColor}
               />
               <span className={textColor}>{category.text}</span>
             </div>
@@ -148,7 +125,7 @@ const AppLayout: FC<Props> = ({ children }) => {
             <img className={styles.menubar__user__img} src="/image/guest.svg" />
             <div className={styles.menubar__user__nickname}>
               <span>Yeongbba</span>
-              <FontAwesomeIcon icon={faEdit} size="sm" color={ICON_COLOR} />
+              <FontAwesomeIcon icon={faEdit} size="xs" color={ICON_COLOR} />
             </div>
             <span className={styles.menubar__user__email}>
               yeongmolee@gmail.com

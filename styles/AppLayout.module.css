@@ -2,6 +2,7 @@
 @value makerWhite from "./common/colors.css";
 @value makerBlack from "./common/colors.css";
 @value makerYellow from "./common/colors.css";
+@value makerMediumGray from "./common/colors.css";
 @value Multi_Colore from "./common/fonts.css";
 @value Noto_Sans_CJK_Bold from "./common/fonts.css";
 
@@ -16,7 +17,7 @@
 
 .menubar {
   height: 100%;
-  width: 9rem;
+  width: 8rem;
   display: flex;
   flex-direction: column;
 }
@@ -95,18 +96,18 @@
 
 .menubar__user__nickname span {
   color: makerWhite;
-  margin-right: 0.5rem;
-  font-size: 0.85rem;
+  margin-right: 0.3rem;
+  font-size: 0.8rem;
 }
 
 .menubar__user__email {
-  color: makerWhite;
-  font-size: 0.6rem;
+  color: makerMediumGray;
+  font-size: 0.5rem;
   margin-top: 0.2rem;
 }
 
 .menubar__user__logout {
-  width: 6rem;
+  width: 5rem;
   height: 1.4rem;
   font-family: Noto_Sans_CJK_Bold;
   font-size: 0.7rem;
