@@ -14,6 +14,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { SizeProp } from "@fortawesome/fontawesome-svg-core";
+import UserProfile from "../containers/UserProfile";
 
 interface Props {
   children: ReactElement;
@@ -36,7 +37,7 @@ const AppLayout: FC<Props> = ({ children }) => {
   const router = useRouter();
   const ICON_COLOR: string = "white";
   const ICON_CLICK_COLOR: string = "#ffc000";
-  const ICON_SIZE = "sm";
+  const ICON_SIZE = "lg";
 
   interface ICategory {
     path: string;
@@ -47,7 +48,7 @@ const AppLayout: FC<Props> = ({ children }) => {
 
   const categories: ICategory[] = [
     {
-      path: "/home",
+      path: "/",
       icon: faHome,
       size: ICON_SIZE,
       text: "HOME",
@@ -121,7 +122,7 @@ const AppLayout: FC<Props> = ({ children }) => {
           <div className={styles.menubar__categories}>{renderCategory()}</div>
 
           {/* user profile */}
-          <div className={styles.menubar__user}>
+          {/* <div className={styles.menubar__user}>
             <img className={styles.menubar__user__img} src="/image/guest.svg" />
             <div className={styles.menubar__user__nickname}>
               <span>Yeongbba</span>
@@ -131,7 +132,9 @@ const AppLayout: FC<Props> = ({ children }) => {
               yeongmolee@gmail.com
             </span>
             <button className={styles.menubar__user__logout}>Logout</button>
-          </div>
+          </div> */}
+
+          <UserProfile />
         </div>
       </div>
 
