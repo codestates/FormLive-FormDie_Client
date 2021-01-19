@@ -47,7 +47,7 @@ const AppLayout: FC<Props> = ({ children }) => {
 
   const categories: ICategory[] = [
     {
-      path: "/",
+      path: "/home",
       icon: faHome,
       size: ICON_SIZE,
       text: "HOME",
@@ -111,7 +111,7 @@ const AppLayout: FC<Props> = ({ children }) => {
     <div className={styles.container}>
       <div className={styles.menubar}>
         <div className={styles.menubar__logo}>
-          <Link href="/">
+          <Link href="/home">
             <a>
               <img src="/image/logo_black.png" />
             </a>
