@@ -1,69 +1,54 @@
-import Head from "next/head";
-import styles from "../styles/Home.module.css";
+// import Head from "next/head";
+// import styles from "../styles/Home.module.css";
+import styles from "../styles/Index.module.css"
 
-export default function Home() {
+export default function Index() {
   return (
     <div className={styles.container}>
-      <Head>
-        <title>YangSikDang</title>
-        <link rel="icon" href="/image/favicon.ico" />
-      </Head>
-
+      <header className={styles.header}>
+          <button>Login</button>
+          <button>Register</button>
+      </header>
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Learn &rarr;</h3>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h3>Examples &rarr;</h3>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/import?filter=next.js&utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h3>Deploy &rarr;</h3>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+        <div className={styles.main__headerWriting}>
+          <section>
+            <article className={styles.main__article}>
+                  For Your Form <h3>Form Place</h3>
+            </article>
+          </section>
+          <div></div>
+        </div>
+        
+        <div className={styles.main__view}>
+          <article className={styles.main__view__article}>
+            <div>폼플레이스 양식당</div>
+            <div>한 번 작성한 그 양식, 또 필요할 때 있잖아요.</div>
+            <div>써두었던 양식을 바로바로 꺼내보세요.</div>
+            <div>양식당은 여러분의 편리함을 추구하고자 완성되었습니다.</div>  
+            <button>Guest Mode</button>
+            
+            
+          </article>
+          <div className={styles.main__view__animation}>
+              <div className={styles.main__view__animation__buttonsSlide}>
+                <div></div>
+                <div></div>
+                <div></div>
+              </div>
+              <div className={styles.main__view__animation__imgSlide}>
+                <ul className={styles.main__view__animation__imgSlide__img}>
+                  <li><img src="https://codestates-photo.s3.ap-northeast-2.amazonaws.com/codestates_logo_thumbnail.png"></img></li>
+                  <li><img src="https://media.vlpt.us/images/dlrbwls0302/post/9618b335-487e-4207-abf5-3cd1314c4b19/8912e6c97048361c976be8808888a11063dd917b30e81fbeff41bed064c3abc8_1566706128983642.jpg"></img></li>
+                  <li><img src="https://miro.medium.com/max/11284/1*-kUcpLIhlGEL3dIgDYegVg.jpeg"></img></li>
+                </ul>
+              </div>
+          </div>
         </div>
       </main>
-
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{" "}
-          <img
-            src="/image/logo_white.png"
-            alt="Vercel Logo"
-            className={styles.logo}
-          />
-        </a>
+        <img className={styles.footer__img} src="/image/logo_white.png"></img>
       </footer>
     </div>
+    
   );
 }
