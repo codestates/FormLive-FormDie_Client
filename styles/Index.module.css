@@ -1,0 +1,239 @@
+@value makerLightGreen, makerBlack, makerWhite from "./common/colors.css";
+
+.container {
+	display: flex;
+	flex-direction: column;
+	background-color: makerLightGreen;
+	height: 100vh;
+}
+.header {
+	flex: 1;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	margin-top: 1rem;
+}
+
+.header div {
+	font-family: MavenPro_Medium;
+	color: makerWhite;
+	margin-right: 1.5rem;
+}
+
+.header button {
+	font-family: MavenPro_Medium;
+	background-color: makerLightGreen;
+	color: makerWhite;
+	border: 1px solid makerWhite;
+	margin-left: 1rem;
+	margin-right: 2.5rem;
+	box-sizing: border-box;
+	height: 2rem;
+	width: 6rem;
+}
+.header div:hover {
+	color: makerBlack;
+	cursor: pointer;
+}
+.header button:hover {
+	border: 1px solid makerBlack;
+	background-color: makerBlack;
+	cursor: pointer;
+}
+.main {
+	flex: 10;
+}
+.main__headerWriting {
+	display: flex;
+}
+/* .main__headerWriting section {
+	display: flex;
+	justify-content: flex-end;
+	flex: 1;
+	border-bottom: 1px solid;
+	margin-right: 3rem;
+} */
+.main__headerWriting__blank {
+	flex: 1.3;
+}
+.main__article {
+	flex: 1;
+	display: flex;
+	border-bottom: 0.1rem solid;
+	padding-bottom: 0.5rem;
+}
+.main__article__text1 {
+	font-family: Yoon_Gothic_730;
+	display: flex;
+	justify-content: flex-end;
+	flex: 5;
+}
+.main__article__text2 {
+	display: flex;
+	justify-content: flex-end;
+	font-family: Yoon_Gothic_780;
+	margin: 0;
+	flex: 1;
+	font-weight: 600;
+}
+.main__view {
+	display: flex;
+	align-items: center;
+	height: 30rem;
+}
+
+.main__view__article {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	justify-content: center;
+	/* align-items: flex-end; */
+	margin-left: 8rem;
+}
+.main__view__article div {
+	font-family: Yoon_Gothic_780;
+}
+.main__view__article div:nth-child(1) {
+	font-size: 3rem;
+	font-weight: 900;
+}
+.main__view__article div:nth-child(2) {
+	margin-top: 1rem;
+}
+.main__view__article button {
+	font-family: Yoon_Gothic_790;
+	font-size: 1.5rem;
+	font-weight: 700;
+	margin-top: 2rem;
+	width: 12rem;
+	background-color: makerLightGreen;
+	border: 2px solid makerBlack;
+	padding: 5px;
+}
+.main__view__article button:hover {
+	color: makerWhite;
+	background-color: makerBlack;
+	cursor: pointer;
+}
+.main__view__animation {
+	display: flex;
+	flex: 1.5;
+	height: 100%;
+	justify-content: center;
+}
+.main__view__animation ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+.main__view__animation__buttonsSlide {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex: 1;
+	margin-left: 1rem;
+}
+
+.main__view__animation__buttonsSlide div {
+	margin-top: 0.5rem;
+	width: 0.5rem;
+	height: 0.5rem;
+	background-color: makerWhite;
+	border-radius: 100px;
+}
+
+.main__view__animation__buttonsSlide div:nth-child(1) {
+	animation: buttonSlide1 10s infinite;
+}
+.main__view__animation__buttonsSlide div:nth-child(2) {
+	animation: buttonSlide2 10s infinite;
+	animation-delay: 2s;
+}
+.main__view__animation__buttonsSlide div:nth-child(3) {
+	animation: buttonSlide3 10s infinite;
+	animation-delay: 4.58s;
+}
+.main__view__animation__imgSlide {
+	height: 324px;
+	overflow: hidden;
+	position: relative;
+	top: 5rem;
+	flex: 8;
+}
+.main__view__animation__imgSlide__img img {
+	width: 35rem;
+	height: 20rem;
+}
+.main__view__animation__imgSlide__img {
+	width: 300px;
+	height: calc(100% * 3);
+	animation: slide 10s infinite;
+}
+
+.footer {
+	flex: 1;
+}
+.footer__img {
+	height: 3rem;
+	margin-left: 1.5rem;
+	margin-bottom: 1rem;
+}
+
+@keyframes slide {
+	0% {
+		margin-top: 0px;
+	}
+	10% {
+		margin-top: 0px;
+	}
+	30% {
+		margin-top: -324px;
+	}
+	40% {
+		margin-top: -324px;
+	}
+	60% {
+		margin-top: -648px;
+	}
+	70% {
+		margin-top: -648px;
+	}
+}
+@keyframes buttonSlide1 {
+	0% {
+		background-color: red;
+	}
+	20% {
+		background-color: red;
+	}
+	21% {
+		background-color: makerWhite;
+	}
+}
+@keyframes buttonSlide2 {
+	0% {
+		background-color: red;
+	}
+	25% {
+		background-color: red;
+	}
+	26% {
+		background-color: makerWhite;
+	}
+}
+@keyframes buttonSlide3 {
+	0% {
+		background-color: red;
+	}
+	10% {
+		background-color: red;
+	}
+	25% {
+		background-color: red;
+	}
+	26% {
+		background-color: makerWhite;
+	}
+}

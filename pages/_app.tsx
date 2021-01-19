@@ -8,7 +8,7 @@ import createSagaMiddleware, { Task } from "redux-saga";
 import axios from "axios";
 import Helmet from "react-helmet";
 import { composeWithDevTools } from "redux-devtools-extension";
-
+import '../styles/globals.css'
 import reducer, { IReducerState } from "../reducers";
 import rootSaga from "../sagas";
 import { LOG_IN_REQUEST } from "../reducers/user";
