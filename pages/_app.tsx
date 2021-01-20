@@ -44,9 +44,9 @@ class YangSikDang extends App<Props> {
     const { Component, store, pageProps } = this.props;
     return (
       <Provider store={store}>
-        {/* <AppLayout> */}
-        <Component {...pageProps} />
-        {/* </AppLayout> */}
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
       </Provider>
     );
   }
