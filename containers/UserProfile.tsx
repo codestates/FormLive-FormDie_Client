@@ -161,7 +161,7 @@ const UserProfile = () => {
             />
             {errors.name && (
               <div className={styles.edit__notice_red}>
-                닉네임이 너무 길어요.
+                닉네임은 최대 10자입니다.
               </div>
             )}
             <input
@@ -174,12 +174,12 @@ const UserProfile = () => {
             />
             {errors.password?.type === "validate" && (
               <div className={styles.edit__notice_red}>
-                두 패스워드가 일치하지 않네요.
+                패스워드가 일치하지 않습니다.
               </div>
             )}
             {errors.password?.type === "minLength" && (
               <div className={styles.edit__notice_red}>
-                패스워드는 길게 만들어 주세요.
+                패스워드는 최소 10자입니다.
               </div>
             )}
             <input
@@ -193,12 +193,12 @@ const UserProfile = () => {
             />
             {errors.repassword?.type === "minLength" && (
               <div className={styles.edit__notice_red}>
-                패스워드는 길게 만들어 주세요.
+                패스워드는 최소 10자입니다.
               </div>
             )}
             {errors.repassword?.type === "validate" && (
               <div className={styles.edit__notice_red}>
-                두 패스워드가 일치하지 않네요.
+                패스워드가 일치하지 않습니다.
               </div>
             )}
             {VerifyDelete && (
@@ -211,7 +211,7 @@ const UserProfile = () => {
             )}
             {ImageEdit && (
               <div className={styles.edit__notice_red}>
-                이미지 용량이 너무 커요.
+                이미지는 5MB 이하입니다.
               </div>
             )}
             {Delete && (
