@@ -1,16 +1,49 @@
-import React, { FC, ReactElement, useState } from "react";
+import React, {
+  FC,
+  ReactElement,
+  useState,
+  useCallback,
+  useEffect,
+} from "react";
 import styles from "../styles/Register.module.css";
 import { useForm } from "react-hook-form";
-export default function Register() {
-  interface login {
-    email: string;
-    password: string;
-  }
+import { REGISTER_REQUEST, IUserReducerState } from "../reducers/user";
+import { useDispatch, useSelector } from "react-redux";
+import { IReducerState } from "../reducers";
 
-  const { register, handleSubmit, errors } = useForm<login>();
+export interface IRegister {
+  email: string;
+  name: string;
+  password: string;
+  confirm?: string[];
+}
+
+export default function Register() {
+  const dispatch = useDispatch();
+  const { isSigningUp, isSignedUp } = useSelector<
+    IReducerState,
+    IUserReducerState
+  >((state) => state.user);
+
+  const {
+    register,
+    handleSubmit,
+    errors,
+    watch,
+    unregister,
+  } = useForm<IRegister>();
+
+  const onSubmit = async (registerData: IRegister, event) => {
+    event.preventDefault();
+    console.log(registerData);
+    dispatch({
+      type: REGISTER_REQUEST,
+      data: registerData,
+    });
+  };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit(onSubmit)}>
       <section className={styles.sectionRegister}>
         <div>Register</div>
         <div>양식당에 오신 것을 환영합니다. 회원가입 후 이용해주세요.</div>
@@ -19,6 +52,9 @@ export default function Register() {
             className={styles.sectionRegister__input}
             type="email"
             name="email"
+            ref={register({
+              required: true,
+            })}
             placeholder="Email Address"
           />
         </div>
@@ -26,7 +62,11 @@ export default function Register() {
           <input
             className={styles.sectionRegister__input}
             type="text"
-            name="nickname"
+            name="name"
+            ref={register({
+              required: true,
+              maxLength: 10,
+            })}
             placeholder="Nickname"
           />
         </div>
@@ -34,6 +74,11 @@ export default function Register() {
           <input
             className={styles.sectionRegister__input}
             type="password"
+            name="password"
+            ref={register({
+              required: true,
+              minLength: 10,
+            })}
             placeholder="Password"
           />
         </div>
@@ -41,6 +86,12 @@ export default function Register() {
           <input
             className={styles.sectionRegister__input}
             type="password"
+            name="confirm"
+            ref={register({
+              required: true,
+              minLength: 10,
+              validate: (value) => value === watch("password"),
+            })}
             placeholder="Confirm Password"
           />
         </div>
@@ -48,7 +99,8 @@ export default function Register() {
         <input
           className={styles.sectionRegister__register}
           type="submit"
-          value="Register"
+          value={isSigningUp ? "Loading..." : "Register"}
+          onClick={() => unregister(["confirm"])}
         />
       </section>
     </form>

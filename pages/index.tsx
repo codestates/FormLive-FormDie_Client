@@ -68,6 +68,7 @@ export default function Index() {
           registerClick={registerClick}
           setRegisterClick={setRegisterClick}
           setSlide={setSlide}
+          setLoginClick={setLoginClick}
         />
       }
       <header className={styles.header}>

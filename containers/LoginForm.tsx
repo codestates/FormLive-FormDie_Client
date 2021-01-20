@@ -1,16 +1,36 @@
-import React, { FC, ReactElement, useState } from "react";
+import React, { FC, ReactElement, useState, useEffect } from "react";
 import styles from "../styles/LoginForm.module.css";
 import { useForm } from "react-hook-form";
 import Register from "../components/Register";
+import { IReducerState } from "../reducers";
+import { IUserReducerState } from "../reducers/user";
+import { useSelector } from "react-redux";
 export default function LoginForm({ loginClick, setLoginClick, setSlide }) {
-  interface login {
-    email: string;
-    password: string;
-  }
   const [registerButtonClick, setRegisterButtonClick] = useState<boolean>(
     false
   );
-  const { register, handleSubmit, errors } = useForm<login>();
+
+  const { isSignedUp } = useSelector<IReducerState, IUserReducerState>(
+    (state) => state.user
+  );
+
+  useEffect(() => {
+    if (isSignedUp) {
+      setRegisterButtonClick(false);
+    }
+  }, [isSignedUp]);
+
+  interface Ilogin {
+    email: string;
+    password: string;
+  }
+
+  const { register, handleSubmit, errors } = useForm<Ilogin>();
+
+  const onSubmit = (data: Ilogin) => {
+    console.log(data);
+  };
+
   return (
     <div className={loginClick ? styles.container__login : styles.container}>
       <div className={styles.close}>
@@ -29,7 +49,7 @@ export default function LoginForm({ loginClick, setLoginClick, setSlide }) {
       {registerButtonClick ? (
         <Register />
       ) : (
-        <form>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <section className={styles.section}>
             <div className={styles.section__text1}>Welcome</div>
             <div className={styles.section__text2}>

@@ -22,9 +22,30 @@ export const LOG_IN_REQUEST = "LOG_IN_REQUEST"; // 액션의 이름
 export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS"; // 액션의 이름
 export const LOG_IN_FAILURE = "LOG_IN_FAILURE"; // 액션의 이름
 
-export default (state = initialState, action) =>
+export const REGISTER_REQUEST = "REGISTER_REQUEST";
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAILURE = "REGISTER_FAILURE";
+
+const userReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
+      case REGISTER_REQUEST: {
+        draft.isSignedUp = false;
+        draft.isSigningUp = true;
+        draft.signUpErrorReason = "";
+        break;
+        break;
+      }
+      case REGISTER_SUCCESS: {
+        draft.isSigningUp = false;
+        draft.isSignedUp = true;
+        break;
+      }
+      case REGISTER_FAILURE: {
+        draft.isSigningUp = false;
+        draft.signUpErrorReason = action.error;
+        break;
+      }
       case LOG_IN_REQUEST: {
         draft.isLoggingIn = true;
         draft.logInErrorReason = "";
@@ -47,3 +68,5 @@ export default (state = initialState, action) =>
       }
     }
   });
+
+export default userReducer;
