@@ -13,23 +13,75 @@ export default function LoginForm({ loginClick, setLoginClick, setSlide }) {
   const { register, handleSubmit, errors } = useForm<login>();
   return (
     <div className={loginClick ? styles.container__login : styles.container}>
-      <div className={styles.close}>
-        <div
-          onClick={() => {
-            setLoginClick(false);
-            setTimeout(() => {
-              setRegisterButtonClick(false);
-            }, 500);
-            setSlide(true);
-          }}
-        >
-          x
-        </div>
-      </div>
       {registerButtonClick ? (
         <Register />
       ) : (
+        // <form>
+        //   <div className={styles.close}>
+        //     <div
+        //       onClick={() => {
+        //         setLoginClick(false);
+        //         setTimeout(() => {
+        //           setRegisterButtonClick(false);
+        //         }, 500);
+        //         setSlide(true);
+        //       }}
+        //     >
+        //       x
+        //     </div>
+        //   </div>
+        //   <section className={styles.sectionRegister}>
+        //     <div>Register</div>
+        //     <div>양식당에 오신 것을 환영합니다. 회원가입 후 이용해주세요.</div>
+        //     <div>
+        //       <input
+        //         className={styles.sectionRegister__email}
+        //         type="email"
+        //         name="email"
+        //         placeholder="Email Address"
+        //       />
+        //     </div>
+        //     <div>
+        //       <input
+        //         className={styles.sectionRegister__nickname}
+        //         type="text"
+        //         name="nickname"
+        //         placeholder="Nickname"
+        //       />
+        //     </div>
+        //     <div>
+        //       <input
+        //         className={styles.sectionRegister__password}
+        //         type="password"
+        //         placeholder="Password"
+        //       />
+        //     </div>
+        //     <div>
+        //       <input
+        //         className={styles.sectionRegister__pwCheck}
+        //         type="password"
+        //         placeholder="Confirm Password"
+        //       />
+        //     </div>
+
+        //     <input
+        //       className={styles.sectionRegister__register}
+        //       type="submit"
+        //       value="Register"
+        //     />
+        //   </section>
+        // </form>
         <form>
+          <div className={styles.close}>
+            <div
+              onClick={() => {
+                setLoginClick(false);
+                setSlide(true);
+              }}
+            >
+              x
+            </div>
+          </div>
           <section className={styles.section}>
             <div className={styles.section__text1}>Welcome</div>
             <div className={styles.section__text2}>
