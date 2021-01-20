@@ -1,0 +1,155 @@
+@value makerGreen, makerWhite, makerBlack, makerDarkRed from '../styles/common/colors.css';
+.container {
+	height: 100%;
+	width: 0;
+	position: fixed;
+	z-index: 1;
+	right: 0;
+	top: 0;
+	background-color: makerGreen;
+	overflow-x: hidden;
+	transition: 0.5s;
+	padding-top: 60px;
+	margin-top: 0.5rem;
+	border-top: 0.1rem solid makerWhite;
+}
+.container__register {
+	height: 100%;
+	width: 53%;
+	position: fixed;
+	z-index: 1;
+	top: 0;
+	right: 0;
+	background-color: makerGreen;
+	transition: 0.5s;
+	border-top-left-radius: 10%;
+	margin-top: 0.5rem;
+	border-top: 0.1rem solid makerWhite;
+	border-left: 0.1rem solid makerWhite;
+}
+.close {
+	display: flex;
+	justify-content: flex-end;
+	color: makerWhite;
+	margin-right: 20px;
+	margin-top: 10px;
+	font-family: MavenPro_Medium;
+	cursor: pointer;
+	transition: 0.3s;
+}
+.section {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-left: 50px;
+	padding-right: 50px;
+	color: makerWhite;
+	transition: 0.3s;
+}
+.section div:nth-child(1) {
+	font-size: 3rem;
+	font-family: MavenPro_Medium;
+	margin-top: 8rem;
+}
+.section div:nth-child(2) {
+	margin-top: 0.3rem;
+	font-family: Yoon_Gothic_740;
+}
+.section div:nth-child(3) {
+	margin-top: 3rem;
+	border: 0.1rem solid makerWhite;
+}
+.section__email {
+	background-color: rgba(255, 255, 255, 0.21);
+	border: 0;
+	width: 15rem;
+	height: 2.5rem;
+}
+
+.section__email:focus {
+	outline: none;
+}
+.section__email::placeholder {
+	padding-left: 33%;
+	color: makerWhite;
+	font-family: Yoon_Gothic_740;
+}
+.section__email:focus::placeholder {
+	color: transparent;
+}
+
+.section div:nth-child(4) {
+	margin-top: 0.6rem;
+	border: 0.1rem solid makerWhite;
+}
+.section__nickname {
+	background-color: rgba(255, 255, 255, 0.21);
+	border: 0;
+	width: 15rem;
+	height: 2.5rem;
+}
+.section__nickname:focus {
+	outline: none;
+}
+.section__nickname::placeholder {
+	padding-left: 33%;
+	color: makerWhite;
+	font-family: Yoon_Gothic_740;
+}
+.section__nickname:focus::placeholder {
+	color: transparent;
+}
+
+.section div:nth-child(5) {
+	margin-top: 0.6rem;
+	border: 0.1rem solid makerWhite;
+}
+.section__password {
+	background-color: rgba(255, 255, 255, 0.21);
+	border: 0;
+	width: 15rem;
+	height: 2.5rem;
+}
+.section__password:focus {
+	outline: none;
+}
+.section__password::placeholder {
+	padding-left: 33%;
+	color: makerWhite;
+	font-family: Yoon_Gothic_740;
+}
+.section__password:focus::placeholder {
+	color: transparent;
+}
+
+.section div:nth-child(6) {
+	margin-top: 0.6rem;
+	border: 0.1rem solid makerWhite;
+}
+.section__pwCheck {
+	background-color: rgba(255, 255, 255, 0.21);
+	border: 0;
+	width: 15rem;
+	height: 2.5rem;
+}
+.section__pwCheck:focus {
+	outline: none;
+}
+.section__pwCheck::placeholder {
+	padding-left: 33%;
+	color: makerWhite;
+	font-family: Yoon_Gothic_740;
+}
+.section__pwCheck:focus::placeholder {
+	color: transparent;
+}
+.section__register {
+	background-color: makerBlack;
+	width: 15.2rem;
+	height: 2.5rem;
+	color: makerWhite;
+	border: 0;
+	margin-top: 0.51rem;
+	cursor: pointer;
+	font-family: Yoon_Gothic_770;
+}
