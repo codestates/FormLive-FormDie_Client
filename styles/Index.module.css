@@ -46,13 +46,6 @@
 .main__headerWriting {
 	display: flex;
 }
-/* .main__headerWriting section {
-	display: flex;
-	justify-content: flex-end;
-	flex: 1;
-	border-bottom: 1px solid;
-	margin-right: 3rem;
-} */
 .main__headerWriting__blank {
 	flex: 1.3;
 }
@@ -66,7 +59,7 @@
 	font-family: Yoon_Gothic_730;
 	display: flex;
 	justify-content: flex-end;
-	flex: 5;
+	flex: 4.3;
 }
 .main__article__text2 {
 	display: flex;
