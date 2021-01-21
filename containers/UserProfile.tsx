@@ -1,6 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import styles from "../styles/UserProfile.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import {
   faEdit,
@@ -9,6 +9,16 @@ import {
   faCheckCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { IReducerState } from "../reducers";
+import {
+  EDIT_PROFILE_REQUEST,
+  CHANGE_IMAGE_REQUEST,
+  LOG_OUT_REQUEST,
+  IUserReducerState,
+  GET_USER_REQUEST,
+  DELETE_USER_REQUEST,
+} from "../reducers/user";
+import { useRouter } from "next/router";
 
 const UserProfile = () => {
   /* 
@@ -26,12 +36,24 @@ const UserProfile = () => {
 
   /*  유저 정보 가져오기 useSelector */
 
+  interface Iuser {
+    id: number;
+    email: string;
+    name: string;
+    profileIconURL?: string;
+    isAdmin: number;
+  }
+
   const dispatch = useDispatch();
+  const router = useRouter();
+  let userInfo = useSelector<IReducerState, Iuser>((state) => state.user.me);
+  let logIn = useSelector<IReducerState, boolean>(
+    (state) => state.user.isLoggedIn
+  );
 
-  //   let { email, name, profileIconURL } = useSelector((userState) => {
-  //     return userState.userReducer.user.userInfo.data;
-  //   });
-
+  let changeImage = useSelector<IReducerState, boolean>(
+    (state) => state.user.isChangedImage
+  );
   interface IImageUpload {
     file: string;
     previewURL: any;
@@ -42,6 +64,11 @@ const UserProfile = () => {
   const [Delete, setDelete] = useState<boolean>(false);
   const [SuccessEdit, setSuccessEdit] = useState<boolean>(false);
   const [ImageEdit, setImageEdit] = useState<boolean>(false);
+  const [NoneEdit, setNoneEdit] = useState<boolean>(false);
+  const [NonePassword, setNonePassword] = useState<boolean>(false);
+  const [Image, setImage] = useState<string | null>(
+    userInfo?.profileIconURL ? userInfo.profileIconURL : null
+  );
   const [ImageUpload, setImageUpload] = useState<IImageUpload>({
     file: "",
     previewURL: "",
@@ -49,9 +76,11 @@ const UserProfile = () => {
   const ICON_COLOR = "white";
 
   //프로필 이미지가 설정 안되어 있는 유저는 기본 이미지 등록
-  let profileIconURL: string | null = null;
+  // let profileImg: string;
   const userBaseImage: string = "/image/guest.svg";
-  profileIconURL = profileIconURL ? profileIconURL : userBaseImage;
+  // profileImg = userInfo?.profileIconURL
+  //   ? userInfo.profileIconURL
+  //   : userBaseImage;
 
   //프로필 이미지 변경
   const inputRef = useRef<HTMLInputElement>();
@@ -87,19 +116,33 @@ const UserProfile = () => {
   }
 
   //유저 수정 폼 제출
-  const { register, handleSubmit, watch, errors } = useForm<IEditUser>();
-
-  // {
-  //   defaultValues: { name: name },
-  // }
+  const {
+    register,
+    handleSubmit,
+    watch,
+    errors,
+    getValues,
+  } = useForm<IEditUser>({
+    defaultValues: { name: userInfo?.name },
+    mode: "onChange",
+  });
 
   const onSubmit = async (editData, event) => {
     event.preventDefault();
     console.log(editData);
     const Imgfile = ImageUpload.file;
     console.log(Imgfile);
-    setSuccessEdit(true);
-    setTimeout(() => setSuccessEdit(false), 2000);
+    if (!editData.name && !editData.password && !Imgfile) {
+      setNoneEdit(true);
+      setTimeout(() => setNoneEdit(false), 2000);
+    } else {
+      dispatch({ type: EDIT_PROFILE_REQUEST, data: editData });
+      dispatch({ type: CHANGE_IMAGE_REQUEST, data: Imgfile });
+      // dispatch({ type: GET_USER_REQUEST });
+      setSuccessEdit(true);
+      setTimeout(() => setSuccessEdit(false), 2000);
+      // setImage(userInfo?.profileIconURL);
+    }
   };
 
   const onEditHandler = () => {
@@ -117,10 +160,30 @@ const UserProfile = () => {
 
   const onDeleteUserHandler = () => {
     // TODO: dispatch로 계정 삭제, 성공 후 2초 정도 삭제 알림 메시지 후 메인으로 push
-    setDelete(true);
-    setVerifyDelete(false);
-    setTimeout(() => setDelete(false), 2000);
+    const deletePassword = getValues("password");
+    const confirmPassword = getValues("repassword");
+    if (!deletePassword || !confirmPassword) {
+      setNonePassword(true);
+      setTimeout(() => setNonePassword(false), 2000);
+    } else {
+      dispatch({
+        type: DELETE_USER_REQUEST,
+        data: { password: deletePassword },
+      });
+      setDelete(true);
+      setVerifyDelete(false);
+      setTimeout(() => setDelete(false), 2000);
+    }
   };
+
+  const onLogoutHandler = () => {
+    dispatch({ type: LOG_OUT_REQUEST });
+  };
+
+  useEffect(() => {
+    !logIn && router.push("/");
+    changeImage && setImage(userInfo?.profileIconURL);
+  }, [logIn, userInfo?.profileIconURL]);
 
   return Edit ? (
     <div className={styles.edit__container}>
@@ -134,7 +197,11 @@ const UserProfile = () => {
             <img
               className={styles.edit__userImage}
               src={
-                ImageUpload.previewURL ? ImageUpload.previewURL : profileIconURL
+                ImageUpload.previewURL
+                  ? ImageUpload.previewURL
+                  : Image
+                  ? Image
+                  : userBaseImage
               }
               alt="profile"
             ></img>
@@ -214,6 +281,16 @@ const UserProfile = () => {
                 이미지는 5MB 이하입니다.
               </div>
             )}
+            {NoneEdit && (
+              <div className={styles.edit__notice_red}>
+                변경된 사항이 없습니다.
+              </div>
+            )}
+            {NonePassword && (
+              <div className={styles.edit__notice_red}>
+                비밀번호를 입력해 주세요.
+              </div>
+            )}
             {Delete && (
               <div className={styles.edit__notice_green}>
                 삭제 완료되었습니다.
@@ -229,6 +306,8 @@ const UserProfile = () => {
               !Delete &&
               !SuccessEdit &&
               !ImageEdit &&
+              !NoneEdit &&
+              !NonePassword &&
               !errors.name &&
               !errors.password &&
               !errors.repassword && (
@@ -260,9 +339,9 @@ const UserProfile = () => {
     <div className={styles.profile__container}>
       {/* user profile */}
       <div className={styles.user}>
-        <img className={styles.user__img} src="/image/guest.svg" />
+        <img className={styles.user__img} src={Image ? Image : userBaseImage} />
         <div className={styles.user__nickname}>
-          <span>Yeongbba</span>
+          <span>{userInfo?.name}</span>
           <FontAwesomeIcon
             icon={faEdit}
             size="xs"
@@ -271,8 +350,10 @@ const UserProfile = () => {
             className={styles.user__editIcon}
           />
         </div>
-        <span className={styles.user__email}>yeongmolee@gmail.com</span>
-        <button className={styles.user__logout}>Logout</button>
+        <span className={styles.user__email}>{userInfo?.email}</span>
+        <button className={styles.user__logout} onClick={onLogoutHandler}>
+          Logout
+        </button>
       </div>
     </div>
   );
