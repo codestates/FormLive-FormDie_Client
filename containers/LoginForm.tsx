@@ -3,7 +3,11 @@ import styles from "../styles/LoginForm.module.css";
 import { useForm } from "react-hook-form";
 import Register from "../components/Register";
 import { IReducerState } from "../reducers";
-import { IUserReducerState, LOG_IN_REQUEST } from "../reducers/user";
+import {
+  IUserReducerState,
+  LOG_IN_REQUEST,
+  GET_USER_REQUEST,
+} from "../reducers/user";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 export default function LoginForm({ loginClick, setLoginClick, setSlide }) {
@@ -25,6 +29,9 @@ export default function LoginForm({ loginClick, setLoginClick, setSlide }) {
     }
 
     if (isLoggedIn) {
+      dispatch({
+        type: GET_USER_REQUEST,
+      });
       router.push("/home");
     }
   }, [isSignedUp, isLoggedIn]);

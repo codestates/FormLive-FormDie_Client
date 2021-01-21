@@ -52,7 +52,7 @@ export default function* userSaga() {
 
   function logInAPI(loginData) {
     // 서버에 요청을 보내는 부분
-    return axios.post("/user/signin", loginData);
+    return axios.post("/user/signin", loginData, { withCredentials: true });
   }
 
   function* logIn(action) {
@@ -80,7 +80,7 @@ export default function* userSaga() {
 
   function getUserAPI() {
     // 서버에 요청을 보내는 부분
-    return axios.get("/user");
+    return axios.get("/user", { withCredentials: true });
   }
 
   function* getUser() {
