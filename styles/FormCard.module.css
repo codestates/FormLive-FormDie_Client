@@ -1,0 +1,65 @@
+@value makerGray,makerYellow, makerLightGreen, makerWhite, makerLightGray, makerLightYellow, makerDarkGray from "./common/colors.css";
+@value MavenPro_Medium, Yoon_Gothic_740, Yoon_Gothic_780, Yoon_Gothic_750 from "./common/fonts.css";
+
+.section2__formView {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30%;
+	height: 80px;
+	cursor: pointer;
+	border: 1px solid rgba(151, 151, 151, 0);
+	border-radius: 20px;
+	box-shadow: 1.5px 1.5px 1.5px 1.5px rgba(151, 151, 151, 0.2);
+	background-color: makerWhite;
+}
+.section2__formView__click {
+	background-color: makerLightYellow;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 30%;
+	height: 80px;
+	cursor: pointer;
+	border: 1px solid makerLightYellow;
+	border-radius: 20px;
+}
+
+.section2__formView__formId {
+	font-family: MavenPro_Medium;
+	font-size: 2.5rem;
+	width: 20%;
+	display: flex;
+	justify-content: center;
+	flex: 1;
+	margin-left: 4%;
+}
+
+.section2__formView__text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: 50%;
+	height: 55%;
+	margin-left: 3%;
+
+	flex: 2.5;
+}
+.section2__formView__text__title {
+	font-family: Yoon_Gothic_780;
+	font-size: 0.7rem;
+}
+.section2__formView__text__main {
+	display: flex;
+	font-size: 0.7rem;
+	color: makerGray;
+	margin-top: 1%;
+}
+.section2__formView__text__main div:nth-child(1) {
+	font-family: Yoon_Gothic_750;
+	width: 40%;
+}
+.section2__formView__text__main div:nth-child(2) {
+	font-family: Yoon_Gothic_740;
+	margin-left: 15%;
+}
