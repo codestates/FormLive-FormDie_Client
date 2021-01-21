@@ -1,0 +1,31 @@
+@value makerGray,makerYellow, makerLightGreen, makerWhite, makerLightGray, makerLightYellow, makerDarkGray from "./common/colors.css";
+@value MavenPro_Medium, Yoon_Gothic_740, Yoon_Gothic_780, Yoon_Gothic_750 from "./common/fonts.css";
+
+.section1__searchBar {
+	flex: 6;
+	background-color: makerYellow;
+	border: 0;
+	border-radius: 5px;
+	height: 80%;
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+.section1__searchBar input {
+	background-color: makerYellow;
+	border: 0;
+	width: 70%;
+	height: 60%;
+	margin-left: 5%;
+	margin-top: 0.5%;
+	font-family: Sans CJK KR Bold;
+	font-size: 1rem;
+}
+.section1__searchBar input:focus {
+	outline: none;
+	caret-color: makerWhite;
+	color: makerWhite;
+	font-family: Sans CJK KR Bold;
+	font-size: 1rem;
+}
