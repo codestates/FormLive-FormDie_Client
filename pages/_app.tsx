@@ -34,7 +34,7 @@ class YangSikDang extends App<Props> {
     const { ctx, Component } = context;
     let pageProps = {};
     const state = ctx.store.getState();
-    const user = state.user.me;
+    // const user = state.user.me;
     const logIn = state.user.isLoggedIn;
     const cookie = ctx.isServer ? ctx.req.headers.cookie : "";
 
@@ -43,11 +43,11 @@ class YangSikDang extends App<Props> {
     } else if (ctx.isServer) {
       axios.defaults.headers.Cookie = "";
     }
-    if (!user) {
-      ctx.store.dispatch({
-        type: GET_USER_REQUEST,
-      });
-    }
+    // if (!user) {
+    //   ctx.store.dispatch({
+    //     type: GET_USER_REQUEST,
+    //   });
+    // }
     if (Component.getInitialProps) {
       pageProps = (await Component.getInitialProps(ctx)) || {};
     }
@@ -58,13 +58,16 @@ class YangSikDang extends App<Props> {
     const { Component, store, pageProps, logIn } = this.props;
     return (
       <Provider store={store}>
-        {logIn ? (
+        {/* {logIn ? (
           <AppLayout>
             <Component {...pageProps} />
           </AppLayout>
         ) : (
           <Component {...pageProps} />
-        )}
+        )} */}
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
       </Provider>
     );
   }

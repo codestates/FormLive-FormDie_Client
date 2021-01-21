@@ -7,6 +7,7 @@
 @value makerLightYellow: #fff2cc;
 @value makerDarkRed: #c30e0e;
 @value makerWhiteBackground: #f9f9f9;
+@value makerCardBackground: rgba(255, 255, 255, 0.76);
 
 /*  Gray */
 @value makerGray: #7f7f7f;

@@ -20,6 +20,14 @@ import {
 } from "../reducers/user";
 import { useRouter } from "next/router";
 
+export interface Iuser {
+  id: number;
+  email: string;
+  name: string;
+  profileIconURL?: string;
+  isAdmin: number;
+}
+
 const UserProfile = () => {
   /* 
   * TODO : 유저 API 생성 후 작업 예정.
@@ -35,14 +43,6 @@ const UserProfile = () => {
   */
 
   /*  유저 정보 가져오기 useSelector */
-
-  interface Iuser {
-    id: number;
-    email: string;
-    name: string;
-    profileIconURL?: string;
-    isAdmin: number;
-  }
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -181,7 +181,7 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-    !logIn && router.push("/");
+    // !logIn && router.push("/");
     changeImage && setImage(userInfo?.profileIconURL);
   }, [logIn, userInfo?.profileIconURL]);
 
