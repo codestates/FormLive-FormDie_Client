@@ -3,6 +3,12 @@ import {
   REGISTER_REQUEST,
   REGISTER_FAILURE,
   REGISTER_SUCCESS,
+  LOG_IN_REQUEST,
+  LOG_IN_FAILURE,
+  LOG_IN_SUCCESS,
+  GET_USER_REQUEST,
+  GET_USER_SUCCESS,
+  GET_USER_FAILURE,
 } from "./../reducers/user";
 import {
   all,
@@ -13,11 +19,7 @@ import {
   takeEvery,
 } from "redux-saga/effects";
 import axios, { AxiosResponse } from "axios";
-import {
-  LOG_IN_FAILURE,
-  LOG_IN_REQUEST,
-  LOG_IN_SUCCESS,
-} from "../reducers/user";
+import {} from "../reducers/user";
 
 export default function* userSaga() {
   function registerAPI(registerData) {
@@ -48,14 +50,14 @@ export default function* userSaga() {
     yield takeEvery(REGISTER_REQUEST, register);
   }
 
-  function logInAPI() {
+  function logInAPI(loginData) {
     // 서버에 요청을 보내는 부분
-    return axios.get("/api");
+    return axios.post("/user/signin", loginData);
   }
 
-  function* logIn() {
+  function* logIn(action) {
     try {
-      const result = yield call(logInAPI);
+      const result = yield call(logInAPI, action.data);
       console.log(result);
       yield put({
         // put은 dispatch 동일
@@ -73,8 +75,36 @@ export default function* userSaga() {
   }
 
   function* watchLogIn() {
-    yield takeLatest(LOG_IN_REQUEST, logIn);
+    yield takeEvery(LOG_IN_REQUEST, logIn);
   }
 
-  yield all([fork(watchLogIn), fork(watchRegister)]);
+  function getUserAPI() {
+    // 서버에 요청을 보내는 부분
+    return axios.get("/user");
+  }
+
+  function* getUser() {
+    try {
+      const result = yield call(getUserAPI);
+      console.log(result);
+      yield put({
+        // put은 dispatch 동일
+        type: GET_USER_SUCCESS,
+        data: result.data,
+      });
+    } catch (e) {
+      // loginAPI 실패
+      console.error(e);
+      yield put({
+        type: GET_USER_FAILURE,
+        reason: e,
+      });
+    }
+  }
+
+  function* watchGetUser() {
+    yield takeEvery(GET_USER_REQUEST, getUser);
+  }
+
+  yield all([fork(watchRegister), fork(watchLogIn), fork(watchGetUser)]);
 }

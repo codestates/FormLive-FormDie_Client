@@ -4,7 +4,11 @@ import styles from "../styles/Index.module.css";
 import LoginForm from "../containers/LoginForm";
 import RegisterForm from "../containers/RegisterForm";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { LOG_IN_REQUEST } from "../reducers/user";
 export default function Index() {
+  const dispatch = useDispatch();
+
   const [loginClick, setLoginClick] = useState<boolean>(false);
   const [registerClick, setRegisterClick] = useState<boolean>(false);
   const [Slide, setSlide] = useState<boolean>(true);
@@ -53,6 +57,17 @@ export default function Index() {
         </div>
       </li>
     ));
+
+  const onLoginGuestMode = (event) => {
+    event.preventDefault();
+
+    const guest = { email: "yangsikdang@gmail.com", password: "1111111111" };
+
+    dispatch({
+      type: LOG_IN_REQUEST,
+      data: guest,
+    });
+  };
 
   return (
     <div className={styles.container}>
@@ -108,7 +123,7 @@ export default function Index() {
             <div>한 번 작성한 그 양식, 또 필요할 때 있잖아요.</div>
             <div>써두었던 양식을 바로바로 꺼내보세요.</div>
             <div>양식당은 여러분의 편리함을 추구하고자 완성되었습니다.</div>
-            <button>GUEST MODE</button>
+            <button onClick={onLoginGuestMode}>GUEST MODE</button>
           </article>
 
           <div className={styles.main__view__animation}>
@@ -123,7 +138,11 @@ export default function Index() {
                 </>
               )}
             </div>
-            <div className={styles.main__view__animation__imgSlide}>
+            <div
+              className={`${styles.main__view__animation__imgSlide} ${
+                !Slide && styles.borderNone
+              }`}
+            >
               {Slide && (
                 <ul className={styles.main__view__animation__imgSlide__img}>
                   {renderImage()}

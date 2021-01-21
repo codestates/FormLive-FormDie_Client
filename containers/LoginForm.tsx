@@ -1,24 +1,33 @@
-import React, { FC, ReactElement, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../styles/LoginForm.module.css";
 import { useForm } from "react-hook-form";
 import Register from "../components/Register";
 import { IReducerState } from "../reducers";
-import { IUserReducerState } from "../reducers/user";
-import { useSelector } from "react-redux";
+import { IUserReducerState, LOG_IN_REQUEST } from "../reducers/user";
+import { useSelector, useDispatch } from "react-redux";
+import { useRouter } from "next/router";
 export default function LoginForm({ loginClick, setLoginClick, setSlide }) {
   const [registerButtonClick, setRegisterButtonClick] = useState<boolean>(
     false
   );
 
-  const { isSignedUp } = useSelector<IReducerState, IUserReducerState>(
-    (state) => state.user
-  );
+  const dispatch = useDispatch();
+  const router = useRouter();
+  const { isSignedUp, isLoggedIn, isLoggingIn } = useSelector<
+    IReducerState,
+    IUserReducerState
+  >((state) => state.user);
 
   useEffect(() => {
     if (isSignedUp) {
       setRegisterButtonClick(false);
+      setSlide(false);
     }
-  }, [isSignedUp]);
+
+    if (isLoggedIn) {
+      router.push("/home");
+    }
+  }, [isSignedUp, isLoggedIn]);
 
   interface Ilogin {
     email: string;
@@ -27,8 +36,13 @@ export default function LoginForm({ loginClick, setLoginClick, setSlide }) {
 
   const { register, handleSubmit, errors } = useForm<Ilogin>();
 
-  const onSubmit = (data: Ilogin) => {
-    console.log(data);
+  const onSubmit = (loginData: Ilogin, event) => {
+    event.preventDefault();
+    console.log(loginData);
+    dispatch({
+      type: LOG_IN_REQUEST,
+      data: loginData,
+    });
   };
 
   return (

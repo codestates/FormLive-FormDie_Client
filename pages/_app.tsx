@@ -23,17 +23,19 @@ class YangSikDang extends App<Props> {
   static async getInitialProps(context) {
     const { ctx, Component } = context;
     let pageProps = {};
-    const state = ctx.store.getState();
+    // const state = ctx.store.getState();
     const cookie = ctx.isServer ? ctx.req.headers.cookie : "";
-    axios.defaults.headers.Cookie = "";
+
     if (ctx.isServer && cookie) {
       axios.defaults.headers.Cookie = cookie;
+    } else if (ctx.isServer) {
+      axios.defaults.headers.Cookie = "";
     }
-    if (!state.user.me) {
-      ctx.store.dispatch({
-        type: LOG_IN_REQUEST,
-      });
-    }
+    // if (!state.user.me) {
+    //   ctx.store.dispatch({
+    //     type: LOG_IN_REQUEST,
+    //   });
+    // }
     if (Component.getInitialProps) {
       pageProps = (await Component.getInitialProps(ctx)) || {};
     }

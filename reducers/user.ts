@@ -3,11 +3,13 @@ import produce from "immer";
 export const initialState = {
   isLoggingOut: false, // 로그아웃 시도중
   isLoggingIn: false, // 로그인 시도중
+  isLoggedIn: false, // 로그인 시도중
   logInErrorReason: "", // 로그인 실패 사유
   isSignedUp: false, // 회원가입 성공
   isSigningUp: false, // 회원가입 시도중
   signUpErrorReason: "", // 회원가입 실패 사유
   me: null, // 내 정보
+  getUserErrorReason: "",
   followingList: [], // 팔로잉 리스트
   followerList: [], // 팔로워 리스트
   userInfo: null, // 남의 정보
@@ -26,6 +28,10 @@ export const REGISTER_REQUEST = "REGISTER_REQUEST";
 export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
 export const REGISTER_FAILURE = "REGISTER_FAILURE";
 
+export const GET_USER_REQUEST = "GET_USER_REQUEST";
+export const GET_USER_SUCCESS = "GET_USER_SUCCESS";
+export const GET_USER_FAILURE = "GET_USER_FAILURE";
+
 const userReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
@@ -33,7 +39,6 @@ const userReducer = (state = initialState, action) =>
         draft.isSignedUp = false;
         draft.isSigningUp = true;
         draft.signUpErrorReason = "";
-        break;
         break;
       }
       case REGISTER_SUCCESS: {
@@ -53,14 +58,26 @@ const userReducer = (state = initialState, action) =>
       }
       case LOG_IN_SUCCESS: {
         draft.isLoggingIn = false;
+        draft.isLoggedIn = true;
         draft.logInErrorReason = "";
-        draft.me = action.data;
         break;
       }
       case LOG_IN_FAILURE: {
         draft.isLoggingIn = false;
         draft.logInErrorReason = action.reason;
+        break;
+      }
+      case GET_USER_REQUEST: {
+        break;
+      }
+      case GET_USER_SUCCESS: {
+        draft.me = action.data;
+        draft.getUserErrorReason = "";
+        break;
+      }
+      case GET_USER_FAILURE: {
         draft.me = null;
+        draft.getUserErrorReason = action.reason;
         break;
       }
       default: {

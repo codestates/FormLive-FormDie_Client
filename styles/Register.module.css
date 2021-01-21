@@ -102,3 +102,7 @@
   font-family: Yoon_Gothic_770;
   text-align: center;
 }
+
+.sectionRegister__register:focus {
+  outline: none;
+}

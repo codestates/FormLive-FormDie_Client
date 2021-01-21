@@ -21,7 +21,7 @@ export default function RegisterForm({
       setTimeout(() => {
         setLoginClick(true);
       }, 500);
-      setSlide(true);
+      setSlide(false);
     }
   }, [isSignedUp]);
 

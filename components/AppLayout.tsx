@@ -48,7 +48,7 @@ const AppLayout: FC<Props> = ({ children }) => {
 
   const categories: ICategory[] = [
     {
-      path: "/",
+      path: "/home",
       icon: faHome,
       size: ICON_SIZE,
       text: "HOME",
