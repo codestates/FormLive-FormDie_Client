@@ -1,61 +1,45 @@
-import { useForm } from "react-hook-form";
 import styles from "../styles/RegisterForm.module.css";
-export default function RegisterForm({ registerClick, setRegisterClick }) {
-	return (
-		<div
-			className={registerClick ? styles.container__register : styles.container}
-		>
-			<form>
-				<div className={styles.close}>
-					<div
-						onClick={() => {
-							setRegisterClick(false);
-						}}
-					>
-						x
-					</div>
-				</div>
-				<section className={styles.section}>
-					<div>Register</div>
-					<div>양식당에 오신 것을 환영합니다. 회원가입 후 이용해주세요.</div>
-					<div>
-						<input
-							className={styles.section__email}
-							type="email"
-							name="email"
-							placeholder="Email Address"
-						/>
-					</div>
-					<div>
-						<input
-							className={styles.section__nickname}
-							type="text"
-							name="nickname"
-							placeholder="Nickname"
-						/>
-					</div>
-					<div>
-						<input
-							className={styles.section__password}
-							type="password"
-							placeholder="Password"
-						/>
-					</div>
-					<div>
-						<input
-							className={styles.section__pwCheck}
-							type="password"
-							placeholder="Confirm Password"
-						/>
-					</div>
+import Register from "../components/Register";
+import { useEffect } from "react";
+import { IReducerState } from "../reducers";
+import { IUserReducerState } from "../reducers/user";
+import { useSelector } from "react-redux";
+export default function RegisterForm({
+  registerClick,
+  setRegisterClick,
+  setSlide,
+  setLoginClick,
+}) {
+  const { isSignedUp } = useSelector<IReducerState, IUserReducerState>(
+    (state) => state.user
+  );
 
-					<input
-						className={styles.section__register}
-						type="submit"
-						value="Register"
-					/>
-				</section>
-			</form>
-		</div>
-	);
+  useEffect(() => {
+    if (isSignedUp) {
+      window.alert("회원가입에 성공했습니다.");
+      setRegisterClick(false);
+      setTimeout(() => {
+        setLoginClick(true);
+      }, 500);
+      setSlide(false);
+    }
+  }, [isSignedUp]);
+
+  return (
+    <div
+      className={registerClick ? styles.container__register : styles.container}
+    >
+      <div className={styles.close}>
+        <div
+          onClick={() => {
+            setRegisterClick(false);
+            setSlide(true);
+          }}
+        >
+          x
+        </div>
+      </div>
+      <Register />
+    </div>
+  );
 }

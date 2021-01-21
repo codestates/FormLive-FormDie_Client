@@ -8,7 +8,7 @@ import createSagaMiddleware, { Task } from "redux-saga";
 import axios from "axios";
 import Helmet from "react-helmet";
 import { composeWithDevTools } from "redux-devtools-extension";
-import '../styles/globals.css'
+import "../styles/globals.css";
 import reducer, { IReducerState } from "../reducers";
 import rootSaga from "../sagas";
 import { LOG_IN_REQUEST } from "../reducers/user";
@@ -23,17 +23,19 @@ class YangSikDang extends App<Props> {
   static async getInitialProps(context) {
     const { ctx, Component } = context;
     let pageProps = {};
-    const state = ctx.store.getState();
+    // const state = ctx.store.getState();
     const cookie = ctx.isServer ? ctx.req.headers.cookie : "";
-    axios.defaults.headers.Cookie = "";
+
     if (ctx.isServer && cookie) {
       axios.defaults.headers.Cookie = cookie;
+    } else if (ctx.isServer) {
+      axios.defaults.headers.Cookie = "";
     }
-    if (!state.user.me) {
-      ctx.store.dispatch({
-        type: LOG_IN_REQUEST,
-      });
-    }
+    // if (!state.user.me) {
+    //   ctx.store.dispatch({
+    //     type: LOG_IN_REQUEST,
+    //   });
+    // }
     if (Component.getInitialProps) {
       pageProps = (await Component.getInitialProps(ctx)) || {};
     }
@@ -44,9 +46,9 @@ class YangSikDang extends App<Props> {
     const { Component, store, pageProps } = this.props;
     return (
       <Provider store={store}>
-        <AppLayout>
-          <Component {...pageProps} />
-        </AppLayout>
+        {/* <AppLayout> */}
+        <Component {...pageProps} />
+        {/* </AppLayout> */}
       </Provider>
     );
   }
