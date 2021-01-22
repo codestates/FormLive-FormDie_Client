@@ -15,6 +15,7 @@ export const initialState = {
   followerList: [], // 팔로워 리스트
   userInfo: null, // 남의 정보
   isEditing: false, // 이름 변경 중
+  isEdited: false,
   editErrorReason: "", // 이름 변경 실패 사유
   isChangingImage: false,
   isChangedImage: false,
@@ -110,6 +111,7 @@ const userReducer = (state = initialState, action) =>
       }
       case GET_USER_SUCCESS: {
         draft.me = action.data;
+        draft.isLoggedIn = true;
         draft.getUserErrorReason = "";
         break;
       }
@@ -125,6 +127,7 @@ const userReducer = (state = initialState, action) =>
       case EDIT_PROFILE_SUCCESS: {
         draft.isEditing = false;
         draft.editErrorReason = "";
+        draft.me = action.newUser.data;
         break;
       }
       case EDIT_PROFILE_FAILURE: {

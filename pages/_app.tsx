@@ -14,11 +14,13 @@ import rootSaga from "../sagas";
 import { LOG_IN_REQUEST, GET_USER_REQUEST } from "../reducers/user";
 import "../styles/globals.css";
 import AppLayout from "../components/AppLayout";
+import { FORM_LIST_REQUEST } from "../reducers/form";
 
 interface Props extends AppProps {
   store: Store<IReducerState>;
   user: Iuser | null;
   logIn: boolean;
+  cookie: string;
 }
 
 interface Iuser {
@@ -35,13 +37,39 @@ class YangSikDang extends App<Props> {
     let pageProps = {};
     const state = ctx.store.getState();
     // const user = state.user.me;
+    //클라이언트 사이드 인증.
     const logIn = state.user.isLoggedIn;
-    const cookie = ctx.isServer ? ctx.req.headers.cookie : "";
 
-    if (ctx.isServer && cookie) {
+    const cookie = ctx.isServer ? ctx.req.headers.cookie : "";
+    if (ctx.isServer && cookie && ctx.pathname === "/") {
+      //로그인에 성공한 경우.
       axios.defaults.headers.Cookie = cookie;
-    } else if (ctx.isServer) {
+      if (ctx.req && ctx.res) {
+        ctx.res.writeHead(302, { Location: "/home" });
+        ctx.res.end();
+      }
+      ctx.store.dispatch({
+        type: GET_USER_REQUEST,
+      });
+    } else if (ctx.isServer && !cookie && ctx.pathname !== "/") {
+      //쿠기가 없는데 다른 경로로 접속하려함.
       axios.defaults.headers.Cookie = "";
+      if (ctx.req && ctx.res) {
+        ctx.res.writeHead(302, { Location: "/" });
+        ctx.res.end();
+      }
+    } else if (ctx.isServer && !cookie && ctx.pathname === "/") {
+      //일반적인 접근 홈으로 온 경우.
+      axios.defaults.headers.Cookie = "";
+    } else if (ctx.isServer && cookie && ctx.pathname !== "/") {
+      //쿠키가 있는데 패스가 다른 걸로 들어오면 로그인으로 만들어야해.
+      axios.defaults.headers.Cookie = cookie;
+      // ctx.store.dispatch({
+      //   type: FORM_LIST_REQUEST,
+      // });
+      // ctx.store.dispatch({
+      //   type: GET_USER_REQUEST,
+      // });
     }
     // if (!user) {
     //   ctx.store.dispatch({
@@ -51,23 +79,23 @@ class YangSikDang extends App<Props> {
     if (Component.getInitialProps) {
       pageProps = (await Component.getInitialProps(ctx)) || {};
     }
-    return { pageProps, logIn };
+    return { pageProps, cookie, logIn };
   }
 
   render() {
-    const { Component, store, pageProps, logIn } = this.props;
+    const { Component, store, pageProps, cookie, logIn } = this.props;
     return (
       <Provider store={store}>
-        {/* {logIn ? (
+        {!cookie && !logIn ? (
+          <Component {...pageProps} />
+        ) : (
           <AppLayout>
             <Component {...pageProps} />
           </AppLayout>
-        ) : (
+        )}
+        {/* <AppLayout>
           <Component {...pageProps} />
-        )} */}
-        <AppLayout>
-          <Component {...pageProps} />
-        </AppLayout>
+        </AppLayout> */}
       </Provider>
     );
   }

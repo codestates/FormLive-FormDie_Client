@@ -47,6 +47,9 @@ const UserProfile = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   let userInfo = useSelector<IReducerState, Iuser>((state) => state.user.me);
+  let userState = useSelector<IReducerState, IUserReducerState>(
+    (state) => state.user
+  );
   let logIn = useSelector<IReducerState, boolean>(
     (state) => state.user.isLoggedIn
   );
@@ -138,7 +141,9 @@ const UserProfile = () => {
     } else {
       dispatch({ type: EDIT_PROFILE_REQUEST, data: editData });
       dispatch({ type: CHANGE_IMAGE_REQUEST, data: Imgfile });
+      // userState.isChangedImage && dispatch({ type: GET_USER_REQUEST });
       // dispatch({ type: GET_USER_REQUEST });
+
       setSuccessEdit(true);
       setTimeout(() => setSuccessEdit(false), 2000);
       // setImage(userInfo?.profileIconURL);
@@ -181,7 +186,7 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-    // !logIn && router.push("/");
+    !logIn && router.push("/");
     changeImage && setImage(userInfo?.profileIconURL);
   }, [logIn, userInfo?.profileIconURL]);
 
