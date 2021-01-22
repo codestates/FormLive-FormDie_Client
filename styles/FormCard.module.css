@@ -1,6 +1,13 @@
 @value makerGray,makerYellow, makerLightGreen, makerWhite, makerLightGray, makerLightYellow, makerDarkGray from "./common/colors.css";
 @value MavenPro_Medium, Yoon_Gothic_740, Yoon_Gothic_780, Yoon_Gothic_750 from "./common/fonts.css";
-
+.section2__formData {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+}
 .section2__formView {
 	display: flex;
 	align-items: center;
@@ -42,7 +49,6 @@
 	width: 50%;
 	height: 55%;
 	margin-left: 3%;
-
 	flex: 2.5;
 }
 .section2__formView__text__title {

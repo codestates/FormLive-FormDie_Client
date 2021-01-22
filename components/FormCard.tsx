@@ -5,11 +5,12 @@ interface Props {
 	formId: number;
 	title: string;
 	description: string;
-	date: string;
+	updated_at: string;
 }
 
-const FormCard: FC<Props> = ({ formId, title, description, date }) => {
+const FormCard: FC<Props> = ({ formId, title, description, updated_at }) => {
 	const [formViewClick, setFormViewClick] = useState<boolean>(false);
+	console.log("hello ", formId);
 	return (
 		<section
 			className={
@@ -28,7 +29,7 @@ const FormCard: FC<Props> = ({ formId, title, description, date }) => {
 				<div className={styles.section2__formView__text__title}>{title}</div>
 				<div className={styles.section2__formView__text__main}>
 					<div>{description}</div>
-					<div>{date}</div>
+					<div>{updated_at}</div>
 				</div>
 			</section>
 		</section>

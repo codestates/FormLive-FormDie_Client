@@ -71,7 +71,21 @@ export default function FormGroup() {
 			title: "Title8",
 			description: "description8",
 			date: "2021-01-20",
-			count: 2752,
+			count: 275,
+		},
+		{
+			formId: 9,
+			title: "Title8",
+			description: "description8",
+			date: "2021-01-20",
+			count: 275,
+		},
+		{
+			formId: 10,
+			title: "Title8",
+			description: "description8",
+			date: "2021-01-20",
+			count: 752,
 		},
 	];
 
@@ -79,19 +93,15 @@ export default function FormGroup() {
 		<div className={styles.container}>
 			<section className={styles.section1}>
 				<section className={styles.section1__topMenu}>
-					<article className={styles.section1__article}>Form Group</article>
-					<section className={styles.section1__sort}>
-						<div>최신순</div>
-						<div>|</div>
-						<div>인기순</div>
-					</section>
+					<span className={styles.section1__article}>Form Group</span>
+					<span className={styles.section1__sort}>
+						<span>최신순</span>
+						<span>|</span>
+						<span>인기순</span>
+					</span>
 					<SearchBar />
 				</section>
-				<section className={styles.section1__description}>
-					<article className={styles.section1__description__count}>
-						(총 56개)
-					</article>
-				</section>
+				<section className={styles.section1__description}>(총 56개)</section>
 			</section>
 			<section className={styles.section2}>
 				<section className={styles.section2__left}>
