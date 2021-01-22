@@ -2,15 +2,17 @@
 @value MavenPro_Medium, Yoon_Gothic_740, Yoon_Gothic_780, Yoon_Gothic_750 from "./common/fonts.css";
 
 .section1__searchBar {
-	flex: 6;
 	background-color: makerYellow;
 	border: 0;
 	border-radius: 5px;
-	height: 80%;
-	width: 100%;
+	width: 24%;
+	height: 2rem;
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
+	position: absolute;
+	right: 7rem;
+	top: 4rem;
 }
 .section1__searchBar input {
 	background-color: makerYellow;

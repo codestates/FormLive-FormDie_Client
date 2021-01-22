@@ -24,17 +24,15 @@ const FormGroupCard: FC<Props> = ({ title, description, date, count }) => {
 			}}
 		>
 			<div className={styles.container__imgFolder}>
-				<FontAwesomeIcon icon={faFolder} size={"4x"} color={"#00b050"} />
+				<FontAwesomeIcon icon={faFolder} size={"3x"} color={"#00b050"} />
 			</div>
 			<section className={styles.container__text}>
 				<article className={styles.container__text__title}>{title}</article>
 				<section className={styles.container__text__section}>
-					<article className={styles.container__text__section__description}>
+					<div className={styles.container__text__section__description}>
 						{description}
-					</article>
-					<article className={styles.container__text__section__count}>
-						{count}+
-					</article>
+					</div>
+					<div className={styles.container__text__section__count}>{count}+</div>
 				</section>
 				<article className={styles.container__date}>
 					<div>({date} Updated)</div>
