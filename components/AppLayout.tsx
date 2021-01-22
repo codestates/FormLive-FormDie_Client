@@ -121,19 +121,6 @@ const AppLayout: FC<Props> = ({ children }) => {
         <div className={styles.menubar__container}>
           <div className={styles.menubar__categories}>{renderCategory()}</div>
 
-          {/* user profile */}
-          {/* <div className={styles.menubar__user}>
-            <img className={styles.menubar__user__img} src="/image/guest.svg" />
-            <div className={styles.menubar__user__nickname}>
-              <span>Yeongbba</span>
-              <FontAwesomeIcon icon={faEdit} size="xs" color={ICON_COLOR} />
-            </div>
-            <span className={styles.menubar__user__email}>
-              yeongmolee@gmail.com
-            </span>
-            <button className={styles.menubar__user__logout}>Logout</button>
-          </div> */}
-
           <UserProfile />
         </div>
       </div>

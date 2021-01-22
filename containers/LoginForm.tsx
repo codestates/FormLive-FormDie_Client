@@ -29,9 +29,9 @@ export default function LoginForm({ loginClick, setLoginClick, setSlide }) {
     }
 
     if (isLoggedIn) {
-      dispatch({
-        type: GET_USER_REQUEST,
-      });
+      // dispatch({
+      //   type: GET_USER_REQUEST,
+      // });
       router.push("/home");
     }
   }, [isSignedUp, isLoggedIn]);

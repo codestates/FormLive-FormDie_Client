@@ -11,19 +11,31 @@ import { composeWithDevTools } from "redux-devtools-extension";
 import "../styles/globals.css";
 import reducer, { IReducerState } from "../reducers";
 import rootSaga from "../sagas";
-import { LOG_IN_REQUEST } from "../reducers/user";
+import { LOG_IN_REQUEST, GET_USER_REQUEST } from "../reducers/user";
 import "../styles/globals.css";
 import AppLayout from "../components/AppLayout";
 
 interface Props extends AppProps {
   store: Store<IReducerState>;
+  user: Iuser | null;
+  logIn: boolean;
+}
+
+interface Iuser {
+  id: number;
+  email: string;
+  name: string;
+  profileIconURL?: string;
+  isAdmin: number;
 }
 
 class YangSikDang extends App<Props> {
   static async getInitialProps(context) {
     const { ctx, Component } = context;
     let pageProps = {};
-    // const state = ctx.store.getState();
+    const state = ctx.store.getState();
+    // const user = state.user.me;
+    const logIn = state.user.isLoggedIn;
     const cookie = ctx.isServer ? ctx.req.headers.cookie : "";
 
     if (ctx.isServer && cookie) {
@@ -31,24 +43,31 @@ class YangSikDang extends App<Props> {
     } else if (ctx.isServer) {
       axios.defaults.headers.Cookie = "";
     }
-    // if (!state.user.me) {
+    // if (!user) {
     //   ctx.store.dispatch({
-    //     type: LOG_IN_REQUEST,
+    //     type: GET_USER_REQUEST,
     //   });
     // }
     if (Component.getInitialProps) {
       pageProps = (await Component.getInitialProps(ctx)) || {};
     }
-    return { pageProps };
+    return { pageProps, logIn };
   }
 
   render() {
-    const { Component, store, pageProps } = this.props;
+    const { Component, store, pageProps, logIn } = this.props;
     return (
       <Provider store={store}>
-        {/* <AppLayout> */}
-        <Component {...pageProps} />
-        {/* </AppLayout> */}
+        {/* {logIn ? (
+          <AppLayout>
+            <Component {...pageProps} />
+          </AppLayout>
+        ) : (
+          <Component {...pageProps} />
+        )} */}
+        <AppLayout>
+          <Component {...pageProps} />
+        </AppLayout>
       </Provider>
     );
   }
