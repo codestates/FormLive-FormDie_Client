@@ -1,60 +1,90 @@
-@value makerGray,makerYellow, makerLightGreen, makerWhite, makerLightGray, makerLightYellow, makerDarkGray from "./common/colors.css";
-@value MavenPro_Medium, Yoon_Gothic_740, Yoon_Gothic_780, Yoon_Gothic_750 from "./common/fonts.css";
+@value makerYellow from "./common/colors.css";
+@value makerLightGreen from "./common/colors.css";
+@value makerWhite from "./common/colors.css";
+@value makerLightGray from "./common/colors.css";
+@value makerGray from "./common/colors.css";
+@value makerLightYellow from "./common/colors.css";
+@value makerDarkGray from "./common/colors.css";
+
+@value MavenPro_Medium from './common/fonts.css';
+@value Yoon_Gothic_740 from './common/fonts.css';
+@value Yoon_Gothic_750 from './common/fonts.css';
+@value Yoon_Gothic_780 from './common/fonts.css';
 
 .container {
-	display: flex;
-	flex-direction: column;
-	width: 80%;
-	margin-top: 5%;
-}
-.section1 {
-	display: flex;
-	flex-direction: column;
-	margin-left: 8%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.section1__article {
-	margin-right: 1%;
-	font-family: MavenPro_Medium;
-	font-size: 2rem;
-}
-.section1__sort {
-	width: 20%;
-	color: makerGray;
-}
-.section1__sort span:nth-child(1) {
-	font-family: Yoon_Gothic_740;
-}
-.section1__sort span:nth-child(2) {
-	margin-left: 1%;
-	margin-right: 1%;
-}
-.section1__sort span:nth-child(3) {
-	font-family: Yoon_Gothic_740;
-}
-.section1__description {
-	text-align: end;
-	font-family: Yoon_Gothic_740;
-	margin-top: 1%;
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  padding-right: 4.1rem;
 }
 
-.section2 {
-	margin-left: 5%;
-	height: 60%;
-	width: 100%;
-	margin-top: 1%;
-	display: flex;
+.header__title {
+  font-family: MavenPro_Medium;
+  font-size: 1.75rem;
+  padding-left: 4.1rem;
 }
-.section2__formData {
-	width: 62rem;
-	display: flex;
-	flex-wrap: wrap;
+
+.header__left {
+  display: flex;
+  align-items: flex-end;
 }
-.section2__left {
-	position: relative;
-	top: 9rem;
+
+.header__sort {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
 }
-.section2__right {
-	position: relative;
-	top: 9rem;
+
+.header__sort div {
+  font-family: Yoon_Gothic_740;
+  color: makerDarkGray;
+  font-size: 0.75rem;
+}
+
+.header__sort div:not(:nth-child(2)) {
+  cursor: pointer;
+}
+
+.formGroup {
+  display: flex;
+  align-items: center;
+}
+
+.number {
+  display: flex;
+  font-family: Yoon_Gothic_740;
+  font-size: 0.75rem;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 4.1rem;
+  margin-top: 0.7rem;
+}
+
+.formGroupCard {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  grid-row-gap: 2.1rem;
+  grid-column-gap: 2.1rem;
+  margin-top: 1rem;
+  margin-bottom: 1.9rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
+.cheveronRight,
+.cheveronLeft {
+  cursor: pointer;
+}
+
+.cheveronRight:hover,
+.cheveronLeft:hover {
+  transform: scale(1.2);
 }

@@ -11,6 +11,10 @@ a {
   text-decoration: none;
 }
 
+button {
+  background-color: none;
+}
+
 * {
   box-sizing: border-box;
   user-select: none;

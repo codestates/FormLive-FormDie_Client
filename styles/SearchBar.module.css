@@ -1,33 +1,46 @@
-@value makerGray,makerYellow, makerLightGreen, makerWhite, makerLightGray, makerLightYellow, makerDarkGray from "./common/colors.css";
-@value MavenPro_Medium, Yoon_Gothic_740, Yoon_Gothic_780, Yoon_Gothic_750 from "./common/fonts.css";
+@value makerYellow from "./common/colors.css";
+@value makerLightGreen from "./common/colors.css";
+@value makerWhite from "./common/colors.css";
+@value makerLightGray from "./common/colors.css";
+@value makerGray from "./common/colors.css";
+@value makerLightYellow from "./common/colors.css";
+@value makerDarkGray from "./common/colors.css";
+
+@value MavenPro_Medium from './common/fonts.css';
+@value Yoon_Gothic_740 from './common/fonts.css';
+@value Yoon_Gothic_750 from './common/fonts.css';
+@value Yoon_Gothic_780 from './common/fonts.css';
+@value Noto_Sans_CJK_Bold from './common/fonts.css';
 
 .section1__searchBar {
-	background-color: makerYellow;
-	border: 0;
-	border-radius: 5px;
-	width: 24%;
-	height: 2rem;
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-	position: absolute;
-	right: 7rem;
-	top: 4rem;
+  background-color: makerYellow;
+  border-radius: 7px;
+  width: 19rem;
+  height: 2.3rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 0.7rem;
+  box-sizing: border-box;
 }
+
 .section1__searchBar input {
-	background-color: makerYellow;
-	border: 0;
-	width: 70%;
-	height: 60%;
-	margin-left: 5%;
-	margin-top: 0.5%;
-	font-family: Sans CJK KR Bold;
-	font-size: 1rem;
+  background-color: makerYellow;
+  width: 16.5rem;
+  border: 0;
+  height: 90%;
+  margin-top: 0.5%;
+  padding-left: 1rem;
+  box-sizing: border-box;
+  font-family: Noto_Sans_CJK_Bold;
+  font-size: 0.8rem;
+  color: makerWhite;
 }
+
 .section1__searchBar input:focus {
-	outline: none;
-	caret-color: makerWhite;
-	color: makerWhite;
-	font-family: Sans CJK KR Bold;
-	font-size: 1rem;
+  outline: none;
+  caret-color: makerWhite;
+  color: makerWhite;
+  font-family: Noto_Sans_CJK_Bold;
+  font-size: 0.8rem;
 }

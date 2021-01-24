@@ -28,20 +28,6 @@ const HomeFormGroupCard: FC<Props> = ({ title, organization }) => {
           </div>
         </div>
       </div>
-
-      {/* <div className={styles.number}>01</div>
-      <div className={styles.title}>청년내일채움공제</div>
-      <div className={styles.formInfo}>
-        <div className={styles.formInfo__operation}>한국장학재단</div>
-        <div className={styles.formInfo__click}>2351+</div>
-      </div>
-      <div className={styles.buttonBox}>
-        <div className={styles.border}>
-          <div className={styles.button}>
-            <FontAwesomeIcon icon={faPen} size="sm" color="black" />
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };
