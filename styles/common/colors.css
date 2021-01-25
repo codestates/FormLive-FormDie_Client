@@ -16,5 +16,4 @@
 @value makerDarkGray: #6b6b72;
 @value makerInputGray: #8c8c8c;
 
-/* 그림자 값 저장 예정 */
-@value makerShadow: rgba(217, 217, 217, 1);
+@value makerShadow: 1.5px 1.5px 5px 1.5px rgba(151, 151, 151, 0.25);

@@ -1,68 +1,60 @@
-@value makerGray,makerYellow, makerLightGreen, makerWhite, makerLightGray, makerLightYellow, makerDarkGray from "./common/colors.css";
-@value MavenPro_Medium, Yoon_Gothic_740, Yoon_Gothic_780, Yoon_Gothic_750 from "./common/fonts.css";
+@value makerYellow from "./common/colors.css";
+@value makerGray from "./common/colors.css";
+@value makerLightYellow from "./common/colors.css";
+@value makerDarkGray from "./common/colors.css";
+@value makerCardBackground from "./common/colors.css";
+@value makerShadow from "./common/colors.css";
+
+@value MavenPro_Medium from './common/fonts.css';
+@value Yoon_Gothic_740 from './common/fonts.css';
+@value Yoon_Gothic_750 from './common/fonts.css';
+@value Yoon_Gothic_780 from './common/fonts.css';
 
 .container {
-	border-radius: 30px;
-	width: 11rem;
-	height: 9rem;
-	box-shadow: 1.5px 1.5px 5px 1.5px rgba(151, 151, 151, 0.2);
-	background-color: rgba(255, 255, 255, 0.26);
-	cursor: pointer;
-	margin-left: 0.7rem;
-	margin-right: 0.7rem;
-}
-.container__click {
-	background-color: makerLightYellow;
-	border-radius: 30px;
-	width: 20.1%;
-	height: 45%;
-	box-shadow: 1.5px 1.5px 5px 1.5px rgba(151, 151, 151, 0.2);
-	cursor: pointer;
-}
-.container__imgFolder {
-	margin-top: 2%;
-	width: 1rem;
-	position: relative;
-	left: 4rem;
-	top: 1rem;
+  width: 10rem;
+  height: 9rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: makerCardBackground;
+  opacity: 0.74;
+  box-shadow: makerShadow;
+  cursor: pointer;
 }
 
-.container__text {
-	position: relative;
-	left: 1.7rem;
-	top: 1rem;
-	width: 70%;
-	margin-bottom: 6%;
+.container__click {
+  background-color: makerLightYellow;
+  box-shadow: none;
 }
-.container__text__title {
-	font-family: Yoon_Gothic_780;
-	text-overflow: ellipsis;
-	white-space: nowrap;
-	word-wrap: normal;
-	overflow: hidden;
-	text-align: center;
-	font-size: 0.8rem;
-	margin-top: 0.2rem;
+
+.title {
+  font-family: Yoon_Gothic_780;
+  color: makerBlack;
+  font-size: 0.82rem;
+  margin-top: 0.4rem;
 }
-.container__text__section {
-	display: flex;
+
+.formGroupInfo {
+  display: flex;
+  align-items: center;
+  margin-top: 0.3rem;
 }
-.container__text__section__description {
-	font-family: Yoon_Gothic_750;
-	font-size: 0.7rem;
-	position: relative;
-	left: 0.6rem;
+
+.formGroupInfo__description {
+  font-family: Yoon_Gothic_750;
+  font-size: 0.72rem;
+  margin-right: 0.4rem;
 }
-.container__text__section__count {
-	font-family: Yoon_Gothic_780;
-	font-size: 0.7rem;
-	position: relative;
-	width: 3rem;
-	left: 1.3rem;
+
+.formGroupInfo__count {
+  font-family: Yoon_Gothic_780;
+  font-size: 0.735rem;
 }
-.container__date {
-	font-size: 0.7rem;
-	font-family: Yoon_Gothic_740;
-	position: relative;
-	left: 0.4rem;
+
+.date {
+  font-family: Yoon_Gothic_740;
+  font-size: 0.6rem;
+  margin-top: 0.3rem;
 }

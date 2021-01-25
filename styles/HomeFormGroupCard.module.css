@@ -24,7 +24,7 @@
   opacity: 0.74;
   padding-left: 2rem;
   box-sizing: border-box;
-  box-shadow: 1.5px 1.5px 5px 1.5px rgba(151, 151, 151, 0.25);
+  box-shadow: makerShadow;
 }
 
 .infoBox {

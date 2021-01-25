@@ -6,17 +6,33 @@ import { useSelector } from "react-redux";
 import { IReducerState } from "../reducers";
 import { IUserReducerState } from "../reducers/user";
 import { Iuser } from "../containers/UserProfile";
-
-const HomeFormCard = () => {
-  const userInfo = useSelector<IReducerState, Iuser>((state) => state.user.me);
+interface Props {
+  formId: number;
+  title: string;
+  views: number;
+  description?: string | null | undefined;
+  number: string;
+  updated_at: string;
+  organization: string;
+}
+const HomeFormCard: FC<Props> = ({
+  formId,
+  title,
+  description,
+  views,
+  updated_at,
+  number,
+  organization,
+}) => {
+  number = number.length === 1 ? `0${number}` : number;
 
   return (
     <div className={styles.container}>
-      <div className={styles.number}>01</div>
-      <div className={styles.title}>청년내일채움공제</div>
+      <div className={styles.number}>{number}</div>
+      <div className={styles.title}>{title}</div>
       <div className={styles.formInfo}>
-        <div className={styles.formInfo__operation}>한국장학재단</div>
-        <div className={styles.formInfo__click}>2351+</div>
+        <div className={styles.formInfo__operation}>{organization}</div>
+        <div className={styles.formInfo__click}>{views}+</div>
       </div>
       <div className={styles.buttonBox}>
         <div className={styles.border}>

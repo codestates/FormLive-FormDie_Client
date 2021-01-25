@@ -155,11 +155,13 @@ export default function* userSaga() {
   function* editProfile(action) {
     try {
       const result = yield call(editProfileAPI, action.data);
+      const newUser = yield call(getUserAPI);
       console.log(result);
       yield put({
         // put은 dispatch 동일
         type: EDIT_PROFILE_SUCCESS,
         data: result.data,
+        newUser: newUser.data,
       });
     } catch (e) {
       // loginAPI 실패
