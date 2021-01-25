@@ -7,14 +7,16 @@ import { IReducerState } from "../reducers";
 import { IUserReducerState } from "../reducers/user";
 import { Iuser } from "../containers/UserProfile";
 interface Props {
+  formId: number;
   title: string;
   views: number;
-  description?: any;
+  description?: string | null | undefined;
   number: string;
-  updated_at?: any;
+  updated_at: string;
   organization: string;
 }
 const HomeFormCard: FC<Props> = ({
+  formId,
   title,
   description,
   views,

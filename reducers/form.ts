@@ -21,6 +21,10 @@ export const FORM_GROUP_REQUEST = "FORM_GROUP_REQUEST"; // 액션의 이름
 export const FORM_GROUP_SUCCESS = "FORM_GROUP_SUCCESS"; // 액션의 이름
 export const FORM_GROUP_FAILURE = "FORM_GROUP_FAILURE"; // 액션의 이름
 
+export const NEW_GROUP_REQUEST = "FORM_GROUP_REQUEST"; // 액션의 이름
+export const NEW_GROUP_SUCCESS = "FORM_GROUP_SUCCESS"; // 액션의 이름
+export const NEW_GROUP_FAILURE = "FORM_GROUP_FAILURE"; // 액션의 이름
+
 const formReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
@@ -52,7 +56,15 @@ const formReducer = (state = initialState, action) =>
         draft.getFormGroupErrorReason = action.reason;
         break;
       }
-
+      case NEW_GROUP_REQUEST: {
+        break;
+      }
+      case NEW_GROUP_SUCCESS: {
+        break;
+      }
+      case NEW_GROUP_FAILURE: {
+        break;
+      }
       default: {
         break;
       }

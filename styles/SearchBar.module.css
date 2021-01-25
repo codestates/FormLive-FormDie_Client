@@ -44,3 +44,7 @@
   font-family: Noto_Sans_CJK_Bold;
   font-size: 0.8rem;
 }
+
+.section1__searchBar div {
+  cursor: pointer;
+}

@@ -3,8 +3,6 @@ import { useSelector } from "react-redux";
 import { IReducerState } from "../reducers";
 import { Iuser } from "../containers/UserProfile";
 import HomeFormCard from "../components/HomeFormCard";
-import { faClock, faFireAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   FORM_LIST_REQUEST,
   IFormReducerState,
@@ -15,68 +13,64 @@ import { GET_USER_REQUEST } from "../reducers/user";
 
 const Home = () => {
   const userInfo = useSelector<IReducerState, Iuser>((state) => state.user.me);
-  // const { formList, formGroup } = useSelector<IReducerState, IFormReducerState>(
-  //   (state) => state.form
-  // );
+  const { formList, formGroup } = useSelector<IReducerState, IFormReducerState>(
+    (state) => state.form
+  );
 
-  interface ITemp {
-    title: string;
-    views: number;
-    description?: any;
-    number: string;
-    updated_at?: any;
-    organization: string;
-  }
-  const formList: ITemp[] = [
-    {
-      title: "청년내일채움공제",
-      organization: "한국장학재단",
-      views: 2815,
-      number: "1",
-      description: null,
-      updated_at: null,
-    },
-    {
-      title: "청년내일채움공제",
-      organization: "한국장학재단",
-      views: 2815,
-      number: "1",
-      description: null,
-      updated_at: null,
-    },
-    {
-      title: "청년내일채움공제",
-      organization: "한국장학재단",
-      views: 2815,
-      number: "1",
-      description: null,
-      updated_at: null,
-    },
-    {
-      title: "청년내일채움공제",
-      organization: "한국장학재단",
-      views: 2815,
-      number: "1",
-      description: null,
-      updated_at: null,
-    },
-    {
-      title: "청년내일채움공제",
-      organization: "한국장학재단",
-      views: 2815,
-      number: "1",
-      description: null,
-      updated_at: null,
-    },
-  ];
+  // const formList: ITemp[] = [
+  //   {
+  //     title: "청년내일채움공제",
+  //     organization: "한국장학재단",
+  //     views: 2815,
+  //     number: "1",
+  //     description: null,
+  //     updated_at: null,
+  //   },
+  //   {
+  //     title: "청년내일채움공제",
+  //     organization: "한국장학재단",
+  //     views: 2815,
+  //     number: "1",
+  //     description: null,
+  //     updated_at: null,
+  //   },
+  //   {
+  //     title: "청년내일채움공제",
+  //     organization: "한국장학재단",
+  //     views: 2815,
+  //     number: "1",
+  //     description: null,
+  //     updated_at: null,
+  //   },
+  //   {
+  //     title: "청년내일채움공제",
+  //     organization: "한국장학재단",
+  //     views: 2815,
+  //     number: "1",
+  //     description: null,
+  //     updated_at: null,
+  //   },
+  //   {
+  //     title: "청년내일채움공제",
+  //     organization: "한국장학재단",
+  //     views: 2815,
+  //     number: "1",
+  //     description: null,
+  //     updated_at: null,
+  //   },
+  // ];
 
-  //5개만 잘라서 map 필요
   const renderFormCard = () =>
-    formList.map((form, index) => <HomeFormCard {...form} key={index} />);
+    formList
+      .slice(0, 5)
+      .map((form, index) => (
+        <HomeFormCard {...form} key={index} number={String(index + 1)} />
+      ));
 
-  //6개만 잘라서 map 필요
   const renderFormGroupCard = () =>
-    formList.map((form, index) => <HomeFormGroupCard {...form} key={index} />);
+    formGroup
+      .slice(0, 6)
+      .map((form, index) => <HomeFormGroupCard {...form} key={index} />);
 
   return (
     <div className={styles.container}>
@@ -127,16 +121,6 @@ Home.getInitialProps = async (context) => {
   context.store.dispatch({
     type: GET_USER_REQUEST,
   });
-  // context.store.dispatch({
-  //   type: LOAD_FOLLOWINGS_REQUEST,
-  //   data: state.user.me && state.user.me.id,
-  // });
-  // context.store.dispatch({
-  //   type: LOAD_USER_POSTS_REQUEST,
-  //   data: state.user.me && state.user.me.id,
-  // });
-
-  // 이 쯤에서 LOAD_USERS_SUCCESS 돼서 me가 생김.
 };
 
 export default Home;
