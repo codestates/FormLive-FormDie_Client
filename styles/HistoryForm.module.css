@@ -1,8 +1,11 @@
 @value makerWhite,makerLightGray, makerGray from "./common/colors.css";
 .container {
-	width: 66.8rem;
-	height: 32rem;
+	width: 65.5rem;
+	height: 33rem;
 	overflow-y: scroll;
+	position: relative;
+	left: 3.25rem;
+	top: 1rem;
 }
 .container::-webkit-scrollbar-track {
 	background-color: makerGray;

@@ -1,0 +1,102 @@
+@value Yoon_Gothic_780, Yoon_Gothic_750, Yoon_Gothic_770, Yoon_Gothic_740 from "./common/fonts.css";
+@value makerBlack, makerWhite from "./common/colors.css";
+.container {
+	margin: auto;
+	box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
+}
+.form {
+	padding: 3rem 7rem;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: makerWhite;
+}
+.form div:nth-child(1) {
+	font-family: Yoon_Gothic_780;
+	font-size: 2rem;
+}
+.form div:nth-child(2) {
+	font-family: Yoon_Gothic_780;
+	font-size: 2rem;
+}
+.form div:nth-child(3) {
+	font-family: Yoon_Gothic_750;
+	margin-top: 2rem;
+	font-size: 0.8rem;
+}
+.form div:nth-child(4) {
+	font-family: Yoon_Gothic_750;
+	margin-bottom: 2rem;
+	font-size: 0.8rem;
+}
+.form div:nth-child(7) {
+	font-family: Yoon_Gothic_740;
+	font-size: 0.8rem;
+	margin-top: 2rem;
+}
+.title {
+	width: 22rem;
+	height: 3rem;
+	margin-bottom: 1rem;
+	border: 2px inset;
+	font-family: Yoon_Gothic_770;
+}
+.title::placeholder {
+	padding-left: 1rem;
+	font-size: 1rem;
+	font-family: Yoon_Gothic_770;
+}
+.title:focus {
+	outline: none;
+	font-family: Yoon_Gothic_770;
+}
+.title:focus::placeholder {
+	color: makerWhite;
+}
+.fileUpload {
+	display: flex;
+	justify-content: center;
+}
+.files {
+	display: flex;
+	border: 2px inset;
+	height: 3rem;
+}
+.fileName {
+	border: 0;
+	width: 15rem;
+	height: 100%;
+	font-family: Yoon_Gothic_770;
+	color: makerBlack;
+	background-color: makerWhite;
+}
+.fileName::placeholder {
+	font-family: Yoon_Gothic_770;
+	font-size: 1rem;
+	padding-left: 1rem;
+}
+.fileName:focus {
+	outline: none;
+	font-size: 1rem;
+}
+.uploadImg {
+	cursor: pointer;
+	display: flex;
+	align-items: center;
+	background-color: makerWhite;
+}
+.uploadImg img {
+	width: 1rem;
+	height: 1rem;
+}
+
+.fileUpload input[type="file"] {
+	display: none;
+}
+.submit {
+	width: 5.8rem;
+	background-color: makerBlack;
+	color: makerWhite;
+	border-color: makerBlack;
+	font-family: Yoon_Gothic_770;
+}

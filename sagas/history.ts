@@ -24,6 +24,10 @@ export default function* historySaga() {
 			});
 		} catch (e) {
 			console.log(e);
+			yield put({
+				type: HISTORY_LIST_FAILURE,
+				reason: e,
+			});
 		}
 	}
 	function* watchHistoryList() {
