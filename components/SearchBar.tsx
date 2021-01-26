@@ -6,58 +6,58 @@ import { useDispatch } from "react-redux";
 import { FORM_LIST_REQUEST } from "../reducers/form";
 
 export default function SearchBar({ setQuery }) {
-  const dispatch = useDispatch();
-  const [Value, setValue] = useState("");
+	const dispatch = useDispatch();
+	const [Value, setValue] = useState("");
 
-  const searchClickHandler = () => {
-    const params = {
-      page: 1,
-      query: Value,
-    };
+	const searchClickHandler = () => {
+		const params = {
+			page: 1,
+			q: Value,
+		};
 
-    dispatch({
-      type: FORM_LIST_REQUEST,
-      data: params,
-    });
+		dispatch({
+			type: FORM_LIST_REQUEST,
+			data: params,
+		});
 
-    setQuery(Value);
-    setValue("");
-  };
+		setQuery(Value);
+		setValue("");
+	};
 
-  const searchPressHandler = (event) => {
-    if (event.key === "Enter") {
-      const params = {
-        page: 1,
-        query: Value,
-      };
+	const searchPressHandler = (event) => {
+		if (event.key === "Enter") {
+			const params = {
+				page: 1,
+				q: Value,
+			};
 
-      dispatch({
-        type: FORM_LIST_REQUEST,
-        data: params,
-      });
+			dispatch({
+				type: FORM_LIST_REQUEST,
+				data: params,
+			});
 
-      setQuery(Value);
-      setValue("");
-    }
-  };
+			setQuery(Value);
+			setValue("");
+		}
+	};
 
-  return (
-    <section className={styles.section1__searchBar}>
-      <input
-        value={Value}
-        onChange={(event) => {
-          setValue(event.target.value);
-        }}
-        onKeyPress={searchPressHandler}
-      />
-      <div>
-        <FontAwesomeIcon
-          icon={faSearch}
-          size={"lg"}
-          color={"#ffffff"}
-          onClick={searchClickHandler}
-        />
-      </div>
-    </section>
-  );
+	return (
+		<section className={styles.section1__searchBar}>
+			<input
+				value={Value}
+				onChange={(event) => {
+					setValue(event.target.value);
+				}}
+				onKeyPress={searchPressHandler}
+			/>
+			<div>
+				<FontAwesomeIcon
+					icon={faSearch}
+					size={"lg"}
+					color={"#ffffff"}
+					onClick={searchClickHandler}
+				/>
+			</div>
+		</section>
+	);
 }
