@@ -70,9 +70,24 @@ const LoginForm = ({ loginClick, setLoginClick, setSlide }) => {
               양식당에 오신 것을 환영합니다. 로그인 후 이용해주세요.
             </div>
             <figure className={styles.section__figure}>
-              <img src="/image/kakao.png"></img>
-              <img src="/image/naver.png"></img>
-              <img src="/image/google.png"></img>
+              <img
+                onClick={() =>
+                  window.location.assign("http://localhost:5000/auth/kakao")
+                }
+                src="/image/kakao.png"
+              ></img>
+              <img
+                onClick={() =>
+                  window.location.assign("http://localhost:5000/auth/naver")
+                }
+                src="/image/naver.png"
+              ></img>
+              <img
+                onClick={() =>
+                  window.location.assign("http://localhost:5000/auth/google")
+                }
+                src="/image/google.png"
+              ></img>
             </figure>
             <div className={styles.section__input__border}>
               <input
