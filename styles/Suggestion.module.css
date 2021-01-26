@@ -5,7 +5,6 @@
 	box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
 }
 .form {
-	border: 1px solid;
 	padding: 3rem 7rem;
 	display: flex;
 	flex-direction: column;
@@ -40,15 +39,16 @@
 	height: 3rem;
 	margin-bottom: 1rem;
 	border: 2px inset;
+	font-family: Yoon_Gothic_770;
 }
 .title::placeholder {
-	font-family: Yoon_Gothic_770;
 	padding-left: 1rem;
 	font-size: 1rem;
+	font-family: Yoon_Gothic_770;
 }
 .title:focus {
 	outline: none;
-	font-size: 1rem;
+	font-family: Yoon_Gothic_770;
 }
 .title:focus::placeholder {
 	color: makerWhite;
@@ -66,6 +66,9 @@
 	border: 0;
 	width: 15rem;
 	height: 100%;
+	font-family: Yoon_Gothic_770;
+	color: makerBlack;
+	background-color: makerWhite;
 }
 .fileName::placeholder {
 	font-family: Yoon_Gothic_770;
