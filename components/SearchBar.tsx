@@ -3,22 +3,29 @@ import styles from "../styles/SearchBar.module.css";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
-import { FORM_LIST_REQUEST } from "../reducers/form";
+import { FORM_LIST_REQUEST, FORM_GROUP_REQUEST } from "../reducers/form";
 
-export default function SearchBar({ setQuery }) {
+export default function SearchBar({ where, setQuery }) {
   const dispatch = useDispatch();
   const [Value, setValue] = useState("");
 
   const searchClickHandler = () => {
     const params = {
       page: 1,
-      query: Value,
+      q: Value,
     };
 
-    dispatch({
-      type: FORM_LIST_REQUEST,
-      data: params,
-    });
+    if (where === "form") {
+      dispatch({
+        type: FORM_LIST_REQUEST,
+        data: params,
+      });
+    } else if (where === "formGroup") {
+      dispatch({
+        type: FORM_GROUP_REQUEST,
+        data: params,
+      });
+    }
 
     setQuery(Value);
     setValue("");
@@ -28,13 +35,20 @@ export default function SearchBar({ setQuery }) {
     if (event.key === "Enter") {
       const params = {
         page: 1,
-        query: Value,
+        q: Value,
       };
 
-      dispatch({
-        type: FORM_LIST_REQUEST,
-        data: params,
-      });
+      if (where === "form") {
+        dispatch({
+          type: FORM_LIST_REQUEST,
+          data: params,
+        });
+      } else if (where === "formGroup") {
+        dispatch({
+          type: FORM_GROUP_REQUEST,
+          data: params,
+        });
+      }
 
       setQuery(Value);
       setValue("");

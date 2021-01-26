@@ -28,28 +28,22 @@ export interface Iuser {
   isAdmin: number;
 }
 
+interface IImageUpload {
+  file: string;
+  previewURL: any;
+}
+
+interface IEditUser {
+  img: string;
+  name: string;
+  password: string;
+  repassword: string;
+}
+
 const UserProfile = () => {
-  /* 
-  * TODO : 유저 API 생성 후 작업 예정.
-  * const { me } = useSelector((state) => state.user);
-
-  * const onSearch = (value) => {
-  *   Router.push(
-  *     { pathname: "/hashtag", query: { tag: value } },
-  *     `/hashtag/${value}`
-  *   );
-  * };
-  
-  */
-
-  /*  유저 정보 가져오기 useSelector */
-
   const dispatch = useDispatch();
   const router = useRouter();
   let userInfo = useSelector<IReducerState, Iuser>((state) => state.user.me);
-  let userState = useSelector<IReducerState, IUserReducerState>(
-    (state) => state.user
-  );
   let logIn = useSelector<IReducerState, boolean>(
     (state) => state.user.isLoggedIn
   );
@@ -57,10 +51,6 @@ const UserProfile = () => {
   let changeImage = useSelector<IReducerState, boolean>(
     (state) => state.user.isChangedImage
   );
-  interface IImageUpload {
-    file: string;
-    previewURL: any;
-  }
 
   const [Edit, setEdit] = useState<boolean>(false);
   const [VerifyDelete, setVerifyDelete] = useState<boolean>(false);
@@ -76,16 +66,9 @@ const UserProfile = () => {
     file: "",
     previewURL: "",
   });
+
   const ICON_COLOR = "white";
-
-  //프로필 이미지가 설정 안되어 있는 유저는 기본 이미지 등록
-  // let profileImg: string;
   const userBaseImage: string = "/image/guest.svg";
-  // profileImg = userInfo?.profileIconURL
-  //   ? userInfo.profileIconURL
-  //   : userBaseImage;
-
-  //프로필 이미지 변경
   const inputRef = useRef<HTMLInputElement>();
 
   const onButtonClick = (event: React.MouseEvent<HTMLElement>) => {
@@ -111,14 +94,6 @@ const UserProfile = () => {
     }
   };
 
-  interface IEditUser {
-    img: string;
-    name: string;
-    password: string;
-    repassword: string;
-  }
-
-  //유저 수정 폼 제출
   const {
     register,
     handleSubmit,
@@ -141,12 +116,9 @@ const UserProfile = () => {
     } else {
       dispatch({ type: EDIT_PROFILE_REQUEST, data: editData });
       dispatch({ type: CHANGE_IMAGE_REQUEST, data: Imgfile });
-      // userState.isChangedImage && dispatch({ type: GET_USER_REQUEST });
-      // dispatch({ type: GET_USER_REQUEST });
 
       setSuccessEdit(true);
       setTimeout(() => setSuccessEdit(false), 2000);
-      // setImage(userInfo?.profileIconURL);
     }
   };
 
@@ -164,20 +136,22 @@ const UserProfile = () => {
   };
 
   const onDeleteUserHandler = () => {
-    // TODO: dispatch로 계정 삭제, 성공 후 2초 정도 삭제 알림 메시지 후 메인으로 push
     const deletePassword = getValues("password");
     const confirmPassword = getValues("repassword");
     if (!deletePassword || !confirmPassword) {
       setNonePassword(true);
       setTimeout(() => setNonePassword(false), 2000);
     } else {
-      dispatch({
-        type: DELETE_USER_REQUEST,
-        data: { password: deletePassword },
-      });
       setDelete(true);
       setVerifyDelete(false);
-      setTimeout(() => setDelete(false), 2000);
+      setTimeout(() => {
+        setDelete(false);
+
+        dispatch({
+          type: DELETE_USER_REQUEST,
+          data: { password: deletePassword },
+        });
+      }, 2000);
     }
   };
 

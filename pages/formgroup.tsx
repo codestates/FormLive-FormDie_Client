@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import styles from "../styles/FormGroup.module.css";
 import FormGroupCard from "../components/FormGroupCard";
 import FormGroupDescription from "../components/FormGroupDescription";
@@ -8,112 +9,135 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SearchBar from "../components/SearchBar";
 
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { IReducerState } from "../reducers";
 import { Iuser } from "../containers/UserProfile";
-import HomeFormCard from "../components/HomeFormCard";
-import {
-  FORM_LIST_REQUEST,
-  IFormReducerState,
-  FORM_GROUP_REQUEST,
-} from "../reducers/form";
-import HomeFormGroupCard from "../components/HomeFormGroupCard";
+import { IFormReducerState, FORM_GROUP_REQUEST } from "../reducers/form";
 import { GET_USER_REQUEST } from "../reducers/user";
+
+interface IselectGroupForm {
+  groupId: number;
+  title: string;
+  description: string;
+  updated_at: string;
+  organization: string;
+  isDefaultGroup: boolean;
+  forms: IselectForm[];
+  views: number;
+}
+
+interface IselectForm {
+  formId: number;
+  title: string;
+  description: string;
+  updated_at: string;
+  organization: string;
+  views: number;
+}
 
 const FormGroup = () => {
   const MEDIUM_GRAY = "#bfbfbf";
+  const dispatch = useDispatch();
+
   const userInfo = useSelector<IReducerState, Iuser>((state) => state.user.me);
-  // const { formList, formGroup } = useSelector<IReducerState, IFormReducerState>(
-  //   (state) => state.form
-  // );
+  const { formGroup, formGroupTotalNumber } = useSelector<
+    IReducerState,
+    IFormReducerState
+  >((state) => state.form);
 
-  interface data {
-    formId: number;
-    title: string;
-    description: string;
-    date: string;
-    count: number;
-  }
-  let formData: Array<data> = [
-    {
-      formId: 1,
-      title: "청년내일체움공제",
-      description: "한국장학재단",
-      date: "2021-01-20",
-      count: 256,
-    },
-    {
-      formId: 2,
-      title: "청년내일체움공제",
-      description: "한국장학재단",
-      date: "2021-01-20",
-      count: 208,
-    },
-    {
-      formId: 3,
-      title: "청년내일체움공제",
-      description: "한국장학재단",
-      date: "2021-01-20",
-      count: 154,
-    },
-    {
-      formId: 4,
-      title: "청년내일체움공제",
-      description: "한국장학재단",
-      date: "2021-01-20",
-      count: 361,
-    },
-    {
-      formId: 5,
-      title: "청년내일체움공제",
-      description: "한국장학재단",
-      date: "2021-01-20",
-      count: 487,
-    },
-    {
-      formId: 6,
-      title: "청년내일체움공제",
-      description: "한국장학재단",
-      date: "2021-01-20",
-      count: 633,
-    },
-    {
-      formId: 7,
-      title: "청년내일체움공제",
-      description: "한국장학재단",
-      date: "2021-01-20",
-      count: 211,
-    },
-    {
-      formId: 8,
-      title: "청년내일체움공제",
-      description: "한국장학재단",
-      date: "2021-01-20",
-      count: 275,
-    },
-    {
-      formId: 9,
-      title: "청년내일체움공제",
-      description: "한국장학재단",
-      date: "2021-01-20",
-      count: 275,
-    },
-    {
-      formId: 10,
-      title: "청년내일체움공제",
-      description: "한국장학재단",
-      date: "2021-01-20",
-      count: 752,
-    },
-  ];
+  const [Page, setPage] = useState<number>(1);
+  const [Sort, setSort] = useState<string | null>(null);
+  const [Query, setQuery] = useState<string>("");
+  const [
+    SelectFormGroup,
+    setSelectFormGroup,
+  ] = useState<IselectGroupForm | null>(null);
 
-  //   //5개만 잘라서 map 필요
-  //   const renderFormCard = () =>
-  //     formList.map((form, index) => <HomeFormCard {...form} key={index} />);
+  const onSelectFormGroupHandler = (formGroup: IselectGroupForm): void => {
+    setSelectFormGroup(formGroup);
+  };
 
-  //   //6개만 잘라서 map 필요
-  //   const renderFormGroupCard = () =>
-  //     formList.map((form, index) => <HomeFormGroupCard {...form} key={index} />);
+  const renderFormGroupCard = () =>
+    formGroup.map((formGroup, index) => (
+      <FormGroupCard
+        {...formGroup}
+        key={index}
+        selectFormGroupHandler={onSelectFormGroupHandler}
+        selectFormGroup={SelectFormGroup}
+      />
+    ));
+  console.log(SelectFormGroup);
+
+  const onChangePageUpHandler = () => {
+    const maxPage = Math.ceil(formGroupTotalNumber / 10);
+
+    if (Page === maxPage) {
+      window.alert("현재 마지막 페이지에 있습니다.");
+      return;
+    }
+    const params = {
+      page: Page + 1,
+      sort: Sort,
+      q: Query,
+    };
+
+    dispatch({
+      type: FORM_GROUP_REQUEST,
+      data: params,
+    });
+
+    setPage(Page + 1);
+  };
+
+  const onChangePageDownHandler = () => {
+    if (Page === 1) {
+      window.alert("현재 1 페이지에 있습니다.");
+      return;
+    } else {
+      const params = {
+        page: Page - 1,
+        sort: Sort,
+        q: Query,
+      };
+
+      dispatch({
+        type: FORM_GROUP_REQUEST,
+        data: params,
+      });
+
+      setPage(Page - 1);
+    }
+  };
+
+  const onChangeSortPopularHandler = () => {
+    const params = {
+      page: Page,
+      sort: "popular",
+      q: Query,
+    };
+
+    dispatch({
+      type: FORM_GROUP_REQUEST,
+      data: params,
+    });
+
+    setSort("popular");
+  };
+
+  const onChangeSortLatestHandler = () => {
+    const params = {
+      page: Page,
+      sort: null,
+      q: Query,
+    };
+
+    dispatch({
+      type: FORM_GROUP_REQUEST,
+      data: params,
+    });
+
+    setSort(null);
+  };
 
   return (
     <div className={styles.container}>
@@ -121,34 +145,24 @@ const FormGroup = () => {
         <div className={styles.header__left}>
           <div className={styles.header__title}>Form Group</div>
           <div className={styles.header__sort}>
-            <div>최신순</div>
+            <div onClick={onChangeSortLatestHandler}>최신순</div>
             <div> ｜ </div>
-            <div>인기순</div>
+            <div onClick={onChangeSortPopularHandler}>인기순</div>
           </div>
         </div>
-        <SearchBar />
+        <SearchBar where={"formGroup"} setQuery={setQuery} />
       </header>
-      <div className={styles.number}>(총 56개)</div>
+      <div className={styles.number}>(총 {formGroupTotalNumber}개)</div>
       <div className={styles.formGroup}>
-        <div className={styles.cheveronLeft}>
+        <div className={styles.cheveronLeft} onClick={onChangePageDownHandler}>
           <FontAwesomeIcon
             icon={faChevronLeft}
             size={"1x"}
             color={MEDIUM_GRAY}
           />
         </div>
-        <div className={styles.formGroupCard}>
-          {formData.map((data, idx) => (
-            <FormGroupCard
-              title={data.title}
-              description={data.description}
-              date={data.date}
-              count={data.count}
-              key={idx}
-            />
-          ))}
-        </div>
-        <div className={styles.cheveronRight}>
+        <div className={styles.formGroupCard}>{renderFormGroupCard()}</div>
+        <div className={styles.cheveronRight} onClick={onChangePageUpHandler}>
           <FontAwesomeIcon
             icon={faChevronRight}
             size={"1x"}
@@ -156,7 +170,7 @@ const FormGroup = () => {
           />
         </div>
       </div>
-      <FormGroupDescription />
+      <FormGroupDescription {...SelectFormGroup} />
     </div>
   );
 };
@@ -167,38 +181,18 @@ interface IFormList {
   sort?: string;
 }
 
-const formRequest: IFormList = {
-  page: 1,
-  sort: "popular",
-};
-
 const formGroupRequest: IFormList = {
   page: 1,
 };
 
 FormGroup.getInitialProps = async (context) => {
-  // const state = context.store.getState();
-  // 이 직전에 LOAD_USERS_REQUEST
-  //   context.store.dispatch({
-  //     type: FORM_LIST_REQUEST,
-  //     data: formRequest,
-  //   });
-  //   context.store.dispatch({
-  //     type: FORM_GROUP_REQUEST,
-  //     data: formGroupRequest,
-  //   });
-  //   context.store.dispatch({
-  //     type: GET_USER_REQUEST,
-  //   });
-  // context.store.dispatch({
-  //   type: LOAD_FOLLOWINGS_REQUEST,
-  //   data: state.user.me && state.user.me.id,
-  // });
-  // context.store.dispatch({
-  //   type: LOAD_USER_POSTS_REQUEST,
-  //   data: state.user.me && state.user.me.id,
-  // });
-  // 이 쯤에서 LOAD_USERS_SUCCESS 돼서 me가 생김.
+  context.store.dispatch({
+    type: FORM_GROUP_REQUEST,
+    data: formGroupRequest,
+  });
+  context.store.dispatch({
+    type: GET_USER_REQUEST,
+  });
 };
 
 export default FormGroup;

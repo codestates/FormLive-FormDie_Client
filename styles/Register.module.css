@@ -1,6 +1,8 @@
 @value makerGreen from './common/colors.css';
 @value makerBlack from './common/colors.css';
 @value makerWhite from './common/colors.css';
+@value makerDarkRed from './common/colors.css';
+
 @value MavenPro_Medium from './common/fonts.css';
 @value Yoon_Gothic_740 from './common/fonts.css';
 @value Yoon_Gothic_770 from './common/fonts.css';
@@ -40,6 +42,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  /* justify-content: center; */
   padding-left: 50px;
   padding-right: 50px;
   color: makerWhite;
@@ -61,7 +64,7 @@
 }
 
 .sectionRegister__box {
-  margin-top: 0.9rem;
+  margin-top: 0.5rem;
   border: 0.1rem solid makerWhite;
 }
 
@@ -105,4 +108,12 @@
 
 .sectionRegister__register:focus {
   outline: none;
+}
+
+.errorMessage {
+  color: makerDarkRed;
+  width: 20rem;
+  text-align: start;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
 }

@@ -80,7 +80,7 @@
 
 .formCard {
   display: grid;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(3, 18.5rem);
   grid-template-rows: repeat(4, 4.5rem);
   grid-row-gap: 1rem;
   grid-column-gap: 1.4rem;

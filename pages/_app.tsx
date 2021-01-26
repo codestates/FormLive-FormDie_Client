@@ -6,15 +6,13 @@ import { applyMiddleware, createStore, Store } from "redux";
 import { Provider } from "react-redux";
 import createSagaMiddleware, { Task } from "redux-saga";
 import axios from "axios";
-import Helmet from "react-helmet";
 import { composeWithDevTools } from "redux-devtools-extension";
 import "../styles/globals.css";
 import reducer, { IReducerState } from "../reducers";
 import rootSaga from "../sagas";
-import { LOG_IN_REQUEST, GET_USER_REQUEST } from "../reducers/user";
+import { GET_USER_REQUEST } from "../reducers/user";
 import "../styles/globals.css";
 import AppLayout from "../components/AppLayout";
-import { FORM_LIST_REQUEST } from "../reducers/form";
 
 interface Props extends AppProps {
   store: Store<IReducerState>;
@@ -71,11 +69,7 @@ class YangSikDang extends App<Props> {
       //   type: GET_USER_REQUEST,
       // });
     }
-    // if (!user) {
-    //   ctx.store.dispatch({
-    //     type: GET_USER_REQUEST,
-    //   });
-    // }
+
     if (Component.getInitialProps) {
       pageProps = (await Component.getInitialProps(ctx)) || {};
     }
@@ -93,9 +87,6 @@ class YangSikDang extends App<Props> {
             <Component {...pageProps} />
           </AppLayout>
         )}
-        {/* <AppLayout>
-          <Component {...pageProps} />
-        </AppLayout> */}
       </Provider>
     );
   }
