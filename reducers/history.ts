@@ -3,6 +3,7 @@ import produce from "immer";
 export const initialState = {
 	historyList: [],
 	historyTotal: 0,
+	gethistoryListErrorReason: "",
 };
 export const HISTORY_LIST_REQUEST = "HISTORY_LIST_REQUEST";
 export const HISTORY_LIST_SUCCESS = "HISTORY_LIST_SUCCESS";
@@ -20,11 +21,11 @@ const historyReducer = (state = initialState, action) =>
 				break;
 			}
 			case HISTORY_LIST_SUCCESS: {
-				console.log(action.data);
 				draft.historyList = action.data.content;
 				draft.historyTotal = action.data.total;
 			}
 			case HISTORY_LIST_FAILURE: {
+				draft.gethistoryListErrorReason = action.reaseon;
 			}
 		}
 	});

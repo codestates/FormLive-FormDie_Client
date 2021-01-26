@@ -4,32 +4,35 @@
 .container {
 	display: flex;
 	flex-direction: column;
-	width: 64rem;
-	margin-top: 5%;
+	align-items: center;
+	margin: auto;
 }
-.section1 {
+.header {
 	display: flex;
-	flex-direction: column;
-	margin-left: 8%;
-	height: 88vh;
+	align-items: center;
+	width: 100%;
+	justify-content: space-between;
+	padding-right: 4.1rem;
 }
-
-.section1__article {
-	margin-right: 1%;
+.header__left {
+	display: flex;
+	align-items: flex-end;
+}
+.header__title {
 	font-family: MavenPro_Medium;
-	font-size: 2rem;
+	font-size: 1.75rem;
+	padding-left: 4.1rem;
 }
-.section1__sort {
-	width: 20%;
-	color: makerGray;
+.header__sort {
+	display: flex;
+	align-items: center;
+	margin-left: 1rem;
 }
-.section1__sort span:nth-child(1) {
+.header__sort div {
 	font-family: Yoon_Gothic_740;
+	color: #6b6b72;
+	font-size: 0.75rem;
 }
-.section1__sort span:nth-child(2) {
-	margin-left: 1%;
-	margin-right: 1%;
-}
-.section1__sort span:nth-child(3) {
-	font-family: Yoon_Gothic_740;
+.header__sort div:not(:nth-child(2)) {
+	cursor: pointer;
 }
