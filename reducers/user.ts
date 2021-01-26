@@ -6,7 +6,7 @@ export const initialState = {
   isLoggingIn: false, // 로그인 시도중
   isLoggedIn: false, // 로그인 시도중
   logInErrorReason: "", // 로그인 실패 사유
-  isSignedUp: false, // 회원가입 성공
+  isSignedUp: null, // 회원가입 성공
   isSigningUp: false, // 회원가입 시도중
   signUpErrorReason: "", // 회원가입 실패 사유
   me: null, // 내 정보
@@ -71,6 +71,7 @@ const userReducer = (state = initialState, action) =>
         break;
       }
       case REGISTER_FAILURE: {
+        draft.isSignedUp = false;
         draft.isSigningUp = false;
         draft.signUpErrorReason = action.error;
         break;
@@ -98,7 +99,7 @@ const userReducer = (state = initialState, action) =>
       case LOG_OUT_SUCCESS: {
         draft.isLoggingOut = false;
         draft.isLoggedIn = false;
-        draft.isSignedUp = false;
+        draft.isSignedUp = null;
         break;
       }
       case LOG_OUT_FAILURE: {
@@ -159,6 +160,7 @@ const userReducer = (state = initialState, action) =>
         draft.isDeleted = true;
         draft.isLoggedIn = false;
         draft.deleteErrorReason = "";
+        draft.isSignedUp = null;
         break;
       }
       case DELETE_USER_FAILURE: {

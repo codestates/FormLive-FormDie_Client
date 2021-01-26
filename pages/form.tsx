@@ -12,21 +12,29 @@ import SearchBar from "../components/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { IReducerState } from "../reducers";
 import { Iuser } from "../containers/UserProfile";
-import HomeFormCard from "../components/HomeFormCard";
-import {
-  FORM_LIST_REQUEST,
-  IFormReducerState,
-  FORM_GROUP_REQUEST,
-} from "../reducers/form";
-import HomeFormGroupCard from "../components/HomeFormGroupCard";
+import { FORM_LIST_REQUEST, IFormReducerState } from "../reducers/form";
 import { GET_USER_REQUEST } from "../reducers/user";
-import { isNull } from "util";
+
+interface IselectForm {
+  formId: number;
+  title: string;
+  description: string;
+  updated_at: string;
+  organization: string;
+  views: number;
+}
+
+interface IFormList {
+  q?: string;
+  page: number;
+  sort?: string;
+}
 
 const Form = () => {
   const MEDIUM_GRAY = "#bfbfbf";
 
   const dispatch = useDispatch();
-  const userInfo = useSelector<IReducerState, Iuser>((state) => state.user.me);
+
   const { formList, formTotalNumber } = useSelector<
     IReducerState,
     IFormReducerState
@@ -35,7 +43,7 @@ const Form = () => {
   const [Page, setPage] = useState<number>(1);
   const [Sort, setSort] = useState<string | null>(null);
   const [Query, setQuery] = useState<string>("");
-  const [SelectForm, setSelectForm] = useState<any[]>([]);
+  const [SelectForm, setSelectForm] = useState<IselectForm[]>([]);
 
   const renderFormCard = () =>
     formList.map((form, index) => (
@@ -50,10 +58,16 @@ const Form = () => {
     ));
 
   const onChangePageUpHandler = () => {
+    const maxPage = Math.ceil(formTotalNumber / 12);
+
+    if (Page === maxPage) {
+      window.alert("현재 마지막 페이지에 있습니다.");
+      return;
+    }
     const params = {
       page: Page + 1,
       sort: Sort,
-      query: Query,
+      q: Query,
     };
 
     dispatch({
@@ -72,7 +86,7 @@ const Form = () => {
       const params = {
         page: Page - 1,
         sort: Sort,
-        query: Query,
+        q: Query,
       };
 
       dispatch({
@@ -88,7 +102,7 @@ const Form = () => {
     const params = {
       page: Page,
       sort: "popular",
-      query: Query,
+      q: Query,
     };
 
     dispatch({
@@ -103,7 +117,7 @@ const Form = () => {
     const params = {
       page: Page,
       sort: null,
-      query: Query,
+      q: Query,
     };
 
     dispatch({
@@ -114,8 +128,7 @@ const Form = () => {
     setSort(null);
   };
 
-  //타입 다시 지정.
-  const onSelectFormHandler = (formArr: any[]): void => {
+  const onSelectFormHandler = (formArr: IselectForm[]): void => {
     setSelectForm(formArr);
   };
 
@@ -130,7 +143,7 @@ const Form = () => {
             <div onClick={onChangeSortPopularHandler}>인기순</div>
           </div>
         </div>
-        <SearchBar setQuery={setQuery} />
+        <SearchBar where={"form"} setQuery={setQuery} />
       </header>
       <div className={styles.subHeader}>
         <div className={styles.subHeader__desc}>
@@ -160,19 +173,11 @@ const Form = () => {
   );
 };
 
-interface IFormList {
-  q?: string;
-  page: number;
-  sort?: string;
-}
-
 const formRequest: IFormList = {
   page: 1,
 };
 
 Form.getInitialProps = async (context) => {
-  // const state = context.store.getState();
-  // 이 직전에 LOAD_USERS_REQUEST
   context.store.dispatch({
     type: FORM_LIST_REQUEST,
     data: formRequest,

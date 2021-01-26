@@ -4,12 +4,14 @@ import { useEffect } from "react";
 import { IReducerState } from "../reducers";
 import { IUserReducerState } from "../reducers/user";
 import { useSelector } from "react-redux";
-export default function RegisterForm({
+import { useRouter } from "next/router";
+
+const RegisterForm = ({
   registerClick,
   setRegisterClick,
   setSlide,
   setLoginClick,
-}) {
+}) => {
   const { isSignedUp } = useSelector<IReducerState, IUserReducerState>(
     (state) => state.user
   );
@@ -42,4 +44,6 @@ export default function RegisterForm({
       <Register />
     </div>
   );
-}
+};
+
+export default RegisterForm;
