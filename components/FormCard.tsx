@@ -8,9 +8,18 @@ interface Props {
   updated_at: string;
   organization: string;
   selectFormHandler: (formId: any) => void;
-  selectForm: any[];
+  selectForm: IselectForm[];
   page: number;
   number: number;
+  views: number;
+}
+
+interface IselectForm {
+  formId: number;
+  title: string;
+  description: string;
+  updated_at: string;
+  organization: string;
   views: number;
 }
 
@@ -29,7 +38,7 @@ const FormCard: FC<Props> = ({
   const [formViewClick, setFormViewClick] = useState<boolean>(false);
 
   const checkFormHandler = () => {
-    let newSelectForm: any[];
+    let newSelectForm: IselectForm[];
 
     if (selectForm.findIndex((form) => form.formId === formId) >= 0) {
       newSelectForm = selectForm.filter((form) => form.formId !== formId);
@@ -48,7 +57,7 @@ const FormCard: FC<Props> = ({
     } else {
       setFormViewClick(false);
     }
-  }, [page]);
+  }, [formId]);
 
   return (
     <section

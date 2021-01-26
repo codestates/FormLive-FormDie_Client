@@ -1,10 +1,4 @@
-import React, {
-  FC,
-  ReactElement,
-  useState,
-  useCallback,
-  useEffect,
-} from "react";
+import React from "react";
 import styles from "../styles/Register.module.css";
 import { useForm } from "react-hook-form";
 import { REGISTER_REQUEST, IUserReducerState } from "../reducers/user";
@@ -15,15 +9,14 @@ export interface IRegister {
   email: string;
   name: string;
   password: string;
-  confirm?: string[];
+  confirm: string;
 }
 
 export default function Register() {
   const dispatch = useDispatch();
-  const { isSigningUp, isSignedUp } = useSelector<
-    IReducerState,
-    IUserReducerState
-  >((state) => state.user);
+  const { isSigningUp } = useSelector<IReducerState, IUserReducerState>(
+    (state) => state.user
+  );
 
   const {
     register,
@@ -58,6 +51,9 @@ export default function Register() {
             placeholder="Email Address"
           />
         </div>
+        {errors.email && (
+          <div className={styles.errorMessage}>Email is required</div>
+        )}
         <div className={styles.sectionRegister__box}>
           <input
             className={styles.sectionRegister__input}
@@ -70,6 +66,14 @@ export default function Register() {
             placeholder="Nickname"
           />
         </div>
+        {errors.name?.type === "required" && (
+          <div className={styles.errorMessage}>Nickname is required</div>
+        )}
+        {errors.name?.type === "minLength" && (
+          <div className={styles.errorMessage}>
+            Password length is at least 10
+          </div>
+        )}
         <div className={styles.sectionRegister__box}>
           <input
             className={styles.sectionRegister__input}
@@ -82,6 +86,16 @@ export default function Register() {
             placeholder="Password"
           />
         </div>
+
+        {errors.password?.type === "required" && (
+          <div className={styles.errorMessage}>Password is required</div>
+        )}
+        {errors.password?.type === "minLength" && (
+          <div className={styles.errorMessage}>
+            Password length is at least 10
+          </div>
+        )}
+
         <div className={styles.sectionRegister__box}>
           <input
             className={styles.sectionRegister__input}
@@ -95,12 +109,26 @@ export default function Register() {
             placeholder="Confirm Password"
           />
         </div>
+        {errors.confirm?.type === "required" && (
+          <div className={styles.errorMessage}>
+            Confirm password is required
+          </div>
+        )}
+        {errors.confirm?.type === "minLength" && (
+          <div className={styles.errorMessage}>
+            Password length is at least 10
+          </div>
+        )}
+        {errors.confirm?.type === "validate" && (
+          <div className={styles.errorMessage}>
+            Please make sure your passwords match
+          </div>
+        )}
 
         <input
           className={styles.sectionRegister__register}
           type="submit"
           value={isSigningUp ? "Loading..." : "Register"}
-          onClick={() => unregister(["confirm"])}
         />
       </section>
     </form>

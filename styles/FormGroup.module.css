@@ -70,13 +70,16 @@
 
 .formGroupCard {
   display: grid;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(5, 10rem);
+  grid-template-rows: repeat(2, 9rem);
   grid-row-gap: 2.1rem;
   grid-column-gap: 2.1rem;
   margin-top: 1rem;
   margin-bottom: 1.9rem;
   margin-left: 3rem;
   margin-right: 3rem;
+  height: 20.099rem;
+  width: 58.399rem;
 }
 
 .cheveronRight,

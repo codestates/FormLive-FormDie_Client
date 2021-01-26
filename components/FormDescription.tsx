@@ -1,6 +1,6 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import styles from "../styles/Description.module.css";
+import styles from "../styles/FormDescription.module.css";
 import {
   faFolder,
   faPen,
@@ -8,8 +8,6 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useDispatch } from "react-redux";
-import { NEW_GROUP_REQUEST } from "../reducers/form";
 
 interface groupNameEdit {
   name: string;
@@ -22,27 +20,29 @@ interface Props {
 const FormDescription: FC<Props> = ({ selectForm }) => {
   const FILE_COLOR = "#ffc000";
 
-  const dispatch = useDispatch();
-
   const [newName, setNewName] = useState<string>("새 그룹");
   const [changeName, setChangeName] = useState<boolean>(false);
   const { register, handleSubmit, errors } = useForm<groupNameEdit>({
     defaultValues: { name: newName },
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
   });
 
   const onSubmit = (nameData, event) => {
     event.preventDefault();
-    console.log(nameData);
-
-    // const selectFormList = selectForm.map((form) => form.formId);
-
-    // const sendData = { title: nameData.name, forms: selectFormList };
-
-    // dispatch({ type: NEW_GROUP_REQUEST, data: sendData });
+    console.log(errors);
 
     setNewName(nameData.name);
     setChangeName(false);
   };
+
+  useEffect(() => {
+    if (errors?.name?.type === "required") {
+      window.alert("그룹 이름은 필수 사항입니다.");
+    } else if (errors?.name?.type === "maxLength") {
+      window.alert("그룹 이름은 15글자 이하로 지어주세요.");
+    }
+  }, [errors?.name?.type]);
 
   return (
     <section className={styles.container}>
@@ -57,7 +57,7 @@ const FormDescription: FC<Props> = ({ selectForm }) => {
               type="text"
               name="name"
               className={styles.groupName__form__input}
-              ref={register({ required: true, maxLength: 20 })}
+              ref={register({ required: true, maxLength: 15 })}
             />
             <div className={styles.groupName__form__btn}>
               <button className={styles.groupName__form__submit}>

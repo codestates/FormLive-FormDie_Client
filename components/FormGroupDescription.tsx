@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useForm } from "react-hook-form";
-import styles from "../styles/Description.module.css";
+import styles from "../styles/FormGroupDescription.module.css";
 import {
   faFolder,
   faPen,
@@ -9,50 +9,44 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-interface groupNameEdit {
-  name: string;
-}
-
-export default function FormGroupDescription() {
+const FormGroupDescription = ({
+  title,
+  organization,
+  updated_at,
+  forms,
+  description,
+  views,
+}) => {
   const FILE_COLOR = "#ffc000";
-
-  const [groupName, setGroupName] = useState<boolean>(false);
-  const { register, handleSubmit, errors } = useForm<groupNameEdit>();
-
-  const onSubmit = () => {};
 
   return (
     <section className={styles.container}>
       <section className={styles.groupName}>
         <FontAwesomeIcon icon={faFolder} size={"4x"} color={FILE_COLOR} />
-        <div
-          className={styles.groupName__title}
-          onClick={() => {
-            setGroupName(!groupName);
-          }}
-        >
-          새 그룹
-        </div>
+        <div className={styles.groupName__title}>{title}</div>
       </section>
       <section className={styles.description}>
         <div className={styles.description__text}>
-          <div>주최기관 </div>
-          <span> ｜ </span>
+          <div>주최기관 ｜ {organization}</div>
         </div>
         <div className={styles.description__text}>
-          <div>최근 업데이트 일자 </div>
-          <span> ｜ </span>
+          <div>
+            최근 업데이트 일자 ｜{" "}
+            {new Date(updated_at).toLocaleDateString("ko")}
+          </div>
         </div>
         <div className={styles.description__text}>
-          <div>폼 목록 </div>
-          <span> ｜ </span>
+          <div>
+            폼 목록 ｜ {forms?.join(", ")}
+            (총 {forms?.length}개)
+          </div>
         </div>
         <div className={styles.description__text}>
-          <div>현재 선택된 폼 목록</div>
+          <div>{description}</div>
         </div>
       </section>
       <div className={styles.buttonBox}>
-        <div className={styles.number}>CLICK 351+</div>
+        <div className={styles.number}>CLICK {views}+</div>
         <div className={styles.border}>
           <div className={styles.button}>
             <FontAwesomeIcon icon={faPen} size="sm" color="black" />
@@ -61,4 +55,6 @@ export default function FormGroupDescription() {
       </div>
     </section>
   );
-}
+};
+
+export default FormGroupDescription;

@@ -9,7 +9,6 @@ import {
   faHistory,
   faEnvelopeOpenText,
   faKey,
-  faEdit,
   IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,31 +19,18 @@ interface Props {
   children: ReactElement;
 }
 
+interface ICategory {
+  path: string;
+  icon: IconDefinition;
+  size: SizeProp;
+  text: string;
+}
+
 const AppLayout: FC<Props> = ({ children }) => {
-  /* 
-  * TODO : 유저 API 생성 후 작업 예정.
-  * const { me } = useSelector((state) => state.user);
-
-  * const onSearch = (value) => {
-  *   Router.push(
-  *     { pathname: "/hashtag", query: { tag: value } },
-  *     `/hashtag/${value}`
-  *   );
-  * };
-  
-  */
-
   const router = useRouter();
   const ICON_COLOR: string = "white";
   const ICON_CLICK_COLOR: string = "#ffc000";
   const ICON_SIZE = "lg";
-
-  interface ICategory {
-    path: string;
-    icon: IconDefinition;
-    size: SizeProp;
-    text: string;
-  }
 
   const categories: ICategory[] = [
     {
@@ -92,20 +78,33 @@ const AppLayout: FC<Props> = ({ children }) => {
       const textColor =
         router.pathname === category.path ? styles.yellow : styles.white;
 
-      return (
-        <Link href={category.path} key={index}>
-          <a>
-            <div className={styles.menubar__categories__category}>
-              <FontAwesomeIcon
-                icon={category.icon}
-                size={category.size}
-                color={iconColor}
-              />
-              <span className={textColor}>{category.text}</span>
-            </div>
-          </a>
-        </Link>
-      );
+      if (router.pathname !== category.path) {
+        return (
+          <Link href={category.path} key={index}>
+            <a>
+              <div className={styles.menubar__categories__category}>
+                <FontAwesomeIcon
+                  icon={category.icon}
+                  size={category.size}
+                  color={iconColor}
+                />
+                <span className={textColor}>{category.text}</span>
+              </div>
+            </a>
+          </Link>
+        );
+      } else {
+        return (
+          <div className={styles.menubar__categories__category} key={index}>
+            <FontAwesomeIcon
+              icon={category.icon}
+              size={category.size}
+              color={iconColor}
+            />
+            <span className={textColor}>{category.text}</span>
+          </div>
+        );
+      }
     });
 
   return (

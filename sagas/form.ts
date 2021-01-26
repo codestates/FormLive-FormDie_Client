@@ -17,10 +17,11 @@ export default function* formSaga() {
     // 서버에 요청을 보내는 부분
     return axios.get("/form", {
       params: {
-        query: formQuery.query,
+        q: formQuery.q,
         page: formQuery.page,
         sort: formQuery.sort,
       },
+      withCredentials: true,
     });
   }
 
@@ -51,8 +52,11 @@ export default function* formSaga() {
     // 서버에 요청을 보내는 부분
     return axios.get("/group", {
       params: {
+        q: formQuery.q,
         page: formQuery.page,
+        sort: formQuery.sort,
       },
+      withCredentials: true,
     });
   }
 
@@ -79,33 +83,34 @@ export default function* formSaga() {
     yield takeLatest(FORM_GROUP_REQUEST, formGroup);
   }
 
-  function newGroupAPI(groupData) {
-    // 서버에 요청을 보내는 부분
-    return axios.post("/group", groupData, { withCredentials: true });
-  }
+  // function newGroupAPI(groupData) {
+  //   // 서버에 요청을 보내는 부분
+  //   return axios.post("/group", groupData, { withCredentials: true });
+  // }
 
-  function* newGroup(action) {
-    try {
-      const result = yield call(newGroupAPI, action.data);
-      console.log(result);
-      yield put({
-        // put은 dispatch 동일
-        type: NEW_GROUP_SUCCESS,
-        data: result.data,
-      });
-    } catch (e) {
-      // loginAPI 실패
-      console.error(e);
-      yield put({
-        type: NEW_GROUP_FAILURE,
-        reason: e,
-      });
-    }
-  }
+  // function* newGroup(action) {
+  //   try {
+  //     const result = yield call(newGroupAPI, action.data);
+  //     console.log(result);
+  //     yield put({
+  //       // put은 dispatch 동일
+  //       type: NEW_GROUP_SUCCESS,
+  //       data: result.data,
+  //     });
+  //   } catch (e) {
+  //     // loginAPI 실패
+  //     console.error(e);
+  //     yield put({
+  //       type: NEW_GROUP_FAILURE,
+  //       reason: e,
+  //     });
+  //   }
+  // }
 
-  function* watchNewGroup() {
-    yield takeLatest(NEW_GROUP_REQUEST, newGroup);
-  }
+  // function* watchNewGroup() {
+  //   yield takeLatest(NEW_GROUP_REQUEST, newGroup);
+  // }
 
-  yield all([fork(watchFormList), fork(watchFormGroup), fork(watchNewGroup)]);
+  yield all([fork(watchFormList), fork(watchFormGroup)]);
 }
+// , fork(watchNewGroup)

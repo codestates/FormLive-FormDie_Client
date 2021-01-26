@@ -1,23 +1,23 @@
-// import Head from "next/head";
-// import styles from "../styles/Home.module.css";
+import Head from "next/head";
 import styles from "../styles/Index.module.css";
 import LoginForm from "../containers/LoginForm";
 import RegisterForm from "../containers/RegisterForm";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { LOG_IN_REQUEST } from "../reducers/user";
-export default function Index() {
+
+interface IimageInfo {
+  url: string;
+  title: string;
+  content: string;
+}
+
+const Index = () => {
   const dispatch = useDispatch();
 
   const [loginClick, setLoginClick] = useState<boolean>(false);
   const [registerClick, setRegisterClick] = useState<boolean>(false);
   const [Slide, setSlide] = useState<boolean>(true);
-
-  interface IimageInfo {
-    url: string;
-    title: string;
-    content: string;
-  }
 
   const imageInfo: IimageInfo[] = [
     {
@@ -71,6 +71,10 @@ export default function Index() {
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>양식당 ｜ welcome</title>
+        <link rel="shortcut icon" href="/image/favicon.ico" />
+      </Head>
       {
         <LoginForm
           loginClick={loginClick}
@@ -157,4 +161,6 @@ export default function Index() {
       </footer>
     </div>
   );
-}
+};
+
+export default Index;
