@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p ${PORT}",
+    "dev2": "next dev -p 3000",
     "build": "next build",
     "start": "next start"
   },
@@ -12,6 +13,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.2",
     "@fortawesome/free-solid-svg-icons": "^5.15.2",
     "@fortawesome/react-fontawesome": "^0.1.14",
+    "@react-pdf/renderer": "^1.6.13",
     "@types/react-helmet": "^6.1.0",
     "@types/react-redux": "^7.1.15",
     "axios": "^0.21.1",
@@ -23,6 +25,7 @@
     "react-dom": "^16.13.0",
     "react-helmet": "^5.2.1",
     "react-hook-form": "^6.14.2",
+    "react-pdf": "^5.1.0",
     "react-redux": "^7.2.0",
     "redux": "^4.0.5",
     "redux-devtools-extension": "^2.13.8",
