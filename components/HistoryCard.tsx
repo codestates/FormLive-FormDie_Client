@@ -11,14 +11,14 @@ interface Props {
 	groupId: number;
 	title: string;
 	updatedAt: string;
-	forms: number[];
+	forms: [{ id: number; title: string }];
 }
 const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
 	const dispatch = useDispatch();
 	const queryParameter: historyQuery = {
 		page: 1,
 	};
-	const updated_at = updatedAt.slice(0, 10);
+	const LIGHT_GREEN = "#83cd7f";
 	const onDeleteClick = () => {
 		console.log(groupId);
 		axios
@@ -30,29 +30,30 @@ const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
 	return (
 		<section className={styles.container}>
 			<div className={styles.section}>
-				<FontAwesomeIcon icon={faFolder} size={"2x"} color={"#00b050"} />
+				<FontAwesomeIcon icon={faFolder} size={"2x"} color={LIGHT_GREEN} />
 				<div className={styles.section__title}>{title}</div>
 			</div>
 			<section className={styles.description}>
 				<div className={styles.description__text}>
 					<div>주최기관</div>
-					<span>|</span>
+					<span>｜</span>
 					<span>{title}</span>
 				</div>
 				<div className={styles.description__text}>
 					<div>최근 업데이트 일자</div>
-					<span>|</span>
-					<span>{updated_at}</span>
+					<span>｜</span>
+					<span>{new Date(updatedAt).toLocaleDateString("ko")}</span>
 				</div>
 				<div className={styles.description__text}>
-					<div>현재 선택된 폼 목록</div>
-					<span> | </span>
-					<span>{forms}</span>
+					<div>선택된 폼 목록</div>
+					<span> ｜ </span>
+					<span>{forms.map((el) => el.title).join(", ")}</span>
+					<span>(총 {forms?.length}개)</span>
 				</div>
 			</section>
 			<div className={styles.buttons}>
 				<div className={styles.buttons__viewButton}>
-					<FontAwesomeIcon icon={faEye} size={"lg"} />
+					<FontAwesomeIcon icon={faEye} size={"sm"} />
 				</div>
 				<div
 					className={styles.buttons__delete}
@@ -60,7 +61,7 @@ const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
 						onDeleteClick();
 					}}
 				>
-					<FontAwesomeIcon icon={faTrashAlt} size={"lg"} />
+					<FontAwesomeIcon icon={faTrashAlt} size={"sm"} />
 				</div>
 			</div>
 		</section>

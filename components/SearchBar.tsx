@@ -4,74 +4,84 @@ import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
 import { FORM_LIST_REQUEST, FORM_GROUP_REQUEST } from "../reducers/form";
-
+import { HISTORY_LIST_REQUEST } from "../reducers/history";
 export default function SearchBar({ where, setQuery }) {
-  const dispatch = useDispatch();
-  const [Value, setValue] = useState("");
+	const dispatch = useDispatch();
+	const [Value, setValue] = useState("");
 
-  const searchClickHandler = () => {
-    const params = {
-      page: 1,
-      q: Value,
-    };
+	const searchClickHandler = () => {
+		const params = {
+			page: 1,
+			q: Value,
+		};
 
-    if (where === "form") {
-      dispatch({
-        type: FORM_LIST_REQUEST,
-        data: params,
-      });
-    } else if (where === "formGroup") {
-      dispatch({
-        type: FORM_GROUP_REQUEST,
-        data: params,
-      });
-    }
+		if (where === "form") {
+			dispatch({
+				type: FORM_LIST_REQUEST,
+				data: params,
+			});
+		} else if (where === "formGroup") {
+			dispatch({
+				type: FORM_GROUP_REQUEST,
+				data: params,
+			});
+		} else if (where === "history") {
+			dispatch({
+				type: HISTORY_LIST_REQUEST,
+				data: params,
+			});
+		}
 
-    setQuery(Value);
-    setValue("");
-  };
+		setQuery(Value);
+		setValue("");
+	};
 
-  const searchPressHandler = (event) => {
-    if (event.key === "Enter") {
-      const params = {
-        page: 1,
-        q: Value,
-      };
+	const searchPressHandler = (event) => {
+		if (event.key === "Enter") {
+			const params = {
+				page: 1,
+				q: Value,
+			};
 
-      if (where === "form") {
-        dispatch({
-          type: FORM_LIST_REQUEST,
-          data: params,
-        });
-      } else if (where === "formGroup") {
-        dispatch({
-          type: FORM_GROUP_REQUEST,
-          data: params,
-        });
-      }
+			if (where === "form") {
+				dispatch({
+					type: FORM_LIST_REQUEST,
+					data: params,
+				});
+			} else if (where === "formGroup") {
+				dispatch({
+					type: FORM_GROUP_REQUEST,
+					data: params,
+				});
+			} else if (where === "history") {
+				dispatch({
+					type: HISTORY_LIST_REQUEST,
+					data: params,
+				});
+			}
 
-      setQuery(Value);
-      setValue("");
-    }
-  };
+			setQuery(Value);
+			setValue("");
+		}
+	};
 
-  return (
-    <section className={styles.section1__searchBar}>
-      <input
-        value={Value}
-        onChange={(event) => {
-          setValue(event.target.value);
-        }}
-        onKeyPress={searchPressHandler}
-      />
-      <div>
-        <FontAwesomeIcon
-          icon={faSearch}
-          size={"lg"}
-          color={"#ffffff"}
-          onClick={searchClickHandler}
-        />
-      </div>
-    </section>
-  );
+	return (
+		<section className={styles.section1__searchBar}>
+			<input
+				value={Value}
+				onChange={(event) => {
+					setValue(event.target.value);
+				}}
+				onKeyPress={searchPressHandler}
+			/>
+			<div>
+				<FontAwesomeIcon
+					icon={faSearch}
+					size={"lg"}
+					color={"#ffffff"}
+					onClick={searchClickHandler}
+				/>
+			</div>
+		</section>
+	);
 }

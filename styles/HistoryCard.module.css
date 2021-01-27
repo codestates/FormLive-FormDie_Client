@@ -3,10 +3,11 @@
 
 .container {
 	display: flex;
-	height: 5rem;
+	height: 5.5rem;
 	width: 59.5rem;
 	border-radius: 25px;
 	margin-bottom: 0.8rem;
+	margin-left: -4rem;
 	box-shadow: 1.5px 1.5px 1.5px 1.5px rgba(151, 151, 151, 0.1);
 	border: 1px solid rgba(151, 151, 151, 0.2);
 }
@@ -33,7 +34,6 @@
 .description__text {
 	width: 36rem;
 	font-size: 0.5rem;
-	/* border: 1px solid; */
 	display: flex;
 }
 .description__text div:nth-child(1) {
@@ -42,10 +42,11 @@
 	height: 1rem;
 }
 .description__text span:nth-child(2) {
+	font-family: Yoon_Gothic_750;
 	position: relative;
 	left: -3rem;
 }
-.description__text span:nth-child(3) {
+.description__text span {
 	font-family: Yoon_Gothic_750;
 	position: relative;
 	left: -2rem;
@@ -55,19 +56,15 @@
 	align-items: center;
 }
 .buttons__viewButton {
-	border: 5px solid makerLightGray;
-	border-radius: 100px;
-	/* padding: 0.23rem; */
-	padding-top: 0.26rem;
-	padding-bottom: 0.26rem;
-	padding-left: 0.23rem;
-	padding-right: 0.23rem;
+	border: 0.4rem solid #e6e6e6;
+	border-radius: 50%;
+	padding: 0.25rem 0.3rem;
 	cursor: pointer;
 }
 .buttons__delete {
-	border: 5px solid makerLightGray;
+	border: 0.4rem solid #e6e6e6;
 	border-radius: 100px;
-	padding: 0.3rem;
+	padding: 0.25rem 0.4rem;
 	margin-left: 1rem;
 	cursor: pointer;
 }
