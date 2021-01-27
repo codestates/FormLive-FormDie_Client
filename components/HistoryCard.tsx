@@ -18,7 +18,7 @@ const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
 	const queryParameter: historyQuery = {
 		page: 1,
 	};
-	const updated_at = updatedAt.slice(0, 10);
+	// const updated_at = updatedAt.slice(0, 10);
 	const onDeleteClick = () => {
 		console.log(groupId);
 		axios
@@ -42,7 +42,7 @@ const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
 				<div className={styles.description__text}>
 					<div>최근 업데이트 일자</div>
 					<span>|</span>
-					<span>{updated_at}</span>
+					{/* <span>{updated_at}</span> */}
 				</div>
 				<div className={styles.description__text}>
 					<div>현재 선택된 폼 목록</div>

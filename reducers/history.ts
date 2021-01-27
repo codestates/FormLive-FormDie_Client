@@ -21,8 +21,14 @@ const historyReducer = (state = initialState, action) =>
 				break;
 			}
 			case HISTORY_LIST_SUCCESS: {
-				draft.historyList = action.data.content;
-				draft.historyTotal = action.data.total;
+				if (action.page > 1) {
+					// page=2 부터 합치기
+					draft.historyList = [...draft.historyList, ...action.data.content];
+					draft.historyTotal = action.data.total;
+				} else if (action.page < 2) {
+					draft.historyList = action.data.content;
+					draft.historyTotal = action.data.total;
+				}
 			}
 			case HISTORY_LIST_FAILURE: {
 				draft.gethistoryListErrorReason = action.reaseon;

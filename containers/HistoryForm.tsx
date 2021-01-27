@@ -1,58 +1,63 @@
 import HistoryCard from "../components/HistoryCard";
 import styles from "../styles/HistoryForm.module.css";
 import { IReducerState } from "../reducers";
-import { useSelector } from "react-redux";
-import { IHistoryReducerState } from "../reducers/history";
+import {
+	HISTORY_LIST_REQUEST,
+	IHistoryReducerState,
+} from "../reducers/history";
+import { useSelector, useDispatch } from "react-redux";
+import { useState } from "react";
 
-export default function HistoryForm() {
-	interface history {
-		title: string;
-		description: string;
-		updated_at: string;
-		formList: string[];
-	}
-	let historyData: history[] = [
-		{
-			title: "청년내일체움공제",
-			description: "한국장학재단",
-			updated_at: "2020.01.02",
-			formList: ["A", "B", "C"],
-		},
-		{
-			title: "청년내일체움공제",
-			description: "한국장학재단",
-			updated_at: "2020.01.02",
-			formList: ["A", "B", "C"],
-		},
-		{
-			title: "청년내일체움공제",
-			description: "한국장학재단",
-			updated_at: "2020.01.02",
-			formList: ["A", "B", "C"],
-		},
-		{
-			title: "청년내일체움공제",
-			description: "한국장학재단",
-			updated_at: "2020.01.02",
-			formList: ["A", "B", "C"],
-		},
-		{
-			title: "청년내일체움공제",
-			description: "한국장학재단",
-			updated_at: "2020.01.02",
-			formList: ["A", "B", "C"],
-		},
-		{
-			title: "청년내일체움공제",
-			description: "한국장학재단",
-			updated_at: "2020.01.02",
-			formList: ["A", "B", "C"],
-		},
-	];
+export default function HistoryForm({
+	sort,
+	desPage,
+	setDesPage,
+	ascPage,
+	setAscPage,
+}) {
 	const historyInfo = useSelector<IReducerState, IHistoryReducerState>(
 		(state) => state.history
 	);
-	console.log(historyInfo);
+	const dispatch = useDispatch();
+	const { historyTotal } = useSelector<IReducerState, IHistoryReducerState>(
+		(state) => state.history
+	);
+
+	const onClick = () => {
+		const maxPage = Math.ceil(historyTotal / 10);
+		console.log("maxPage : ", maxPage);
+		if (ascPage === maxPage) {
+			setAscPage(1);
+			return;
+		} else if (desPage === maxPage) {
+			setDesPage(1);
+			return;
+		} else if (sort === null) {
+			const params = {
+				page: desPage + 1,
+				sort: null,
+				q: "",
+			};
+
+			dispatch({
+				type: HISTORY_LIST_REQUEST,
+				data: params,
+			});
+			setDesPage(desPage + 1);
+		} else if (sort === "asc") {
+			const params = {
+				page: ascPage + 1,
+				sort: "asc",
+				q: "",
+			};
+
+			dispatch({
+				type: HISTORY_LIST_REQUEST,
+				data: params,
+			});
+			setAscPage(ascPage + 1);
+		}
+	};
 	return (
 		<div className={styles.container}>
 			{historyInfo.historyList.map((el, idx) => (
@@ -64,6 +69,7 @@ export default function HistoryForm() {
 					key={idx}
 				/>
 			))}
+			<button onClick={onClick}>more</button>
 		</div>
 	);
 }

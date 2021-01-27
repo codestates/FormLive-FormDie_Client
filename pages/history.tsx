@@ -6,16 +6,20 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 export default function History() {
-	const [Page, setPage] = useState<number>(1);
+	const [ascPage, setAscPage] = useState<number>(1);
+	const [desPage, setDesPage] = useState<number>(1);
 	const [Query, setQuery] = useState<string>("");
 	const [Sort, setSort] = useState<string | null>(null);
 	const dispatch = useDispatch();
 
-	const onChangeSortPopularHandler = () => {
+	const onChangeAscendingSortHandler = () => {
+		setAscPage(1);
+		console.log("ascPage : ", ascPage);
+		console.log("onChangeAscendingSortHandler");
 		const params = {
-			page: Page,
-			sort: "popular",
-			query: Query,
+			page: ascPage,
+			sort: "asc",
+			q: Query,
 		};
 
 		dispatch({
@@ -23,14 +27,15 @@ export default function History() {
 			data: params,
 		});
 
-		setSort("popular");
+		setSort("asc");
 	};
 
-	const onChangeSortLatestHandler = () => {
+	const onChangeDescendingSortHandler = () => {
+		setDesPage(1);
 		const params = {
-			page: Page,
+			page: desPage,
 			sort: null,
-			query: Query,
+			q: Query,
 		};
 
 		dispatch({
@@ -49,25 +54,31 @@ export default function History() {
 					<div className={styles.header__sort}>
 						<div
 							onClick={() => {
-								onChangeSortLatestHandler();
+								onChangeDescendingSortHandler();
 							}}
 						>
-							최신순
+							내림차순
 						</div>
 						<div> ｜ </div>
 						<div
 							onClick={() => {
-								onChangeSortPopularHandler();
+								onChangeAscendingSortHandler();
 							}}
 						>
-							인기순
+							오름차순
 						</div>
 					</div>
 				</div>
 
-				<SearchBar setQuery={setQuery} />
+				<SearchBar where={"history"} setQuery={setQuery} />
 			</header>
-			<HistoryForm />
+			<HistoryForm
+				sort={Sort}
+				desPage={desPage}
+				setDesPage={setDesPage}
+				ascPage={ascPage}
+				setAscPage={setAscPage}
+			/>
 		</div>
 	);
 }
