@@ -24,6 +24,8 @@ const RegisterForm = ({
         setLoginClick(true);
       }, 500);
       setSlide(false);
+    } else if (isSignedUp === false) {
+      window.alert("이미 가입된 아이디입니다.");
     }
   }, [isSignedUp]);
 

@@ -1,18 +1,19 @@
-import React, { FC, useState } from "react";
+import React, { FC } from "react";
 import { faPen, faFolder } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../styles/HomeFormGroupCard.module.css";
 import { useSelector } from "react-redux";
 import { IReducerState } from "../reducers";
 import { Iuser } from "../containers/UserProfile";
+import Link from "next/link";
 
 interface Props {
   organization: string;
   title: string;
+  groupId: number;
 }
 
-const HomeFormGroupCard: FC<Props> = ({ title, organization }) => {
-  const userInfo = useSelector<IReducerState, Iuser>((state) => state.user.me);
+const HomeFormGroupCard: FC<Props> = ({ title, organization, groupId }) => {
   const LIGHT_GREEN = "#83cd7f";
   return (
     <div className={styles.container}>
@@ -22,11 +23,15 @@ const HomeFormGroupCard: FC<Props> = ({ title, organization }) => {
         <div className={styles.operation}>{organization}</div>
       </div>
       <div className={styles.buttonBox}>
-        <div className={styles.border}>
-          <div className={styles.button}>
-            <FontAwesomeIcon icon={faPen} size="sm" color="black" />
-          </div>
-        </div>
+        <Link href={`/formgroup/write/${groupId}`}>
+          <a>
+            <div className={styles.border}>
+              <div className={styles.button}>
+                <FontAwesomeIcon icon={faPen} size="sm" color="black" />
+              </div>
+            </div>
+          </a>
+        </Link>
       </div>
     </div>
   );

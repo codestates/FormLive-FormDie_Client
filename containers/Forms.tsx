@@ -1,0 +1,143 @@
+import React, { useState } from "react";
+import Id1 from "./forms/Id1";
+import Id2 from "./forms/Id2";
+import Id3 from "./forms/Id3";
+import Id4 from "./forms/Id4";
+import Id5 from "./forms/Id5";
+import Id6 from "./forms/Id6";
+import Id7 from "./forms/Id7";
+import Id8 from "./forms/Id8";
+import Id9 from "./forms/Id9";
+import Id10 from "./forms/Id10";
+import Id11 from "./forms/Id11";
+import Id12 from "./forms/Id12";
+import Id13 from "./forms/Id13";
+import Id14 from "./forms/Id14";
+import Id15 from "./forms/Id15";
+import Id16 from "./forms/Id16";
+
+const Forms = ({
+  formId,
+  changeCurrentFormHandler,
+  currentFormIndex,
+  recordCompleteForm,
+}) => {
+  return (
+    <div>
+      {formId === "Id1" && (
+        <Id1
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id2" && (
+        <Id2
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id3" && (
+        <Id3
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id4" && (
+        <Id4
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id5" && (
+        <Id5
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id6" && (
+        <Id6
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id7" && (
+        <Id7
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id8" && (
+        <Id8
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id9" && (
+        <Id9
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id10" && (
+        <Id10
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id11" && (
+        <Id11
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id12" && (
+        <Id12
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id13" && (
+        <Id13
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id14" && (
+        <Id14
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id15" && (
+        <Id15
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+      {formId === "Id16" && (
+        <Id16
+          changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormIndex={currentFormIndex}
+          recordCompleteForm={recordCompleteForm}
+        />
+      )}
+    </div>
+  );
+};
+
+export default Forms;

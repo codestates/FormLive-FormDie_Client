@@ -9,6 +9,14 @@ export const initialState = {
   formGroup: [],
   formGroupTotalNumber: 0,
   getFormGroupErrorReason: "",
+  currentGroup: null,
+  sentFormData: false,
+  sentFormDataErrorReason: "",
+  getCurrentFormData: false,
+  currentForm: null,
+  getCurrentFormErrorReason: "",
+  resentFormData: false,
+  resentFormDataErrorReason: "",
 };
 
 export type IFormReducerState = typeof initialState;
@@ -21,9 +29,25 @@ export const FORM_GROUP_REQUEST = "FORM_GROUP_REQUEST"; // 액션의 이름
 export const FORM_GROUP_SUCCESS = "FORM_GROUP_SUCCESS"; // 액션의 이름
 export const FORM_GROUP_FAILURE = "FORM_GROUP_FAILURE"; // 액션의 이름
 
-export const NEW_GROUP_REQUEST = "FORM_GROUP_REQUEST"; // 액션의 이름
-export const NEW_GROUP_SUCCESS = "FORM_GROUP_SUCCESS"; // 액션의 이름
-export const NEW_GROUP_FAILURE = "FORM_GROUP_FAILURE"; // 액션의 이름
+export const WRITE_GROUP_REQUEST = "WRITE_GROUP_REQUEST"; // 액션의 이름
+export const WRITE_GROUP_SUCCESS = "WRITE_GROUP_SUCCESS"; // 액션의 이름
+export const WRITE_GROUP_FAILURE = "WRITE_GROUP_FAILURE"; // 액션의 이름
+
+export const GET_FORM_REQUEST = "GET_FORM_REQUEST"; // 액션의 이름
+export const GET_FORM_SUCCESS = "GET_FORM_SUCCESS"; // 액션의 이름
+export const GET_FORM_FAILURE = "GET_FORM_FAILURE"; // 액션의 이름
+
+export const SEND_FORM_REQUEST = "SEND_FORM_REQUEST"; // 액션의 이름
+export const SEND_FORM_SUCCESS = "SEND_FORM_SUCCESS"; // 액션의 이름
+export const SEND_FORM_FAILURE = "SEND_FORM_FAILURE"; // 액션의 이름
+
+export const RESEND_FORM_REQUEST = "RESEND_FORM_REQUEST"; // 액션의 이름
+export const RESEND_FORM_SUCCESS = "RESEND_FORM_SUCCESS"; // 액션의 이름
+export const RESEND_FORM_FAILURE = "RESEND_FORM_FAILURE"; // 액션의 이름
+
+export const NEW_GROUP_REQUEST = "NEW_GROUP_REQUEST"; // 액션의 이름
+export const NEW_GROUP_SUCCESS = "NEW_GROUP_SUCCESS"; // 액션의 이름
+export const NEW_GROUP_FAILURE = "NEW_GROUP_FAILURE"; // 액션의 이름
 
 const formReducer = (state = initialState, action) =>
   produce(state, (draft) => {
@@ -56,13 +80,55 @@ const formReducer = (state = initialState, action) =>
         draft.getFormGroupErrorReason = action.reason;
         break;
       }
-      case NEW_GROUP_REQUEST: {
+      case WRITE_GROUP_REQUEST: {
         break;
       }
-      case NEW_GROUP_SUCCESS: {
+      case WRITE_GROUP_SUCCESS: {
+        draft.currentGroup = draft.formGroup.find(
+          (group) => group.groupId === Number(action.data)
+        );
         break;
       }
-      case NEW_GROUP_FAILURE: {
+      case WRITE_GROUP_FAILURE: {
+        break;
+      }
+      case SEND_FORM_REQUEST: {
+        draft.sentFormData = true;
+        break;
+      }
+      case SEND_FORM_SUCCESS: {
+        draft.sentFormData = false;
+        break;
+      }
+      case SEND_FORM_FAILURE: {
+        draft.sentFormData = false;
+        draft.sentFormDataErrorReason = action.reason;
+        break;
+      }
+      case GET_FORM_REQUEST: {
+        draft.getCurrentFormData = false;
+        break;
+      }
+      case GET_FORM_SUCCESS: {
+        draft.getCurrentFormData = true;
+        draft.currentForm = action.data.data;
+        break;
+      }
+      case GET_FORM_FAILURE: {
+        draft.getCurrentFormErrorReason = action.reason;
+        break;
+      }
+      case RESEND_FORM_REQUEST: {
+        draft.resentFormData = true;
+        break;
+      }
+      case RESEND_FORM_SUCCESS: {
+        draft.resentFormData = false;
+        break;
+      }
+      case RESEND_FORM_FAILURE: {
+        draft.resentFormData = false;
+        draft.resentFormDataErrorReason = action.reason;
         break;
       }
       default: {
@@ -72,3 +138,6 @@ const formReducer = (state = initialState, action) =>
   });
 
 export default formReducer;
+// draft.formGroup.find(
+//   (group) => group.groupId === action.data
+// );

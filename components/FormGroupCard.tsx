@@ -7,7 +7,7 @@ interface Props {
   groupId: number;
   title: string;
   description: string;
-  updated_at: string;
+  updatedAt: string;
   organization: string;
   isDefaultGroup: boolean;
   forms: IselectForm[];
@@ -29,7 +29,7 @@ interface IselectGroupForm {
   groupId: number;
   title: string;
   description: string;
-  updated_at: string;
+  updatedAt: string;
   organization: string;
   isDefaultGroup: boolean;
   forms: IselectForm[];
@@ -40,7 +40,7 @@ const FormGroupCard: FC<Props> = ({
   groupId,
   title,
   description,
-  updated_at,
+  updatedAt,
   views,
   organization,
   isDefaultGroup,
@@ -72,7 +72,7 @@ const FormGroupCard: FC<Props> = ({
           groupId,
           title,
           description,
-          updated_at,
+          updatedAt,
           views,
           organization,
           isDefaultGroup,
@@ -87,7 +87,7 @@ const FormGroupCard: FC<Props> = ({
         <div className={styles.formGroupInfo__count}>{views}+</div>
       </section>
       <div className={styles.date}>
-        ({new Date(updated_at).toLocaleDateString("ko")} updated)
+        ({new Date(updatedAt).toLocaleDateString("ko")} updated)
       </div>
     </section>
   );

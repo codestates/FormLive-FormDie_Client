@@ -17,49 +17,6 @@ const Home = () => {
     (state) => state.form
   );
 
-  // const formList: ITemp[] = [
-  //   {
-  //     title: "청년내일채움공제",
-  //     organization: "한국장학재단",
-  //     views: 2815,
-  //     number: "1",
-  //     description: null,
-  //     updated_at: null,
-  //   },
-  //   {
-  //     title: "청년내일채움공제",
-  //     organization: "한국장학재단",
-  //     views: 2815,
-  //     number: "1",
-  //     description: null,
-  //     updated_at: null,
-  //   },
-  //   {
-  //     title: "청년내일채움공제",
-  //     organization: "한국장학재단",
-  //     views: 2815,
-  //     number: "1",
-  //     description: null,
-  //     updated_at: null,
-  //   },
-  //   {
-  //     title: "청년내일채움공제",
-  //     organization: "한국장학재단",
-  //     views: 2815,
-  //     number: "1",
-  //     description: null,
-  //     updated_at: null,
-  //   },
-  //   {
-  //     title: "청년내일채움공제",
-  //     organization: "한국장학재단",
-  //     views: 2815,
-  //     number: "1",
-  //     description: null,
-  //     updated_at: null,
-  //   },
-  // ];
-
   const renderFormCard = () =>
     formList
       .slice(0, 5)

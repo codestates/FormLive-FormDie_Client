@@ -1,21 +1,18 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
 import styles from "../styles/FormGroupDescription.module.css";
-import {
-  faFolder,
-  faPen,
-  faCheck,
-  faTimes,
-} from "@fortawesome/free-solid-svg-icons";
+import { faFolder, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Link from "next/link";
+import { useDispatch } from "react-redux";
+import { WRITE_GROUP_REQUEST } from "../reducers/form";
 
 const FormGroupDescription = ({
   title,
   organization,
-  updated_at,
+  updatedAt,
   forms,
   description,
   views,
+  groupId,
 }) => {
   const FILE_COLOR = "#ffc000";
 
@@ -31,13 +28,12 @@ const FormGroupDescription = ({
         </div>
         <div className={styles.description__text}>
           <div>
-            최근 업데이트 일자 ｜{" "}
-            {new Date(updated_at).toLocaleDateString("ko")}
+            최근 업데이트 일자 ｜ {new Date(updatedAt).toLocaleDateString("ko")}
           </div>
         </div>
         <div className={styles.description__text}>
           <div>
-            폼 목록 ｜ {forms?.join(", ")}
+            폼 목록 ｜ {forms?.map((form) => form.title).join(", ")}
             (총 {forms?.length}개)
           </div>
         </div>
@@ -47,11 +43,24 @@ const FormGroupDescription = ({
       </section>
       <div className={styles.buttonBox}>
         <div className={styles.number}>CLICK {views}+</div>
-        <div className={styles.border}>
-          <div className={styles.button}>
-            <FontAwesomeIcon icon={faPen} size="sm" color="black" />
+
+        {groupId ? (
+          <Link href={`/formgroup/write/${groupId}`}>
+            <a>
+              <div className={styles.border}>
+                <div className={styles.button}>
+                  <FontAwesomeIcon icon={faPen} size="sm" color="black" />
+                </div>
+              </div>
+            </a>
+          </Link>
+        ) : (
+          <div className={styles.border}>
+            <div className={styles.button}>
+              <FontAwesomeIcon icon={faPen} size="sm" color="black" />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );
