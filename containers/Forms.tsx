@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Id1 from "./forms/Id1";
 import Id2 from "./forms/Id2";
 import Id3 from "./forms/Id3";
@@ -21,6 +21,8 @@ const Forms = ({
   changeCurrentFormHandler,
   currentFormIndex,
   recordCompleteForm,
+  currentFormInfo,
+  deleteCompleteForm,
 }) => {
   return (
     <div>
@@ -28,83 +30,107 @@ const Forms = ({
         <Id1
           changeCurrentFormHandler={changeCurrentFormHandler}
           currentFormIndex={currentFormIndex}
+          currentFormInfo={currentFormInfo}
           recordCompleteForm={recordCompleteForm}
+          deleteCompleteForm={deleteCompleteForm}
         />
       )}
       {formId === "Id2" && (
         <Id2
           changeCurrentFormHandler={changeCurrentFormHandler}
           currentFormIndex={currentFormIndex}
+          currentFormInfo={currentFormInfo}
           recordCompleteForm={recordCompleteForm}
+          deleteCompleteForm={deleteCompleteForm}
         />
       )}
       {formId === "Id3" && (
         <Id3
           changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormInfo={currentFormInfo}
           currentFormIndex={currentFormIndex}
+          deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
         />
       )}
       {formId === "Id4" && (
         <Id4
           changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormInfo={currentFormInfo}
           currentFormIndex={currentFormIndex}
+          deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
         />
       )}
       {formId === "Id5" && (
         <Id5
           changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormInfo={currentFormInfo}
           currentFormIndex={currentFormIndex}
+          deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
         />
       )}
       {formId === "Id6" && (
         <Id6
           changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormInfo={currentFormInfo}
           currentFormIndex={currentFormIndex}
+          deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
         />
       )}
       {formId === "Id7" && (
         <Id7
           changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormInfo={currentFormInfo}
           currentFormIndex={currentFormIndex}
+          deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
         />
       )}
       {formId === "Id8" && (
         <Id8
           changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormInfo={currentFormInfo}
           currentFormIndex={currentFormIndex}
+          deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
         />
       )}
       {formId === "Id9" && (
         <Id9
           changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormInfo={currentFormInfo}
           currentFormIndex={currentFormIndex}
+          deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
         />
       )}
       {formId === "Id10" && (
         <Id10
           changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormInfo={currentFormInfo}
           currentFormIndex={currentFormIndex}
+          deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
         />
       )}
       {formId === "Id11" && (
         <Id11
           changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormInfo={currentFormInfo}
           currentFormIndex={currentFormIndex}
+          deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
         />
       )}
       {formId === "Id12" && (
         <Id12
           changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormInfo={currentFormInfo}
           currentFormIndex={currentFormIndex}
+          deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
         />
       )}
@@ -112,27 +138,35 @@ const Forms = ({
         <Id13
           changeCurrentFormHandler={changeCurrentFormHandler}
           currentFormIndex={currentFormIndex}
+          currentFormInfo={currentFormInfo}
+          deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
         />
       )}
       {formId === "Id14" && (
         <Id14
           changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormInfo={currentFormInfo}
           currentFormIndex={currentFormIndex}
+          deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
         />
       )}
       {formId === "Id15" && (
         <Id15
           changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormInfo={currentFormInfo}
           currentFormIndex={currentFormIndex}
+          deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
         />
       )}
       {formId === "Id16" && (
         <Id16
           changeCurrentFormHandler={changeCurrentFormHandler}
+          currentFormInfo={currentFormInfo}
           currentFormIndex={currentFormIndex}
+          deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
         />
       )}

@@ -112,6 +112,12 @@ const formReducer = (state = initialState, action) =>
       case GET_FORM_SUCCESS: {
         draft.getCurrentFormData = true;
         draft.currentForm = action.data.data;
+        draft.currentGroup.forms.forEach((form, index) => {
+          if (form?.id === action.data.data.formId) {
+            draft.currentGroup.forms[index].contents =
+              action.data.data.contents;
+          }
+        });
         break;
       }
       case GET_FORM_FAILURE: {

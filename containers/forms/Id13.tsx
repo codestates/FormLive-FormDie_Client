@@ -14,16 +14,18 @@ const Id13 = ({
   changeCurrentFormHandler,
   currentFormIndex,
   recordCompleteForm,
+  deleteCompleteForm,
+  currentFormInfo,
 }) => {
   const FORM_ID = 13;
   const dispatch = useDispatch();
-  const { sentFormData, currentForm, resentFormData } = useSelector<
+  const { sentFormData, resentFormData } = useSelector<
     IReducerState,
     IFormReducerState
   >((state) => state.form);
-  const { register, handleSubmit, errors } = useForm({
+  const { register, handleSubmit, errors, reset } = useForm({
     defaultValues: {
-      ...currentForm?.contents,
+      ...currentFormInfo?.contents,
     },
   });
 
@@ -36,11 +38,11 @@ const Id13 = ({
 
     const data = {
       formId: FORM_ID,
-      isComplete: 1,
+      isComplete: true,
       contents: formData,
     };
 
-    if (currentForm === null) {
+    if (currentFormInfo.isComplete === null) {
       dispatch({
         type: SEND_FORM_REQUEST,
         data: data,
@@ -71,12 +73,12 @@ const Id13 = ({
     }
   };
 
-  useEffect(() => {
-    dispatch({
-      type: GET_FORM_REQUEST,
-      data: FORM_ID,
-    });
+  const resetInputHandler = () => {
+    reset({});
+    deleteCompleteForm(currentFormIndex);
+  };
 
+  useEffect(() => {
     if (Object.keys(errors).length) {
       window.alert(
         "작성하지 않은 칸이 있습니다.\n빈칸으로 완료하시려면 다시 제출 버튼을 눌러주세요."
@@ -85,18 +87,37 @@ const Id13 = ({
     }
 
     if (sentFormData) {
-      window.alert("폼이 성공적으로 저장되었습니다.");
       recordCompleteForm(currentFormIndex);
+      dispatch({
+        type: GET_FORM_REQUEST,
+        data: FORM_ID,
+      });
+      window.alert("폼이 성공적으로 저장되었습니다.");
     }
 
     if (resentFormData) {
+      recordCompleteForm(currentFormIndex);
+
+      dispatch({
+        type: GET_FORM_REQUEST,
+        data: FORM_ID,
+      });
       window.alert("폼이 성공적으로 수정되었습니다.");
     }
   }, [errors, sentFormData, resentFormData]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.form__title}>양식당 서류 (예시13)</div>
+      <div className={styles.form__header}>
+        <div className={styles.form__header__title}>양식당 서류 (예시13)</div>
+        <div
+          className={styles.form__header__button}
+          onClick={resetInputHandler}
+        >
+          모두 지우기
+        </div>
+      </div>
+
       <div className={styles.form__content}>
         <label className={styles.label}>
           <span>성명</span>
@@ -115,7 +136,7 @@ const Id13 = ({
               name="gender"
               value="남"
               checked={true}
-              ref={register()}
+              ref={register}
               readOnly
             />
             <span>남</span>
@@ -124,7 +145,7 @@ const Id13 = ({
               name="gender"
               value="여"
               className={styles.radio}
-              ref={register()}
+              ref={register}
               readOnly
             />
             <span>여</span>
@@ -209,7 +230,7 @@ const Id13 = ({
             name="serviceStart"
             className={styles.input}
             disabled={Service}
-            ref={register()}
+            ref={register}
           />
         </label>
         <label className={styles.label}>
@@ -219,7 +240,7 @@ const Id13 = ({
             name="serviceEnd"
             className={styles.input}
             disabled={Service}
-            ref={register()}
+            ref={register}
           />
         </label>
         <label className={styles.label}>
@@ -229,7 +250,7 @@ const Id13 = ({
             name="jobStart"
             className={styles.input}
             disabled={Service}
-            ref={register()}
+            ref={register}
           />
         </label>
         <label className={styles.label}>
@@ -263,7 +284,7 @@ const Id13 = ({
             name="major"
             className={styles.input}
             disabled={School}
-            ref={register()}
+            ref={register}
           />
         </label>
         <label className={styles.label}>

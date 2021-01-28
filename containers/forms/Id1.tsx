@@ -14,34 +14,35 @@ const Id1 = ({
   changeCurrentFormHandler,
   currentFormIndex,
   recordCompleteForm,
+  deleteCompleteForm,
+  currentFormInfo,
 }) => {
   const FORM_ID = 1;
   const dispatch = useDispatch();
-  const {
-    sentFormData,
-    currentForm,
-    resentFormData,
-    getCurrentFormData,
-  } = useSelector<IReducerState, IFormReducerState>((state) => state.form);
+  const { sentFormData, resentFormData } = useSelector<
+    IReducerState,
+    IFormReducerState
+  >((state) => state.form);
+  const { register, handleSubmit, errors, reset } = useForm({
+    defaultValues: {
+      ...currentFormInfo?.contents,
+    },
+  });
 
-  const [PastData, setPastData] = useState({});
-  const [Once, setOnce] = useState(true);
   const [Required, setRequired] = useState(true);
   const [Service, setService] = useState(true);
   const [School, setSchool] = useState(true);
-
-  const { register, handleSubmit, errors, reset } = useForm();
 
   const onSubmit = (formData, event) => {
     event.preventDefault();
 
     const data = {
       formId: FORM_ID,
-      isComplete: 1,
+      isComplete: true,
       contents: formData,
     };
 
-    if (currentForm === null) {
+    if (currentFormInfo.isComplete === null) {
       dispatch({
         type: SEND_FORM_REQUEST,
         data: data,
@@ -71,35 +72,13 @@ const Id1 = ({
       setSchool(true);
     }
   };
-  console.log(Once);
-  console.log(currentForm);
+
+  const resetInputHandler = () => {
+    reset({});
+    deleteCompleteForm(currentFormIndex);
+  };
 
   useEffect(() => {
-    dispatch({
-      type: GET_FORM_REQUEST,
-      data: FORM_ID,
-    });
-    setTimeout(() => {
-      if (Once && currentForm) {
-        const confirm = window.confirm(
-          "이전 데이터가 있습니다.\n현재 폼으로 불러오시겠습니까?"
-        );
-
-        if (confirm) {
-          reset({ ...currentForm?.contents });
-          setOnce(false);
-          console.log(1);
-        } else {
-          reset({});
-          setOnce(false);
-        }
-      } else if (Once && !currentForm) {
-        reset({});
-        console.log(2);
-        setOnce(false);
-      }
-    }, 2000);
-
     if (Object.keys(errors).length) {
       window.alert(
         "작성하지 않은 칸이 있습니다.\n빈칸으로 완료하시려면 다시 제출 버튼을 눌러주세요."
@@ -108,18 +87,37 @@ const Id1 = ({
     }
 
     if (sentFormData) {
-      window.alert("폼이 성공적으로 저장되었습니다.");
       recordCompleteForm(currentFormIndex);
+      dispatch({
+        type: GET_FORM_REQUEST,
+        data: FORM_ID,
+      });
+      window.alert("폼이 성공적으로 저장되었습니다.");
     }
 
     if (resentFormData) {
+      recordCompleteForm(currentFormIndex);
+
+      dispatch({
+        type: GET_FORM_REQUEST,
+        data: FORM_ID,
+      });
       window.alert("폼이 성공적으로 수정되었습니다.");
     }
   }, [errors, sentFormData, resentFormData]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <div className={styles.form__title}>양식당 서류 (예시1)</div>
+      <div className={styles.form__header}>
+        <div className={styles.form__header__title}>양식당 서류 (예시1)</div>
+        <div
+          className={styles.form__header__button}
+          onClick={resetInputHandler}
+        >
+          모두 지우기
+        </div>
+      </div>
+
       <div className={styles.form__content}>
         <label className={styles.label}>
           <span>성명</span>
