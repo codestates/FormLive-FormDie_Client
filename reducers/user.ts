@@ -60,7 +60,7 @@ const userReducer = (state = initialState, action) =>
   produce(state, (draft) => {
     switch (action.type) {
       case REGISTER_REQUEST: {
-        draft.isSignedUp = false;
+        draft.isSignedUp = null;
         draft.isSigningUp = true;
         draft.signUpErrorReason = "";
         break;
