@@ -1,11 +1,14 @@
-import React, { FC, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "../styles/HomeFormCard.module.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { IReducerState } from "../reducers";
 import { IUserReducerState } from "../reducers/user";
 import { Iuser } from "../containers/UserProfile";
+import { IFormReducerState, NEW_GROUP_REQUEST } from "../reducers/form";
+import Link from "next/link";
+
 interface Props {
   formId: number;
   title: string;
@@ -26,6 +29,35 @@ const HomeFormCard: FC<Props> = ({
 }) => {
   number = number.length === 1 ? `0${number}` : number;
 
+  const dispatch = useDispatch();
+  const linkToFormGroup = useRef(null);
+
+  const { makeNewFormGroup, currentGroup } = useSelector<
+    IReducerState,
+    IFormReducerState
+  >((state) => state.form);
+  const [LinkPage, setLinkPage] = useState<boolean>(false);
+
+  const makeNewFormGroupHandler = () => {
+
+    setLinkPage(true);
+
+    dispatch({
+      type: NEW_GROUP_REQUEST,
+      data: {
+        title: title,
+        forms: [formId],
+      },
+    });
+  };
+
+
+  useEffect(() => {
+    if (makeNewFormGroup) {
+      linkToFormGroup.current?.click();
+    }
+  }, [makeNewFormGroup]);
+
   return (
     <div className={styles.container}>
       <div className={styles.number}>{number}</div>
@@ -35,11 +67,26 @@ const HomeFormCard: FC<Props> = ({
         <div className={styles.formInfo__click}>{views}+</div>
       </div>
       <div className={styles.buttonBox}>
-        <div className={styles.border}>
-          <div className={styles.button}>
-            <FontAwesomeIcon icon={faPen} size="sm" color="black" />
+        {LinkPage ? (
+          <Link href={`/formgroup/custom/${currentGroup?.groupId}`}>
+            <a ref={linkToFormGroup}>
+              <div className={styles.border}>
+                <div
+                  className={styles.button}
+                  onClick={makeNewFormGroupHandler}
+                >
+                  <FontAwesomeIcon icon={faPen} size="sm" color="black" />
+                </div>
+              </div>
+            </a>
+          </Link>
+        ) : (
+          <div className={styles.border}>
+            <div className={styles.button} onClick={makeNewFormGroupHandler}>
+              <FontAwesomeIcon icon={faPen} size="sm" color="black" />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </div>
   );

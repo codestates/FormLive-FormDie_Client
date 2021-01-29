@@ -17,6 +17,9 @@ export const initialState = {
   getCurrentFormErrorReason: "",
   resentFormData: false,
   resentFormDataErrorReason: "",
+  makeNewFormGroup: false,
+  makeNewFormGroupErrorReason: "",
+  startNewFormGroup: false,
 };
 
 export type IFormReducerState = typeof initialState;
@@ -48,6 +51,10 @@ export const RESEND_FORM_FAILURE = "RESEND_FORM_FAILURE"; // 액션의 이름
 export const NEW_GROUP_REQUEST = "NEW_GROUP_REQUEST"; // 액션의 이름
 export const NEW_GROUP_SUCCESS = "NEW_GROUP_SUCCESS"; // 액션의 이름
 export const NEW_GROUP_FAILURE = "NEW_GROUP_FAILURE"; // 액션의 이름
+
+export const START_GROUP_REQUEST = "START_GROUP_REQUEST"; // 액션의 이름
+export const START_GROUP_SUCCESS = "START_GROUP_SUCCESS"; // 액션의 이름
+export const START_GROUP_FAILURE = "START_GROUP_FAILURE"; // 액션의 이름
 
 const formReducer = (state = initialState, action) =>
   produce(state, (draft) => {
@@ -137,6 +144,20 @@ const formReducer = (state = initialState, action) =>
         draft.resentFormDataErrorReason = action.reason;
         break;
       }
+      case NEW_GROUP_REQUEST: {
+        draft.makeNewFormGroup = false;
+        break;
+      }
+      case NEW_GROUP_SUCCESS: {
+        draft.makeNewFormGroup = true;
+        draft.currentGroup = action.data.data;
+        break;
+      }
+      case NEW_GROUP_FAILURE: {
+        draft.makeNewFormGroup = false;
+        draft.makeNewFormGroupErrorReason = action.reason;
+        break;
+      }
       default: {
         break;
       }
@@ -144,6 +165,4 @@ const formReducer = (state = initialState, action) =>
   });
 
 export default formReducer;
-// draft.formGroup.find(
-//   (group) => group.groupId === action.data
-// );
+

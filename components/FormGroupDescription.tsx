@@ -20,7 +20,7 @@ const FormGroupDescription = ({
     <section className={styles.container}>
       <section className={styles.groupName}>
         <FontAwesomeIcon icon={faFolder} size={"4x"} color={FILE_COLOR} />
-        <div className={styles.groupName__title}>{title}</div>
+        <div className={styles.groupName__title}>{!title ? "양식당 폼그룹" : title}</div>
       </section>
       <section className={styles.description}>
         <div className={styles.description__text}>
@@ -28,13 +28,13 @@ const FormGroupDescription = ({
         </div>
         <div className={styles.description__text}>
           <div>
-            최근 업데이트 일자 ｜ {new Date(updatedAt).toLocaleDateString("ko")}
+            최근 업데이트 일자 ｜ {!updatedAt ? new Date().toLocaleDateString("ko") : new Date(updatedAt).toLocaleDateString("ko")}
           </div>
         </div>
         <div className={styles.description__text}>
           <div>
             폼 목록 ｜ {forms?.map((form) => form.title).join(", ")}
-            (총 {forms?.length}개)
+            (총 {!forms?.length ? 0 : !forms?.length}개)
           </div>
         </div>
         <div className={styles.description__text}>
@@ -42,10 +42,10 @@ const FormGroupDescription = ({
         </div>
       </section>
       <div className={styles.buttonBox}>
-        <div className={styles.number}>CLICK {views}+</div>
+        <div className={styles.number}>CLICK {!views ? 0 : views}+</div>
 
         {groupId ? (
-          <Link href={`/formgroup/write/${groupId}`}>
+          <Link href={`/formgroup/basic/${groupId}`}>
             <a>
               <div className={styles.border}>
                 <div className={styles.button}>

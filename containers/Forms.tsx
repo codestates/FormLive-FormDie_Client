@@ -25,7 +25,7 @@ const Forms = ({
   deleteCompleteForm,
 }) => {
   return (
-    <div>
+    <div style={{marginRight : "2.162rem", height: "100%",}}>
       {formId === "Id1" && (
         <Id1
           changeCurrentFormHandler={changeCurrentFormHandler}

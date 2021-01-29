@@ -1,70 +1,100 @@
-@value makerGray,makerYellow, makerLightGreen, makerWhite, makerLightGray, makerLightYellow, makerDarkGray from "./common/colors.css";
+@value makerCardBackground, makerShadow, makerGray,makerYellow, makerLightGreen, makerWhite, makerLightGray, makerLightYellow, makerDarkGray from "./common/colors.css";
 @value Yoon_Gothic_750, Yoon_Gothic_750 from "./common/fonts.css";
 
 .container {
-	display: flex;
-	height: 5.5rem;
-	width: 59.5rem;
-	border-radius: 25px;
-	margin-bottom: 0.8rem;
-	margin-left: -4rem;
-	box-shadow: 1.5px 1.5px 1.5px 1.5px rgba(151, 151, 151, 0.1);
-	border: 1px solid rgba(151, 151, 151, 0.2);
+  display: flex;
+  height: 7.5rem;
+  width: 57.8rem;
+  border-radius: 35px;
+  margin-bottom: 0.8rem;
+  box-shadow: makerShadow;
+  background-color: makerCardBackground;
+  padding-left: 4.5rem;
+  padding-right: 3rem;
 }
+
 .section {
-	margin-left: 1rem;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
+
 .section__title {
-	font-family: Yoon_Gothic_780;
-	font-size: 0.5rem;
-	width: 5rem;
-	text-align: center;
+  font-family: Yoon_Gothic_780;
+  font-size: 0.8rem;
+  text-align: center;
 }
+
 .description {
-	width: 44rem;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	margin-left: 1rem;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 5rem;
 }
+
 .description__text {
-	width: 36rem;
-	font-size: 0.5rem;
-	display: flex;
+  font-family: Yoon_Gothic_750;
+  font-size: 0.75rem;
+  display: flex;
 }
-.description__text div:nth-child(1) {
-	font-family: Yoon_Gothic_750;
-	width: 9rem;
-	height: 1rem;
+
+.description__text:nth-child(2),
+.description__text:nth-child(3) {
+  margin-top: 0.3rem;
 }
-.description__text span:nth-child(2) {
-	font-family: Yoon_Gothic_750;
-	position: relative;
-	left: -3rem;
+
+.buttonBox {
+  display: flex;
+  align-items: center;
 }
-.description__text span {
-	font-family: Yoon_Gothic_750;
-	position: relative;
-	left: -2rem;
+
+.border {
+  width: 2.7rem;
+  height: 2.7rem;
+  background-color: makerLightGray;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  right: 0.7rem;
 }
-.buttons {
-	display: flex;
-	align-items: center;
+
+.border:last-child {
+  margin-left: 1rem;
 }
+
+.border:hover {
+  background-color: makerYellow;
+}
+
+.button {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  cursor: pointer;
+}
+
+.icon {
+  width: 1rem;
+}
+
 .buttons__viewButton {
-	border: 0.4rem solid #e6e6e6;
-	border-radius: 50%;
-	padding: 0.25rem 0.3rem;
-	cursor: pointer;
+  border: 0.4rem solid #e6e6e6;
+  border-radius: 50%;
+  padding: 0.25rem 0.3rem;
+  cursor: pointer;
 }
 .buttons__delete {
-	border: 0.4rem solid #e6e6e6;
-	border-radius: 100px;
-	padding: 0.25rem 0.4rem;
-	margin-left: 1rem;
-	cursor: pointer;
+  border: 0.4rem solid #e6e6e6;
+  border-radius: 100px;
+  padding: 0.25rem 0.4rem;
+  margin-left: 1rem;
+  cursor: pointer;
 }

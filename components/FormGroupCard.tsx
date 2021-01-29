@@ -83,7 +83,7 @@ const FormGroupCard: FC<Props> = ({
       <FontAwesomeIcon icon={faFolder} size={"3x"} color={LIGHT_GREEN} />
       <article className={styles.title}>{title}</article>
       <section className={styles.formGroupInfo}>
-        <div className={styles.formGroupInfo__description}>{description}</div>
+        <div className={styles.formGroupInfo__organization}>{organization}</div>
         <div className={styles.formGroupInfo__count}>{views}+</div>
       </section>
       <div className={styles.date}>

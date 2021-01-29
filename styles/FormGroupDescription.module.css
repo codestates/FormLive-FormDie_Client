@@ -21,7 +21,7 @@
   display: flex;
   border-radius: 30px;
   box-shadow: makerShadow;
-  padding: 0 3rem 0 2.5rem;
+  padding: 0 2.74rem 0 2.5rem;
   box-sizing: border-box;
 }
 
@@ -117,8 +117,8 @@
 .buttonBox {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  padding-top: 1.55rem;
 }
 
 .border {

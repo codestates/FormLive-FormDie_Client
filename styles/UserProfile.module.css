@@ -43,10 +43,21 @@
   cursor: pointer;
 }
 
+.user__email__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .user__email {
   color: makerMediumGray;
   font-size: 0.5rem;
   margin-top: 0.2rem;
+}
+
+.user__email__down {
+  color: makerMediumGray;
+  font-size: 0.5rem;
 }
 
 .user__logout {

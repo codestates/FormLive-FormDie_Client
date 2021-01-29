@@ -3,6 +3,7 @@
 @value makerWhite from "./common/colors.css";
 @value makerBlack from "./common/colors.css";
 @value makerDarkRed from "./common/colors.css";
+@value makerWhiteBackground from "./common/colors.css";
 
 @value makerLightGray from "./common/colors.css";
 @value makerGray from "./common/colors.css";
@@ -18,7 +19,7 @@
 @value Noto_Sans_CJK_Bold from './common/fonts.css';
 
 .container {
-  width: 100%;
+  flex: 1;
   height: 100%;
   padding-top: 3rem;
   padding-left: 4.4rem;
@@ -29,18 +30,30 @@
 
 .form {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   flex: 1;
+  margin: auto;
+  height: 100%;
+  position: relative;
 }
 
-.path {
+.form__path {
   display: flex;
   font-family: Yoon_Gothic_770;
   font-size: 0.65rem;
-  margin-bottom: 0.5rem;
+  position: absolute;
+  width: 52.5rem;
+  background-color: makerWhiteBackground;
+  padding-bottom: 0.5rem;
 }
 
-.path span:last-child {
+.form__content {
+  display: flex;
+  height: 100%;
+}
+
+.form__path span:last-child {
   color: makerGray;
 }
 
@@ -50,6 +63,7 @@
   justify-content: space-between;
   padding-bottom: 4rem;
   box-sizing: border-box;
+  height: 38.7rem;
 }
 
 .form__right__list {

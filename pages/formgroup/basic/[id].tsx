@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Forms from "../../../containers/Forms";
 import { IReducerState } from "../../../reducers";
 import { IFormReducerState, WRITE_GROUP_REQUEST } from "../../../reducers/form";
+import { GET_USER_REQUEST } from "../../../reducers/user";
 
-const FormWrite = () => {
+const FormWriteBasic = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const { id } = router.query;
@@ -120,30 +121,32 @@ const FormWrite = () => {
   };
   return (
     <div className={styles.container}>
-      <div className={styles.path}>
-        <span>HOME &#62; FORM GROUP &#62; </span>
-        <span>{currentGroup?.title}</span>
-      </div>
       <div className={styles.form}>
-        <Forms
-          formId={`Id${currentGroup?.forms[CurrentFormIndex].id}`}
-          changeCurrentFormHandler={changeCurrentFormHandler}
-          currentFormIndex={CurrentFormIndex}
-          currentFormInfo={currentGroup?.forms[CurrentFormIndex]}
-          recordCompleteForm={recordCompleteForm}
-          deleteCompleteForm={deleteCompleteForm}
-        />
-        <div className={styles.form__right}>
-          <div className={styles.form__right__list}>
-            <div className={styles.form__right__list__title}>FORM LIST</div>
-            <div className={styles.form__right__list__text}>
-              {renderFormList()}
+        <div className={styles.form__path}>
+          <span>HOME &#62; FORM GROUP &#62; </span>
+          <span>{currentGroup?.title}</span>
+        </div>
+        <div className={styles.form__content}>
+          <Forms
+            formId={`Id${currentGroup?.forms[CurrentFormIndex].id}`}
+            changeCurrentFormHandler={changeCurrentFormHandler}
+            currentFormIndex={CurrentFormIndex}
+            currentFormInfo={currentGroup?.forms[CurrentFormIndex]}
+            recordCompleteForm={recordCompleteForm}
+            deleteCompleteForm={deleteCompleteForm}
+          />
+          <div className={styles.form__right}>
+            <div className={styles.form__right__list}>
+              <div className={styles.form__right__list__title}>FORM LIST</div>
+              <div className={styles.form__right__list__text}>
+                {renderFormList()}
+              </div>
             </div>
-          </div>
-          <div className={styles.form__right__btns}>
-            <div onClick={cancelHandler}>취 소 하 기</div>
-            <div onClick={saveHandler}>임 시 저 장</div>
-            <div onClick={finishHandler}>작 성 완 료</div>
+            <div className={styles.form__right__btns}>
+              <div onClick={cancelHandler}>취 소 하 기</div>
+              <div onClick={saveHandler}>임 시 저 장</div>
+              <div onClick={finishHandler}>작 성 완 료</div>
+            </div>
           </div>
         </div>
       </div>
@@ -151,16 +154,20 @@ const FormWrite = () => {
   );
 };
 
-FormWrite.getInitialProps = async (context) => {
+FormWriteBasic.getInitialProps = async (context) => {
   const { id } = context.query;
 
-  console.log("hashtag getInitialProps", id);
-  context.store.dispatch({
-    type: WRITE_GROUP_REQUEST,
-    data: id,
-  });
+    console.log("hashtag getInitialProps", id);
+    context.store.dispatch({
+      type: WRITE_GROUP_REQUEST,
+      data: id,
+    });
 
-  return { id };
+    context.store.dispatch({
+      type: GET_USER_REQUEST,
+    });
+
+    return { id };
 };
 
-export default FormWrite;
+export default FormWriteBasic;
