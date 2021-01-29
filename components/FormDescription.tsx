@@ -24,9 +24,10 @@ interface Props {
 const FormDescription: FC<Props> = ({ selectForm }) => {
   const FILE_COLOR = "#ffc000";
   const dispatch = useDispatch();
-  const { makeNewFormGroup, currentGroup } = useSelector<IReducerState, IFormReducerState>(
-    (state) => state.form
-  );
+  const { makeNewFormGroup, currentGroup } = useSelector<
+    IReducerState,
+    IFormReducerState
+  >((state) => state.form);
   const linkToFormGroup = useRef(null);
 
   const [newName, setNewName] = useState<string>("새 그룹");
@@ -59,7 +60,6 @@ const FormDescription: FC<Props> = ({ selectForm }) => {
     if (makeNewFormGroup) {
       linkToFormGroup.current?.click();
     }
-
   }, [errors?.name?.type, selectForm, makeNewFormGroup]);
 
   const makeNewFormGroupHandler = () => {
@@ -136,19 +136,23 @@ const FormDescription: FC<Props> = ({ selectForm }) => {
         </div>
       </section>
       <div className={styles.buttonBox}>
-        {LinkPage ? (<Link href={`/formgroup/custom/${currentGroup?.groupId}`}>
-          <a ref={linkToFormGroup}>
-            <div className={styles.border}>
-              <div className={styles.button}>
-                <FontAwesomeIcon icon={faPen} size="sm" color="black" />
+        {LinkPage ? (
+          <Link href={`/formgroup/custom/${currentGroup?.groupId}`}>
+            <a ref={linkToFormGroup}>
+              <div className={styles.border}>
+                <div className={styles.button}>
+                  <FontAwesomeIcon icon={faPen} size="sm" color="black" />
+                </div>
               </div>
+            </a>
+          </Link>
+        ) : (
+          <div className={styles.border}>
+            <div className={styles.button} onClick={makeNewFormGroupHandler}>
+              <FontAwesomeIcon icon={faPen} size="sm" color="black" />
             </div>
-          </a>
-        </Link>) :             <div className={styles.border}>
-              <div className={styles.button} onClick={makeNewFormGroupHandler}>
-                <FontAwesomeIcon icon={faPen} size="sm" color="black" />
-              </div>
-            </div>}
+          </div>
+        )}
       </div>
     </section>
   );

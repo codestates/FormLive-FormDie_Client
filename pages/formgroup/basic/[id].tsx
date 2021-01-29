@@ -17,6 +17,7 @@ const FormWriteBasic = () => {
 
   const [CurrentFormIndex, setCurrentFormIndex] = useState<number>(0);
   const [CompleteForm, setCompleteForm] = useState<number[]>([]);
+  const [SaveTempForm, setSaveTempForm] = useState<boolean>(false);
 
   useEffect(() => {
     const completedForm = [];
@@ -37,7 +38,7 @@ const FormWriteBasic = () => {
 
     if (!CompleteForm.includes(CurrentFormIndex)) {
       const confirm = window.confirm(
-        "작성중인 폼이 저장되지 않았습니다.\n폼을 변경하시겠습니까?"
+        "작성중인 폼이 완성되지 않았습니다.\n폼을 변경하시겠습니까?"
       );
       if (confirm) {
         setCurrentFormIndex(index);
@@ -80,7 +81,7 @@ const FormWriteBasic = () => {
     } else {
       if (!CompleteForm.includes(CurrentFormIndex)) {
         const confirm = window.confirm(
-          "작성중인 폼이 저장되지 않았습니다.\n폼을 변경하시겠습니까?"
+          "작성중인 폼이 완성되지 않았습니다.\n폼을 변경하시겠습니까?"
         );
         if (confirm) {
           setCurrentFormIndex(index);
@@ -109,7 +110,7 @@ const FormWriteBasic = () => {
   };
 
   const saveHandler = () => {
-    window.alert("현재까지 제출된 폼들은 히스토리에 저장되었습니다.");
+    setSaveTempForm(true);
   };
 
   const finishHandler = () => {
@@ -134,6 +135,8 @@ const FormWriteBasic = () => {
             currentFormInfo={currentGroup?.forms[CurrentFormIndex]}
             recordCompleteForm={recordCompleteForm}
             deleteCompleteForm={deleteCompleteForm}
+            saveTempForm={SaveTempForm}
+            setSaveTempForm={setSaveTempForm}
           />
           <div className={styles.form__right}>
             <div className={styles.form__right__list}>

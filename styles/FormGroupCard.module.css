@@ -49,8 +49,14 @@
 }
 
 .formGroupInfo__count {
+  display: flex;
   font-family: Yoon_Gothic_780;
-  font-size: 0.735rem;
+  font-size: 0.72rem;
+}
+
+.formGroupInfo__count img {
+  width: 0.72rem;
+  margin-right: 0.2rem;
 }
 
 .date {

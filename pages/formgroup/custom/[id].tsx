@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
 import Forms from "../../../containers/Forms";
 import { IReducerState } from "../../../reducers";
-import { IFormReducerState, START_GROUP_REQUEST, WRITE_GROUP_REQUEST } from "../../../reducers/form";
+import { IFormReducerState, WRITE_GROUP_REQUEST } from "../../../reducers/form";
 import { GET_USER_REQUEST } from "../../../reducers/user";
 
 const FormWriteCustom = () => {
@@ -17,6 +17,7 @@ const FormWriteCustom = () => {
 
   const [CurrentFormIndex, setCurrentFormIndex] = useState<number>(0);
   const [CompleteForm, setCompleteForm] = useState<number[]>([]);
+  const [SaveTempForm, setSaveTempForm] = useState<boolean>(false);
 
   useEffect(() => {
     const completedForm = [];
@@ -37,7 +38,7 @@ const FormWriteCustom = () => {
 
     if (!CompleteForm.includes(CurrentFormIndex)) {
       const confirm = window.confirm(
-        "작성중인 폼이 저장되지 않았습니다.\n폼을 변경하시겠습니까?"
+        "작성중인 폼이 완성되지 않았습니다.\n폼을 변경하시겠습니까?"
       );
       if (confirm) {
         setCurrentFormIndex(index);
@@ -80,7 +81,7 @@ const FormWriteCustom = () => {
     } else {
       if (!CompleteForm.includes(CurrentFormIndex)) {
         const confirm = window.confirm(
-          "작성중인 폼이 저장되지 않았습니다.\n폼을 변경하시겠습니까?"
+          "작성중인 폼이 완성되지 않았습니다.\n폼을 변경하시겠습니까?"
         );
         if (confirm) {
           setCurrentFormIndex(index);
@@ -109,7 +110,7 @@ const FormWriteCustom = () => {
   };
 
   const saveHandler = () => {
-    window.alert("현재까지 제출된 폼들은 히스토리에 저장되었습니다.");
+    setSaveTempForm(true);
   };
 
   const finishHandler = () => {
@@ -123,7 +124,7 @@ const FormWriteCustom = () => {
     <div className={styles.container}>
       <div className={styles.form}>
         <div className={styles.form__path}>
-          <span>HOME &#62; FORM &#62; </span>
+          <span>HOME &#62; FORM GROUP &#62; </span>
           <span>{currentGroup?.title}</span>
         </div>
         <div className={styles.form__content}>
@@ -134,6 +135,8 @@ const FormWriteCustom = () => {
             currentFormInfo={currentGroup?.forms[CurrentFormIndex]}
             recordCompleteForm={recordCompleteForm}
             deleteCompleteForm={deleteCompleteForm}
+            saveTempForm={SaveTempForm}
+            setSaveTempForm={setSaveTempForm}
           />
           <div className={styles.form__right}>
             <div className={styles.form__right__list}>
@@ -158,10 +161,12 @@ FormWriteCustom.getInitialProps = async (context) => {
   const { id } = context.query;
 
     console.log("hashtag getInitialProps", id);
+
     context.store.dispatch({
       type: GET_USER_REQUEST,
     });
-  return { id };
+
+    return { id };
 };
 
 export default FormWriteCustom;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styles from "../../styles/FormsId.module.css";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
@@ -16,9 +16,12 @@ const Id7 = ({
   recordCompleteForm,
   deleteCompleteForm,
   currentFormInfo,
+  setSaveTempForm,
+  saveTempForm,
 }) => {
   const FORM_ID = 7;
   const dispatch = useDispatch();
+  const saveTemp = useRef(null);
   const { sentFormData, resentFormData } = useSelector<
     IReducerState,
     IFormReducerState
@@ -31,27 +34,51 @@ const Id7 = ({
 
   const [Required, setRequired] = useState(true);
   const [Service, setService] = useState(true);
+  const [FinishService, setFinishService] = useState(true);
   const [School, setSchool] = useState(true);
+  const [FirstTime, setFirstTime] = useState(true);
 
   const onSubmit = (formData, event) => {
     event.preventDefault();
 
-    const data = {
-      formId: FORM_ID,
-      isComplete: true,
-      contents: formData,
-    };
+    if (saveTempForm) {
+      const tempData = {
+        formId: FORM_ID,
+        isComplete: false,
+        contents: formData,
+      };
 
-    if (currentFormInfo.isComplete === null) {
-      dispatch({
-        type: SEND_FORM_REQUEST,
-        data: data,
-      });
+      if (currentFormInfo.isComplete === null) {
+        dispatch({
+          type: SEND_FORM_REQUEST,
+          data: tempData,
+        });
+      } else {
+        dispatch({
+          type: RESEND_FORM_REQUEST,
+          data: tempData,
+        });
+      }
+
+      console.log(1);
     } else {
-      dispatch({
-        type: RESEND_FORM_REQUEST,
-        data: data,
-      });
+      const data = {
+        formId: FORM_ID,
+        isComplete: true,
+        contents: formData,
+      };
+
+      if (currentFormInfo.isComplete === null) {
+        dispatch({
+          type: SEND_FORM_REQUEST,
+          data: data,
+        });
+      } else {
+        dispatch({
+          type: RESEND_FORM_REQUEST,
+          data: data,
+        });
+      }
     }
   };
 
@@ -61,6 +88,12 @@ const Id7 = ({
       setService(false);
     } else {
       setService(true);
+    }
+
+    if (value === "전역예정") {
+      setFinishService(false);
+    } else {
+      setFinishService(true);
     }
   };
 
@@ -79,23 +112,29 @@ const Id7 = ({
   };
 
   useEffect(() => {
-    if (Object.keys(errors).length) {
+    if (Object.keys(errors).length && !saveTempForm) {
       window.alert(
         "작성하지 않은 칸이 있습니다.\n빈칸으로 완료하시려면 다시 제출 버튼을 눌러주세요."
       );
       setRequired(false);
     }
 
-    if (sentFormData) {
+    if (FirstTime && sentFormData && !saveTempForm) {
       recordCompleteForm(currentFormIndex);
       dispatch({
         type: GET_FORM_REQUEST,
         data: FORM_ID,
       });
       window.alert("폼이 성공적으로 저장되었습니다.");
+    } else if (!FirstTime && sentFormData && saveTempForm) {
+      setSaveTempForm(false);
+      setTimeout(() => {
+        setFirstTime(true);
+      }, 1000);
+      window.alert("지금까지 작성하신 폼은 히스토리에 임시저장되었습니다.");
     }
 
-    if (resentFormData) {
+    if (FirstTime && resentFormData && !saveTempForm) {
       recordCompleteForm(currentFormIndex);
 
       dispatch({
@@ -103,8 +142,24 @@ const Id7 = ({
         data: FORM_ID,
       });
       window.alert("폼이 성공적으로 수정되었습니다.");
+    } else if (!FirstTime && resentFormData && saveTempForm) {
+      setSaveTempForm(false);
+      setTimeout(() => {
+        setFirstTime(true);
+      }, 1000);
+
+      window.alert("지금까지 작성하신 폼은 히스토리에 임시저장되었습니다.");
     }
-  }, [errors, sentFormData, resentFormData]);
+
+    if (FirstTime && saveTempForm) {
+      setRequired(false);
+      setFirstTime(false);
+      deleteCompleteForm(currentFormIndex);
+      setTimeout(() => {
+        saveTemp.current.click();
+      }, 1000);
+    }
+  }, [errors, sentFormData, resentFormData, saveTempForm]);
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
@@ -249,7 +304,7 @@ const Id7 = ({
             type="date"
             name="jobStart"
             className={styles.input}
-            disabled={Service}
+            disabled={FinishService}
             ref={register}
           />
         </label>
@@ -318,6 +373,15 @@ const Id7 = ({
             <option>재학</option>
           </select>
         </label>
+        <label className={styles.label}>
+          최종 학력 해당 년도{" "}
+          <input
+            type="month"
+            name="finalYear"
+            className={styles.input}
+            ref={register({ required: Required })}
+          />
+        </label>
       </div>
       <div className={styles.form__btn}>
         <div
@@ -328,7 +392,9 @@ const Id7 = ({
         >
           이전
         </div>
-        <button className={styles.form__btn__submit}>제출</button>
+        <button className={styles.form__btn__submit} ref={saveTemp}>
+          제출
+        </button>
         <div
           className={styles.form__btn__next}
           onClick={() => {

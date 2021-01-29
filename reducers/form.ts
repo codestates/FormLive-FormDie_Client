@@ -123,6 +123,8 @@ const formReducer = (state = initialState, action) =>
           if (form?.id === action.data.data.formId) {
             draft.currentGroup.forms[index].contents =
               action.data.data.contents;
+            draft.currentGroup.forms[index].isComplete =
+              action.data.data.isComplete;
           }
         });
         break;

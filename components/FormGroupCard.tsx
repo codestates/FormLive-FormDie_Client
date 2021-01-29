@@ -84,7 +84,10 @@ const FormGroupCard: FC<Props> = ({
       <article className={styles.title}>{title}</article>
       <section className={styles.formGroupInfo}>
         <div className={styles.formGroupInfo__organization}>{organization}</div>
-        <div className={styles.formGroupInfo__count}>{views}+</div>
+        <div className={styles.formGroupInfo__count}>
+          <img src="/image/001-edit.svg" />
+          <span>{views}</span>{" "}
+        </div>
       </section>
       <div className={styles.date}>
         ({new Date(updatedAt).toLocaleDateString("ko")} updated)

@@ -34,7 +34,7 @@ const FormGroupDescription = ({
         <div className={styles.description__text}>
           <div>
             폼 목록 ｜ {forms?.map((form) => form.title).join(", ")}
-            (총 {!forms?.length ? 0 : !forms?.length}개)
+            (총 {!forms?.length ? 0 : forms?.length}개)
           </div>
         </div>
         <div className={styles.description__text}>
@@ -42,7 +42,7 @@ const FormGroupDescription = ({
         </div>
       </section>
       <div className={styles.buttonBox}>
-        <div className={styles.number}>CLICK {!views ? 0 : views}+</div>
+        <div className={styles.number}>{!views ? 0 : views} VIEWS</div>
 
         {groupId ? (
           <Link href={`/formgroup/basic/${groupId}`}>

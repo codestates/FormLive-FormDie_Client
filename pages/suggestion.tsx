@@ -3,6 +3,8 @@ import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { SUGGESTION_UPLOAD_REQUEST } from "../reducers/suggestion";
 import styles from "../styles/Suggestion.module.css";
+
+
 export default function Suggestion() {
 	const { handleSubmit, register } = useForm();
 	const dispatch = useDispatch();
