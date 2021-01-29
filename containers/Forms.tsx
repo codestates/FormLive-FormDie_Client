@@ -23,9 +23,11 @@ const Forms = ({
   recordCompleteForm,
   currentFormInfo,
   deleteCompleteForm,
+  setSaveTempForm,
+  saveTempForm,
 }) => {
   return (
-    <div>
+    <div style={{ marginRight: "2.162rem", height: "100%" }}>
       {formId === "Id1" && (
         <Id1
           changeCurrentFormHandler={changeCurrentFormHandler}
@@ -33,6 +35,8 @@ const Forms = ({
           currentFormInfo={currentFormInfo}
           recordCompleteForm={recordCompleteForm}
           deleteCompleteForm={deleteCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id2" && (
@@ -42,6 +46,8 @@ const Forms = ({
           currentFormInfo={currentFormInfo}
           recordCompleteForm={recordCompleteForm}
           deleteCompleteForm={deleteCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id3" && (
@@ -51,6 +57,8 @@ const Forms = ({
           currentFormIndex={currentFormIndex}
           deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id4" && (
@@ -60,6 +68,8 @@ const Forms = ({
           currentFormIndex={currentFormIndex}
           deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id5" && (
@@ -69,6 +79,8 @@ const Forms = ({
           currentFormIndex={currentFormIndex}
           deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id6" && (
@@ -78,6 +90,8 @@ const Forms = ({
           currentFormIndex={currentFormIndex}
           deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id7" && (
@@ -87,6 +101,8 @@ const Forms = ({
           currentFormIndex={currentFormIndex}
           deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id8" && (
@@ -96,6 +112,8 @@ const Forms = ({
           currentFormIndex={currentFormIndex}
           deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id9" && (
@@ -105,6 +123,8 @@ const Forms = ({
           currentFormIndex={currentFormIndex}
           deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id10" && (
@@ -114,6 +134,8 @@ const Forms = ({
           currentFormIndex={currentFormIndex}
           deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id11" && (
@@ -123,6 +145,8 @@ const Forms = ({
           currentFormIndex={currentFormIndex}
           deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id12" && (
@@ -132,6 +156,8 @@ const Forms = ({
           currentFormIndex={currentFormIndex}
           deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id13" && (
@@ -141,6 +167,8 @@ const Forms = ({
           currentFormInfo={currentFormInfo}
           deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id14" && (
@@ -150,6 +178,8 @@ const Forms = ({
           currentFormIndex={currentFormIndex}
           deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id15" && (
@@ -159,6 +189,8 @@ const Forms = ({
           currentFormIndex={currentFormIndex}
           deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
       {formId === "Id16" && (
@@ -168,6 +200,8 @@ const Forms = ({
           currentFormIndex={currentFormIndex}
           deleteCompleteForm={deleteCompleteForm}
           recordCompleteForm={recordCompleteForm}
+          saveTempForm={saveTempForm}
+          setSaveTempForm={setSaveTempForm}
         />
       )}
     </div>

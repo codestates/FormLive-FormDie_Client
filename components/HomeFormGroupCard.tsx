@@ -23,7 +23,7 @@ const HomeFormGroupCard: FC<Props> = ({ title, organization, groupId }) => {
         <div className={styles.operation}>{organization}</div>
       </div>
       <div className={styles.buttonBox}>
-        <Link href={`/formgroup/write/${groupId}`}>
+        <Link href={`/formgroup/basic/${groupId}`}>
           <a>
             <div className={styles.border}>
               <div className={styles.button}>

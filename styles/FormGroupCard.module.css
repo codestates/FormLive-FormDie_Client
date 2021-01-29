@@ -42,15 +42,21 @@
   margin-top: 0.3rem;
 }
 
-.formGroupInfo__description {
+.formGroupInfo__organization {
   font-family: Yoon_Gothic_750;
   font-size: 0.72rem;
   margin-right: 0.4rem;
 }
 
 .formGroupInfo__count {
+  display: flex;
   font-family: Yoon_Gothic_780;
-  font-size: 0.735rem;
+  font-size: 0.72rem;
+}
+
+.formGroupInfo__count img {
+  width: 0.72rem;
+  margin-right: 0.2rem;
 }
 
 .date {

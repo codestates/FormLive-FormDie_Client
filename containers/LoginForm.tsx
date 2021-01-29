@@ -98,6 +98,9 @@ const LoginForm = ({ loginClick, setLoginClick, setSlide }) => {
                 ref={register({ required: true })}
               />
             </div>
+            {errors.email && (
+              <div className={styles.errorMessage}>Email is required</div>
+            )}
             <div className={styles.section__input__border}>
               <input
                 className={styles.section__input__border__input}
@@ -107,6 +110,14 @@ const LoginForm = ({ loginClick, setLoginClick, setSlide }) => {
                 ref={register({ required: true, minLength: 10 })}
               />
             </div>
+            {errors.password?.type === "required" && (
+              <div className={styles.errorMessage}>Password is required</div>
+            )}
+            {errors.password?.type === "minLength" && (
+              <div className={styles.errorMessage}>
+                Password length is at least 10
+              </div>
+            )}
             <input
               className={styles.section__submit}
               type="submit"

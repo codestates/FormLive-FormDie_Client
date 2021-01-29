@@ -114,8 +114,14 @@ const UserProfile = () => {
       setNoneEdit(true);
       setTimeout(() => setNoneEdit(false), 2000);
     } else {
-      dispatch({ type: EDIT_PROFILE_REQUEST, data: editData });
-      dispatch({ type: CHANGE_IMAGE_REQUEST, data: Imgfile });
+      if (!editData.name && !editData.password && Imgfile) {
+        dispatch({ type: CHANGE_IMAGE_REQUEST, data: Imgfile });
+      } else if ((editData.name || editData.password) && !Imgfile) {
+        dispatch({ type: EDIT_PROFILE_REQUEST, data: editData });
+      } else if ((editData.name || editData.password) && Imgfile) {
+        dispatch({ type: EDIT_PROFILE_REQUEST, data: editData });
+        dispatch({ type: CHANGE_IMAGE_REQUEST, data: Imgfile });
+      }
 
       setSuccessEdit(true);
       setTimeout(() => setSuccessEdit(false), 2000);
@@ -154,7 +160,6 @@ const UserProfile = () => {
       }, 2000);
     }
   };
-
   const onLogoutHandler = () => {
     dispatch({ type: LOG_OUT_REQUEST });
   };
@@ -329,7 +334,19 @@ const UserProfile = () => {
             className={styles.user__editIcon}
           />
         </div>
-        <span className={styles.user__email}>{userInfo?.email}</span>
+        {userInfo?.email.length <= 21 ? (
+          <span className={styles.user__email}>{userInfo?.email}</span>
+        ) : (
+          <div className={styles.user__email__wrap}>
+            <span className={styles.user__email}>
+              {userInfo?.email.split("@")[0]}
+            </span>
+            <span className={styles.user__email__down}>
+              @{userInfo?.email.split("@")[1]}
+            </span>
+          </div>
+        )}
+
         <button className={styles.user__logout} onClick={onLogoutHandler}>
           Logout
         </button>

@@ -1,4 +1,4 @@
-import React, { FC, useState, useEffect } from "react";
+import React, { FC, useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import styles from "../styles/FormDescription.module.css";
 import {
@@ -8,6 +8,10 @@ import {
   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useDispatch, useSelector } from "react-redux";
+import { IFormReducerState, NEW_GROUP_REQUEST } from "../reducers/form";
+import { IReducerState } from "../reducers";
+import Link from "next/link";
 
 interface groupNameEdit {
   name: string;
@@ -19,19 +23,24 @@ interface Props {
 
 const FormDescription: FC<Props> = ({ selectForm }) => {
   const FILE_COLOR = "#ffc000";
+  const dispatch = useDispatch();
+  const { makeNewFormGroup, currentGroup } = useSelector<
+    IReducerState,
+    IFormReducerState
+  >((state) => state.form);
+  const linkToFormGroup = useRef(null);
 
   const [newName, setNewName] = useState<string>("새 그룹");
   const [changeName, setChangeName] = useState<boolean>(false);
+  const [FormIdArr, setFormIdArr] = useState<number[]>([]);
+  const [LinkPage, setLinkPage] = useState<boolean>(false);
+
   const { register, handleSubmit, errors } = useForm<groupNameEdit>({
-    defaultValues: { name: newName },
     mode: "onSubmit",
     reValidateMode: "onSubmit",
   });
-
   const onSubmit = (nameData, event) => {
     event.preventDefault();
-    console.log(errors);
-
     setNewName(nameData.name);
     setChangeName(false);
   };
@@ -42,7 +51,28 @@ const FormDescription: FC<Props> = ({ selectForm }) => {
     } else if (errors?.name?.type === "maxLength") {
       window.alert("그룹 이름은 15글자 이하로 지어주세요.");
     }
-  }, [errors?.name?.type]);
+
+    if (selectForm && selectForm.length !== FormIdArr.length) {
+      const formToId = selectForm.map((form) => form.formId);
+      setFormIdArr([...formToId]);
+    }
+
+    if (makeNewFormGroup) {
+      linkToFormGroup.current?.click();
+    }
+  }, [errors?.name?.type, selectForm, makeNewFormGroup]);
+
+  const makeNewFormGroupHandler = () => {
+    setLinkPage(true);
+
+    dispatch({
+      type: NEW_GROUP_REQUEST,
+      data: {
+        title: newName,
+        forms: FormIdArr,
+      },
+    });
+  };
 
   return (
     <section className={styles.container}>
@@ -106,11 +136,23 @@ const FormDescription: FC<Props> = ({ selectForm }) => {
         </div>
       </section>
       <div className={styles.buttonBox}>
-        <div className={styles.border}>
-          <div className={styles.button}>
-            <FontAwesomeIcon icon={faPen} size="sm" color="black" />
+        {LinkPage ? (
+          <Link href={`/formgroup/custom/${currentGroup?.groupId}`}>
+            <a ref={linkToFormGroup}>
+              <div className={styles.border}>
+                <div className={styles.button}>
+                  <FontAwesomeIcon icon={faPen} size="sm" color="black" />
+                </div>
+              </div>
+            </a>
+          </Link>
+        ) : (
+          <div className={styles.border}>
+            <div className={styles.button} onClick={makeNewFormGroupHandler}>
+              <FontAwesomeIcon icon={faPen} size="sm" color="black" />
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

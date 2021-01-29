@@ -141,12 +141,14 @@
   justify-content: center;
   align-items: center;
 }
+
 .section__login__register__text1 {
   margin: 0;
   margin-right: 1%;
   font-size: 0.8rem;
   font-family: Yoon_Gothic_750;
 }
+
 .section__login__register__text2 {
   margin-left: 0.3rem;
   margin-top: 0.1rem;
@@ -155,4 +157,12 @@
   color: makerDarkRed;
   font-size: 0.8rem;
   font-family: Yoon_Gothic_750;
+}
+
+.errorMessage {
+  color: makerDarkRed;
+  width: 20rem;
+  text-align: start;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
 }
