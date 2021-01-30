@@ -10,6 +10,7 @@ import {
 } from "../reducers/form";
 import HomeFormGroupCard from "../components/HomeFormGroupCard";
 import { GET_USER_REQUEST } from "../reducers/user";
+import Head from "next/head";
 
 const Home = () => {
   const userInfo = useSelector<IReducerState, Iuser>((state) => state.user.me);
@@ -31,6 +32,10 @@ const Home = () => {
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>양식당 ｜ Home</title>
+        <link rel="shortcut icon" href="/image/favicon.ico" />
+      </Head>
       <div className={styles.greeting}>Hello, {userInfo?.name}!</div>
       <div className={styles.title__formGroup}>
         <img src="/image/012-clock.svg" />

@@ -85,8 +85,8 @@ const FormGroupCard: FC<Props> = ({
       <section className={styles.formGroupInfo}>
         <div className={styles.formGroupInfo__organization}>{organization}</div>
         <div className={styles.formGroupInfo__count}>
-          <img src="/image/001-edit.svg" />
-          <span>{views}</span>{" "}
+          <span>{views}+</span>{" "}
+          {/* <img src="/image/001-edit.svg" /> */}
         </div>
       </section>
       <div className={styles.date}>

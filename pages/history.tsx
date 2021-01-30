@@ -8,6 +8,7 @@ import {
 } from "../reducers/history";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Head from "next/head";
 
 export default function History() {
   const [ascPage, setAscPage] = useState<number>(1);
@@ -88,6 +89,10 @@ export default function History() {
   };
   return (
     <div className={styles.container}>
+      <Head>
+        <title>양식당 ｜ History</title>
+        <link rel="shortcut icon" href="/image/favicon.ico" />
+      </Head>
       <header className={styles.header}>
         <div className={styles.header__left}>
           <div className={styles.header__title}>History</div>

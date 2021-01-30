@@ -22,7 +22,7 @@
   flex: 1;
   height: 100%;
   padding-top: 3rem;
-  padding-left: 4.4rem;
+  padding-left: 3.4rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -55,6 +55,7 @@
 
 .form__path span:last-child {
   color: makerGray;
+  margin-left: 0.3rem;
 }
 
 .form__right {

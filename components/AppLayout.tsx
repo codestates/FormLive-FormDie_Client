@@ -63,20 +63,28 @@ const AppLayout: FC<Props> = ({ children }) => {
       size: ICON_SIZE,
       text: "SUGGESTION",
     },
-    {
-      path: "/admin",
-      icon: faKey,
-      size: ICON_SIZE,
-      text: "ADMIN",
-    },
+    // {
+    //   path: "/admin",
+    //   icon: faKey,
+    //   size: ICON_SIZE,
+    //   text: "ADMIN",
+    // },
   ];
 
   const renderCategory = () =>
     categories.map((category, index) => {
       const iconColor =
-        router.pathname === category.path ? ICON_CLICK_COLOR : ICON_COLOR;
+        router.pathname === category.path ||
+        (router.pathname.match(/formgroup/i) &&
+          category.path.match(/formgroup/i))
+          ? ICON_CLICK_COLOR
+          : ICON_COLOR;
       const textColor =
-        router.pathname === category.path ? styles.yellow : styles.white;
+        router.pathname === category.path ||
+        (router.pathname.match(/formgroup/i) &&
+          category.path.match(/formgroup/i))
+          ? styles.yellow
+          : styles.white;
 
       if (router.pathname !== category.path) {
         return (

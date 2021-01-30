@@ -14,6 +14,7 @@ import { IReducerState } from "../reducers";
 import { Iuser } from "../containers/UserProfile";
 import { FORM_LIST_REQUEST, IFormReducerState } from "../reducers/form";
 import { GET_USER_REQUEST } from "../reducers/user";
+import Head from "next/head";
 
 interface IselectForm {
   formId: number;
@@ -134,6 +135,10 @@ const Form = () => {
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>양식당 ｜ Form</title>
+        <link rel="shortcut icon" href="/image/favicon.ico" />
+      </Head>
       <header className={styles.header}>
         <div className={styles.header__left}>
           <div className={styles.header__title}>Form</div>

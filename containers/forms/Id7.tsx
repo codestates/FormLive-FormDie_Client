@@ -99,7 +99,7 @@ const Id7 = ({
 
   const schoolChangeHandler = (event) => {
     const value = event.currentTarget.value;
-    if (value === "대학교" || value === "대학원") {
+    if (value === "대학교") {
       setSchool(false);
     } else {
       setSchool(true);
@@ -320,7 +320,7 @@ const Id7 = ({
             <option value="중학교">중학교</option>
             <option value="고등학교">고등학교</option>
             <option value="대학교">대학교</option>
-            <option value="대학원">대학원</option>
+            
           </select>
         </label>
         <label className={styles.label}>
@@ -333,7 +333,7 @@ const Id7 = ({
           />
         </label>
         <label className={styles.label}>
-          학과명(대학교, 대학원)
+          학과명(대학교)
           <input
             type="text"
             name="major"

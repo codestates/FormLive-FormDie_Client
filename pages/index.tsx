@@ -72,7 +72,7 @@ const Index = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>양식당 ｜ welcome</title>
+        <title>양식당 ｜ Welcome</title>
         <link rel="shortcut icon" href="/image/favicon.ico" />
       </Head>
       {

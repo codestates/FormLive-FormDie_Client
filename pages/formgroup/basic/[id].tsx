@@ -6,10 +6,10 @@ import Forms from "../../../containers/Forms";
 import { IReducerState } from "../../../reducers";
 import { IFormReducerState, WRITE_GROUP_REQUEST } from "../../../reducers/form";
 import { GET_USER_REQUEST } from "../../../reducers/user";
+import Head from "next/head";
 
 const FormWriteBasic = () => {
   const router = useRouter();
-  const dispatch = useDispatch();
   const { id } = router.query;
   const { currentGroup } = useSelector<IReducerState, IFormReducerState>(
     (state) => state.form
@@ -117,11 +117,15 @@ const FormWriteBasic = () => {
     if (CompleteForm.length !== currentGroup.forms.length) {
       window.alert("아직 작성하지 않은 폼이 있습니다.");
     } else {
-      //router.push(`/complete/${id}`)
+      window.location.href = `http://localhost:2500/formgroup/complete/new/${id}`;
     }
   };
   return (
     <div className={styles.container}>
+      <Head>
+        <title>양식당 ｜ Form Group</title>
+        <link rel="shortcut icon" href="/image/favicon.ico" />
+      </Head>
       <div className={styles.form}>
         <div className={styles.form__path}>
           <span>HOME &#62; FORM GROUP &#62; </span>
@@ -160,17 +164,17 @@ const FormWriteBasic = () => {
 FormWriteBasic.getInitialProps = async (context) => {
   const { id } = context.query;
 
-    console.log("hashtag getInitialProps", id);
-    context.store.dispatch({
-      type: WRITE_GROUP_REQUEST,
-      data: id,
-    });
+  console.log("hashtag getInitialProps", id);
+  context.store.dispatch({
+    type: WRITE_GROUP_REQUEST,
+    data: id,
+  });
 
-    context.store.dispatch({
-      type: GET_USER_REQUEST,
-    });
+  context.store.dispatch({
+    type: GET_USER_REQUEST,
+  });
 
-    return { id };
+  return { id };
 };
 
 export default FormWriteBasic;

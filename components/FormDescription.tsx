@@ -63,15 +63,19 @@ const FormDescription: FC<Props> = ({ selectForm }) => {
   }, [errors?.name?.type, selectForm, makeNewFormGroup]);
 
   const makeNewFormGroupHandler = () => {
-    setLinkPage(true);
+    if (!selectForm.length) {
+      window.alert("현재 선택된 폼이 없습니다.");
+    } else {
+      setLinkPage(true);
 
-    dispatch({
-      type: NEW_GROUP_REQUEST,
-      data: {
-        title: newName,
-        forms: FormIdArr,
-      },
-    });
+      dispatch({
+        type: NEW_GROUP_REQUEST,
+        data: {
+          title: newName,
+          forms: FormIdArr,
+        },
+      });
+    }
   };
 
   return (
