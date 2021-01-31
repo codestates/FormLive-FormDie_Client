@@ -208,7 +208,7 @@ export default function* userSaga() {
     console.log(deleteData);
     return axios
       .delete("/user", { data: deleteData, withCredentials: true })
-      .catch((error) => console.log(error.message));
+      // .catch((error) => console.log(error.message));
   }
 
   function* deleteUser(action) {
@@ -225,6 +225,7 @@ export default function* userSaga() {
       // loginAPI 실패
       console.error(e);
       console.log(e);
+      window.alert("비밀번호가 일치하지 않습니다.");
       yield put({
         type: DELETE_USER_FAILURE,
         reason: e,

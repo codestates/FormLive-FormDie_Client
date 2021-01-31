@@ -3,8 +3,9 @@ import styles from "../styles/Index.module.css";
 import LoginForm from "../containers/LoginForm";
 import RegisterForm from "../containers/RegisterForm";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { LOG_IN_REQUEST } from "../reducers/user";
+import { useDispatch, useSelector } from "react-redux";
+import { IUserReducerState, LOG_IN_REQUEST } from "../reducers/user";
+import { IReducerState } from "../reducers";
 
 interface IimageInfo {
   url: string;
@@ -19,6 +20,9 @@ const Index = () => {
   const [registerClick, setRegisterClick] = useState<boolean>(false);
   const [Slide, setSlide] = useState<boolean>(true);
 
+  const { isLoggedIn } = useSelector<IReducerState, IUserReducerState>(
+    (state) => state.user
+  );
   const imageInfo: IimageInfo[] = [
     {
       url: "/image/home.png",
@@ -75,21 +79,20 @@ const Index = () => {
         <title>양식당 ｜ Welcome</title>
         <link rel="shortcut icon" href="/image/favicon.ico" />
       </Head>
-      {
-        <LoginForm
-          loginClick={loginClick}
-          setLoginClick={setLoginClick}
-          setSlide={setSlide}
-        />
-      }
-      {
-        <RegisterForm
-          registerClick={registerClick}
-          setRegisterClick={setRegisterClick}
-          setSlide={setSlide}
-          setLoginClick={setLoginClick}
-        />
-      }
+
+      <LoginForm
+        loginClick={loginClick}
+        setLoginClick={setLoginClick}
+        setSlide={setSlide}
+      />
+
+      <RegisterForm
+        registerClick={registerClick}
+        setRegisterClick={setRegisterClick}
+        setSlide={setSlide}
+        setLoginClick={setLoginClick}
+      />
+
       <header className={styles.header}>
         <div
           onClick={() => {
