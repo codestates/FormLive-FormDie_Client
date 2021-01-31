@@ -28,9 +28,9 @@ export const initialState = {
 };
 export type IUserReducerState = typeof initialState;
 
-export const LOG_IN_REQUEST = "LOG_IN_REQUEST"; // 액션의 이름
-export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS"; // 액션의 이름
-export const LOG_IN_FAILURE = "LOG_IN_FAILURE"; // 액션의 이름
+export const LOG_IN_REQUEST = "LOG_IN_REQUEST"; 
+export const LOG_IN_SUCCESS = "LOG_IN_SUCCESS"; 
+export const LOG_IN_FAILURE = "LOG_IN_FAILURE"; 
 
 export const LOG_OUT_REQUEST = "LOG_OUT_REQUEST";
 export const LOG_OUT_SUCCESS = "LOG_OUT_SUCCESS";

@@ -1,0 +1,65 @@
+@value makerGray from "../common/colors.css";
+@value makerLightYellow from "../common/colors.css";
+@value makerCardBackground from "../common/colors.css";
+@value makerShadow from "../common/colors.css";
+@value MavenPro_Medium from '../common/fonts.css';
+@value Yoon_Gothic_740 from '../common/fonts.css';
+@value Yoon_Gothic_750 from '../common/fonts.css';
+@value Yoon_Gothic_780 from '../common/fonts.css';
+
+.section2__formView {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18.5rem;
+  height: 4.5rem;
+  cursor: pointer;
+  border-radius: 22px;
+  box-shadow: makerShadow;
+  background-color: makerCardBackground;
+  padding-left: 0.5rem;
+  box-sizing: border-box;
+}
+
+.section2__formView__click {
+  background-color: makerLightYellow;
+  box-shadow: none;
+}
+
+.section2__formView__formId {
+  font-family: MavenPro_Medium;
+  font-size: 2.4rem;
+  width: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.section2__formView__text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.section2__formView__text__title {
+  font-family: Yoon_Gothic_780;
+  font-size: 0.8rem;
+}
+.section2__formView__text__main {
+  display: flex;
+  color: makerGray;
+  align-items: center;
+  margin-top: 0.2rem;
+}
+
+.section2__formView__text__main div:nth-child(1) {
+  font-family: Yoon_Gothic_750;
+  font-size: 0.72rem;
+}
+
+.section2__formView__text__main div:nth-child(2) {
+  font-family: Yoon_Gothic_740;
+  font-size: 0.6rem;
+  margin-left: 0.5rem;
+  position: relative;
+  top: 0.1rem;
+}

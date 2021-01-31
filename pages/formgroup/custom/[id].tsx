@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "../../../styles/FormWrite.module.css";
+import styles from "../../../styles/FormWrite/FormWrite.module.css";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import Forms from "../../../containers/Forms";
@@ -163,8 +163,6 @@ const FormWriteCustom = () => {
 
 FormWriteCustom.getInitialProps = async (context) => {
   const { id } = context.query;
-
-  console.log("hashtag getInitialProps", id);
 
   context.store.dispatch({
     type: GET_USER_REQUEST,

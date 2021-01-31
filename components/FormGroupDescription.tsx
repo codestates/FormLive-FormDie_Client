@@ -1,4 +1,4 @@
-import styles from "../styles/FormGroupDescription.module.css";
+import styles from "../styles/FormGroup/FormGroupDescription.module.css";
 import { faFolder, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
@@ -16,13 +16,15 @@ const FormGroupDescription = ({
 
   const nothingHappenHandler = () => {
     !groupId && window.alert("현재 선택된 폼그룹이 없습니다.");
-  }
+  };
 
   return (
     <section className={styles.container}>
       <section className={styles.groupName}>
         <FontAwesomeIcon icon={faFolder} size={"4x"} color={FILE_COLOR} />
-        <div className={styles.groupName__title}>{!title ? "양식당 폼그룹" : title}</div>
+        <div className={styles.groupName__title}>
+          {!title ? "양식당 폼그룹" : title}
+        </div>
       </section>
       <section className={styles.description}>
         <div className={styles.description__text}>
@@ -30,7 +32,10 @@ const FormGroupDescription = ({
         </div>
         <div className={styles.description__text}>
           <div>
-            최근 업데이트 일자 ｜ {!updatedAt ? new Date().toLocaleDateString("ko") : new Date(updatedAt).toLocaleDateString("ko")}
+            최근 업데이트 일자 ｜{" "}
+            {!updatedAt
+              ? new Date().toLocaleDateString("ko")
+              : new Date(updatedAt).toLocaleDateString("ko")}
           </div>
         </div>
         <div className={styles.description__text}>
@@ -58,7 +63,7 @@ const FormGroupDescription = ({
           </Link>
         ) : (
           <div className={styles.border}>
-            <div className={styles.button} onClick={nothingHappenHandler} >
+            <div className={styles.button} onClick={nothingHappenHandler}>
               <FontAwesomeIcon icon={faPen} size="sm" color="black" />
             </div>
           </div>

@@ -1,22 +1,23 @@
 import React, { useState, useEffect } from "react";
-import styles from "../../../styles/FormWrite.module.css";
+import styles from "../../../styles/FormWrite/FormWrite.module.css";
 import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Forms from "../../../containers/Forms";
 import { IReducerState } from "../../../reducers";
-import { CURRENT_HISTORY_REQUEST, IFormReducerState, WRITE_GROUP_REQUEST } from "../../../reducers/form";
+import {
+  CURRENT_HISTORY_REQUEST,
+  IFormReducerState,
+} from "../../../reducers/form";
 import { GET_USER_REQUEST } from "../../../reducers/user";
 import Head from "next/head";
 
 const FormWriteHistory = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { currentGroup, historyList } = useSelector<IReducerState, IFormReducerState>(
+  const { currentGroup } = useSelector<IReducerState, IFormReducerState>(
     (state) => state.form
   );
 
-  console.log(currentGroup);
-  console.log(historyList)
   const [CurrentFormIndex, setCurrentFormIndex] = useState<number>(0);
   const [CompleteForm, setCompleteForm] = useState<number[]>([]);
   const [SaveTempForm, setSaveTempForm] = useState<boolean>(false);
@@ -166,7 +167,6 @@ const FormWriteHistory = () => {
 FormWriteHistory.getInitialProps = async (context) => {
   const { id } = context.query;
 
-  console.log("hashtag getInitialProps", id);
   context.store.dispatch({
     type: CURRENT_HISTORY_REQUEST,
     data: id,

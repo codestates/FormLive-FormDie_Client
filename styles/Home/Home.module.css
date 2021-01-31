@@ -1,0 +1,62 @@
+@value MavenPro_Medium from "../common/fonts.css";
+
+.container {
+  margin: auto;
+}
+
+.greeting {
+  font-family: MavenPro_Medium;
+  font-size: 1.75rem;
+  padding-left: 1.1rem;
+  margin-bottom: 1.35rem;
+}
+
+.title__form {
+  display: flex;
+  align-items: center;
+  font-family: MavenPro_Medium;
+  font-size: 1.3rem;
+  padding-left: 1rem;
+  box-sizing: border-box;
+}
+
+.title__form img {
+  width: 1.5rem;
+  margin-left: 0.1rem;
+  margin-right: 0.4rem;
+}
+
+.title__formGroup {
+  display: flex;
+  align-items: center;
+  font-family: MavenPro_Medium;
+  font-size: 1.3rem;
+  padding-left: 1rem;
+  box-sizing: border-box;
+}
+
+.title__formGroup img {
+  width: 1.35rem;
+  margin-left: 0.2rem;
+  margin-right: 0.6rem;
+}
+
+.title__formGroup span {
+  position: relative;
+  bottom: 0.1rem;
+}
+
+.formGroupCard {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  grid-row-gap: 1.7rem;
+  margin-top: 1.5rem;
+  margin-bottom: 1.9rem;
+}
+
+.formCard {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 1.5rem;
+}

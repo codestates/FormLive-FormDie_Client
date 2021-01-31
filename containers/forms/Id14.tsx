@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import styles from "../../styles/FormsId.module.css";
+import styles from "../../styles/FormWrite/FormsId.module.css";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -59,8 +59,6 @@ const Id14 = ({
           data: tempData,
         });
       }
-
-      console.log(1);
     } else {
       const data = {
         formId: FORM_ID,
@@ -320,7 +318,6 @@ const Id14 = ({
             <option value="중학교">중학교</option>
             <option value="고등학교">고등학교</option>
             <option value="대학교">대학교</option>
-            
           </select>
         </label>
         <label className={styles.label}>

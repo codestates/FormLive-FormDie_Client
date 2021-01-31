@@ -1,0 +1,122 @@
+@value makerWhiteBackground from "../common/colors.css";
+@value makerWhite from "../common/colors.css";
+@value makerBlack from "../common/colors.css";
+@value makerYellow from "../common/colors.css";
+@value makerMediumGray from "../common/colors.css";
+@value Multi_Colore from "../common/fonts.css";
+@value Noto_Sans_CJK_Bold from "../common/fonts.css";
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: makerWhiteBackground;
+  display: flex;
+  min-width: 1280px;
+  min-height: 650px;
+}
+
+.menubar {
+  height: 100%;
+  width: 9rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.menubar__logo {
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 1rem 0 1rem 1.4rem;
+}
+
+.menubar__logo img {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.menubar__container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.menubar__categories {
+  flex: 1;
+  width: 100%;
+  padding: 0.7rem;
+  box-sizing: border-box;
+  background-color: makerBlack;
+  border-top-right-radius: 30px;
+}
+
+.menubar__categories__category {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.2rem;
+}
+
+.menubar__categories__category span {
+  margin-top: 0.6rem;
+  font-family: Multi_Colore;
+  font-size: 0.7rem;
+}
+
+.white {
+  color: makerWhite;
+}
+
+.yellow {
+  color: makerYellow;
+}
+
+.menubar__user {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: makerBlack;
+  font-family: Noto_Sans_CJK_Bold;
+  padding-bottom: 2.5rem;
+  box-sizing: border-box;
+}
+
+.menubar__user__img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.menubar__user__nickname {
+  margin-top: 0.7rem;
+  display: flex;
+  align-items: center;
+}
+
+.menubar__user__nickname span {
+  color: makerWhite;
+  margin-right: 0.3rem;
+  font-size: 0.8rem;
+}
+
+.menubar__user__email {
+  color: makerMediumGray;
+  font-size: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.menubar__user__logout {
+  width: 5rem;
+  height: 1.4rem;
+  font-family: Noto_Sans_CJK_Bold;
+  font-size: 0.7rem;
+  background-color: makerYellow;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  margin-top: 0.9rem;
+  cursor: pointer;
+}

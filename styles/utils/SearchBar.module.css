@@ -1,0 +1,40 @@
+@value makerYellow from "../common/colors.css";
+@value makerWhite from "../common/colors.css";
+@value Noto_Sans_CJK_Bold from '../common/fonts.css';
+
+.section1__searchBar {
+  background-color: makerYellow;
+  border-radius: 7px;
+  width: 19rem;
+  height: 2.3rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 0.7rem;
+  box-sizing: border-box;
+}
+
+.section1__searchBar input {
+  background-color: makerYellow;
+  width: 16.5rem;
+  border: 0;
+  height: 90%;
+  margin-top: 0.5%;
+  padding-left: 1rem;
+  box-sizing: border-box;
+  font-family: Noto_Sans_CJK_Bold;
+  font-size: 0.8rem;
+  color: makerWhite;
+}
+
+.section1__searchBar input:focus {
+  outline: none;
+  caret-color: makerWhite;
+  color: makerWhite;
+  font-family: Noto_Sans_CJK_Bold;
+  font-size: 0.8rem;
+}
+
+.section1__searchBar div {
+  cursor: pointer;
+}

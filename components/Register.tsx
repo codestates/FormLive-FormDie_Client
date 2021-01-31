@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../styles/Register.module.css";
+import styles from "../styles/Index/Register.module.css";
 import { useForm } from "react-hook-form";
 import { REGISTER_REQUEST, IUserReducerState } from "../reducers/user";
 import { useDispatch, useSelector } from "react-redux";
@@ -23,12 +23,10 @@ export default function Register() {
     handleSubmit,
     errors,
     watch,
-    unregister,
   } = useForm<IRegister>();
 
   const onSubmit = async (registerData: IRegister, event) => {
     event.preventDefault();
-    console.log(registerData);
     dispatch({
       type: REGISTER_REQUEST,
       data: registerData,

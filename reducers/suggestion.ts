@@ -1,4 +1,3 @@
-import Suggestion from "../pages/suggestion";
 import produce from "immer";
 
 export const SUGGESTION_UPLOAD_REQUEST = "SUGGESTION_UPLOAD_REQUEST";

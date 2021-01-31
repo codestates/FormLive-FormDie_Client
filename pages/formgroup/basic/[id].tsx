@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import styles from "../../../styles/FormWrite.module.css";
+import styles from "../../../styles/FormWrite/FormWrite.module.css";
 import { useRouter } from "next/router";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Forms from "../../../containers/Forms";
 import { IReducerState } from "../../../reducers";
 import { IFormReducerState, WRITE_GROUP_REQUEST } from "../../../reducers/form";
@@ -164,7 +164,6 @@ const FormWriteBasic = () => {
 FormWriteBasic.getInitialProps = async (context) => {
   const { id } = context.query;
 
-  console.log("hashtag getInitialProps", id);
   context.store.dispatch({
     type: WRITE_GROUP_REQUEST,
     data: id,

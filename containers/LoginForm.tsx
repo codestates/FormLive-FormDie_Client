@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styles from "../styles/LoginForm.module.css";
+import styles from "../styles/Index/LoginForm.module.css";
 import { useForm } from "react-hook-form";
 import Register from "../components/Register";
 import { IReducerState } from "../reducers";

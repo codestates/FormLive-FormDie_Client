@@ -1,30 +1,27 @@
-import styles from "../styles/History.module.css";
-import SearchBar from "../components/SearchBar";
+import styles from "../styles/History/History.module.css";
+import SearchBar from "../utils/SearchBar";
 import HistoryCard from "../components/HistoryCard";
 import { IReducerState } from "../reducers";
-
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Head from "next/head";
 import { HISTORY_LIST_REQUEST, IFormReducerState } from "../reducers/form";
 import { GET_USER_REQUEST } from "../reducers/user";
 
-export default function History() {
+const History = () => {
   const [ascPage, setAscPage] = useState<number>(1);
   const [desPage, setDesPage] = useState<number>(1);
   const [Query, setQuery] = useState<string>("");
   const [Sort, setSort] = useState<string | null>(null);
   const dispatch = useDispatch();
-  const { historyTotal, historyList } = useSelector<IReducerState, IFormReducerState>(
-    (state) => state.form
-  );
- 
+  const { historyTotal, historyList } = useSelector<
+    IReducerState,
+    IFormReducerState
+  >((state) => state.form);
 
   const maxPage = Math.ceil(historyTotal / 10);
 
   const onChangeAscendingSortHandler = () => {
-    console.log("ascPage : ", ascPage);
-    console.log("onChangeAscendingSortHandler");
     const params = {
       page: 1,
       sort: "asc",
@@ -57,7 +54,6 @@ export default function History() {
   };
 
   const onClick = () => {
-    console.log("maxPage : ", maxPage);
     if (Sort === null) {
       const params = {
         page: desPage + 1,
@@ -142,7 +138,7 @@ export default function History() {
       </div>
     </div>
   );
-}
+};
 export interface historyQuery {
   q?: string;
   page: number;
@@ -162,3 +158,5 @@ History.getInitialProps = async (context) => {
     type: GET_USER_REQUEST,
   });
 };
+
+export default History;

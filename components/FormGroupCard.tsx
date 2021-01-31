@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 import { faFolder } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "../styles/FormGroupCard.module.css";
+import styles from "../styles/FormGroup/FormGroupCard.module.css";
 
 interface Props {
   groupId: number;
@@ -86,7 +86,6 @@ const FormGroupCard: FC<Props> = ({
         <div className={styles.formGroupInfo__organization}>{organization}</div>
         <div className={styles.formGroupInfo__count}>
           <span>{views}+</span>{" "}
-          {/* <img src="/image/001-edit.svg" /> */}
         </div>
       </section>
       <div className={styles.date}>

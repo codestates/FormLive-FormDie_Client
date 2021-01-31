@@ -1,5 +1,5 @@
 import React, { FC, useState, useEffect } from "react";
-import styles from "../styles/FormCard.module.css";
+import styles from "../styles/Form/FormCard.module.css";
 
 interface Props {
   formId: number;

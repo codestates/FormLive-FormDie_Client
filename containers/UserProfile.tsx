@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import styles from "../styles/UserProfile.module.css";
+import styles from "../styles/Home/UserProfile.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import {
@@ -14,8 +14,6 @@ import {
   EDIT_PROFILE_REQUEST,
   CHANGE_IMAGE_REQUEST,
   LOG_OUT_REQUEST,
-  IUserReducerState,
-  GET_USER_REQUEST,
   DELETE_USER_REQUEST,
 } from "../reducers/user";
 import { useRouter } from "next/router";
@@ -54,7 +52,6 @@ const UserProfile = () => {
 
   const [Edit, setEdit] = useState<boolean>(false);
   const [VerifyDelete, setVerifyDelete] = useState<boolean>(false);
-  const [Delete, setDelete] = useState<boolean>(false);
   const [SuccessEdit, setSuccessEdit] = useState<boolean>(false);
   const [ImageEdit, setImageEdit] = useState<boolean>(false);
   const [NoneEdit, setNoneEdit] = useState<boolean>(false);
@@ -148,20 +145,11 @@ const UserProfile = () => {
       setNonePassword(true);
       setTimeout(() => setNonePassword(false), 2000);
     } else {
-      // setDelete(true);
       setVerifyDelete(false);
       dispatch({
         type: DELETE_USER_REQUEST,
         data: { password: deletePassword },
       });
-      // setTimeout(() => {
-      //   setDelete(false);
-
-      //   dispatch({
-      //     type: DELETE_USER_REQUEST,
-      //     data: { password: deletePassword },
-      //   });
-      // }, 2000);
     }
   };
   const onLogoutHandler = () => {
@@ -279,11 +267,6 @@ const UserProfile = () => {
                 비밀번호를 입력해 주세요.
               </div>
             )}
-            {Delete && (
-              <div className={styles.edit__notice_green}>
-                삭제 완료되었습니다.
-              </div>
-            )}
             {SuccessEdit && (
               <div className={styles.edit__notice_green}>
                 수정 완료되었습니다.
@@ -291,7 +274,7 @@ const UserProfile = () => {
             )}
 
             {!VerifyDelete &&
-              !Delete &&
+              // !Delete &&
               !SuccessEdit &&
               !ImageEdit &&
               !NoneEdit &&

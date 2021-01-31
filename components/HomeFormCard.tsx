@@ -1,11 +1,9 @@
 import React, { FC, useEffect, useRef, useState } from "react";
 import { faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "../styles/HomeFormCard.module.css";
+import styles from "../styles/Home/HomeFormCard.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { IReducerState } from "../reducers";
-import { IUserReducerState } from "../reducers/user";
-import { Iuser } from "../containers/UserProfile";
 import { IFormReducerState, NEW_GROUP_REQUEST } from "../reducers/form";
 import Link from "next/link";
 
@@ -21,9 +19,7 @@ interface Props {
 const HomeFormCard: FC<Props> = ({
   formId,
   title,
-  description,
   views,
-  updated_at,
   number,
   organization,
 }) => {
@@ -39,7 +35,6 @@ const HomeFormCard: FC<Props> = ({
   const [LinkPage, setLinkPage] = useState<boolean>(false);
 
   const makeNewFormGroupHandler = () => {
-
     setLinkPage(true);
 
     dispatch({
@@ -50,7 +45,6 @@ const HomeFormCard: FC<Props> = ({
       },
     });
   };
-
 
   useEffect(() => {
     if (makeNewFormGroup) {
