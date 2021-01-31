@@ -2,12 +2,12 @@ import styles from "../styles/History.module.css";
 import SearchBar from "../components/SearchBar";
 import HistoryCard from "../components/HistoryCard";
 import { IReducerState } from "../reducers";
-import {
-  HISTORY_LIST_REQUEST,
-  IHistoryReducerState,
-} from "../reducers/history";
+
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Head from "next/head";
+import { HISTORY_LIST_REQUEST, IFormReducerState } from "../reducers/form";
+import { GET_USER_REQUEST } from "../reducers/user";
 
 export default function History() {
   const [ascPage, setAscPage] = useState<number>(1);
@@ -15,12 +15,10 @@ export default function History() {
   const [Query, setQuery] = useState<string>("");
   const [Sort, setSort] = useState<string | null>(null);
   const dispatch = useDispatch();
-  const { historyTotal } = useSelector<IReducerState, IHistoryReducerState>(
-    (state) => state.history
+  const { historyTotal, historyList } = useSelector<IReducerState, IFormReducerState>(
+    (state) => state.form
   );
-  const historyInfo = useSelector<IReducerState, IHistoryReducerState>(
-    (state) => state.history
-  );
+ 
 
   const maxPage = Math.ceil(historyTotal / 10);
 
@@ -88,6 +86,10 @@ export default function History() {
   };
   return (
     <div className={styles.container}>
+      <Head>
+        <title>양식당 ｜ History</title>
+        <link rel="shortcut icon" href="/image/favicon.ico" />
+      </Head>
       <header className={styles.header}>
         <div className={styles.header__left}>
           <div className={styles.header__title}>History</div>
@@ -113,7 +115,7 @@ export default function History() {
         <SearchBar where={"history"} setQuery={setQuery} />
       </header>
       <div className={styles.main}>
-        {historyInfo.historyList.map((el, idx) => (
+        {historyList?.map((el, idx) => (
           <HistoryCard
             groupId={el.groupId}
             title={el.title}
@@ -149,9 +151,14 @@ export interface historyQuery {
 const queryParameter: historyQuery = {
   page: 1,
 };
+
 History.getInitialProps = async (context) => {
   context.store.dispatch({
     type: HISTORY_LIST_REQUEST,
     data: queryParameter,
+  });
+
+  context.store.dispatch({
+    type: GET_USER_REQUEST,
   });
 };

@@ -18,6 +18,7 @@
   min-height: 600px;
   min-width: 1280px;
 }
+
 .header {
   display: flex;
   justify-content: flex-end;
@@ -64,6 +65,7 @@
   background-color: makerBlack;
   cursor: pointer;
 }
+
 .main {
   padding-top: 2rem;
   box-sizing: border-box;
@@ -96,6 +98,7 @@
   margin-left: 0.4rem;
   font-size: 0.81rem;
 }
+
 .main__view {
   padding-top: 2.9rem;
   display: flex;
@@ -118,6 +121,7 @@
   position: relative;
   right: 0.4rem;
 }
+
 .main__view__article div:not(:nth-child(1)) {
   font-family: Yoon_Gothic_740;
   font-size: 0.91rem;
@@ -146,6 +150,7 @@
   background-color: makerBlack;
   cursor: pointer;
 }
+
 .main__view__animation {
   display: flex;
   width: 42rem;
@@ -153,11 +158,13 @@
   justify-content: center;
   margin-left: 6.9rem;
 }
+
 .main__view__animation ul {
   list-style: none;
   margin: 0;
   padding: 0;
 }
+
 .main__view__animation__buttonsSlide {
   display: flex;
   flex-direction: column;
@@ -177,22 +184,27 @@
 .main__view__animation__buttonsSlide div:nth-child(1) {
   animation: buttonSlide1 20s infinite;
 }
+
 .main__view__animation__buttonsSlide div:nth-child(2) {
   animation: buttonSlide1 20s infinite;
   animation-delay: 4s;
 }
+
 .main__view__animation__buttonsSlide div:nth-child(3) {
   animation: buttonSlide1 20s infinite;
   animation-delay: 8s;
 }
+
 .main__view__animation__buttonsSlide div:nth-child(4) {
   animation: buttonSlide1 20s infinite;
   animation-delay: 12s;
 }
+
 .main__view__animation__buttonsSlide div:nth-child(5) {
   animation: buttonSlide1 20s infinite;
   animation-delay: 16s;
 }
+
 .main__view__animation__imgSlide {
   border-radius: 20px;
   border: 5px solid makerBlack;
@@ -251,8 +263,8 @@
 
 .footer__img {
   position: absolute;
-  height: 2rem;
-  width: 2rem;
+  height: 2.5rem;
+  width: 2.5rem;
   bottom: 1.5rem;
   left: 1.5rem;
 }

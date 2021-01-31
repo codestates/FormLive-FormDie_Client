@@ -2,8 +2,6 @@ import styles from "../styles/FormGroupDescription.module.css";
 import { faFolder, faPen } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-import { useDispatch } from "react-redux";
-import { WRITE_GROUP_REQUEST } from "../reducers/form";
 
 const FormGroupDescription = ({
   title,
@@ -15,6 +13,10 @@ const FormGroupDescription = ({
   groupId,
 }) => {
   const FILE_COLOR = "#ffc000";
+
+  const nothingHappenHandler = () => {
+    !groupId && window.alert("현재 선택된 폼그룹이 없습니다.");
+  }
 
   return (
     <section className={styles.container}>
@@ -56,7 +58,7 @@ const FormGroupDescription = ({
           </Link>
         ) : (
           <div className={styles.border}>
-            <div className={styles.button}>
+            <div className={styles.button} onClick={nothingHappenHandler} >
               <FontAwesomeIcon icon={faPen} size="sm" color="black" />
             </div>
           </div>

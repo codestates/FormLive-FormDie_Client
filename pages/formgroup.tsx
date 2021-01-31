@@ -14,12 +14,13 @@ import { IReducerState } from "../reducers";
 import { Iuser } from "../containers/UserProfile";
 import { IFormReducerState, FORM_GROUP_REQUEST } from "../reducers/form";
 import { GET_USER_REQUEST } from "../reducers/user";
+import Head from "next/head";
 
 interface IselectGroupForm {
   groupId: number;
   title: string;
   description: string;
-  updated_at: string;
+  updatedAt: string;
   organization: string;
   isDefaultGroup: boolean;
   forms: IselectForm[];
@@ -39,7 +40,6 @@ const FormGroup = () => {
   const MEDIUM_GRAY = "#bfbfbf";
   const dispatch = useDispatch();
 
-  const userInfo = useSelector<IReducerState, Iuser>((state) => state.user.me);
   const { formGroup, formGroupTotalNumber } = useSelector<
     IReducerState,
     IFormReducerState
@@ -141,6 +141,10 @@ const FormGroup = () => {
 
   return (
     <div className={styles.container}>
+      <Head>
+        <title>양식당 ｜ Form Group</title>
+        <link rel="shortcut icon" href="/image/favicon.ico" />
+      </Head>
       <header className={styles.header}>
         <div className={styles.header__left}>
           <div className={styles.header__title}>Form Group</div>

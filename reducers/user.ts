@@ -165,6 +165,7 @@ const userReducer = (state = initialState, action) =>
       }
       case DELETE_USER_FAILURE: {
         draft.isDeleting = false;
+        draft.isDeleted = false;
         draft.deleteErrorReason = action.reason;
         break;
       }

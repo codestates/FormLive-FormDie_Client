@@ -13,9 +13,20 @@ import rootSaga from "../sagas";
 import { GET_USER_REQUEST } from "../reducers/user";
 import "../styles/globals.css";
 import AppLayout from "../components/AppLayout";
+import rootReducer from "../reducers";
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import { PersistGate } from 'redux-persist/integration/react';
+import reduxStore from '../store/store';
+import { Persistor } from "redux-persist/es/types";
+
+interface IStore extends Store<IReducerState> {
+  sagaTask?: Task;
+  __PERSISTOR?: Persistor;
+}
 
 interface Props extends AppProps {
-  store: Store<IReducerState>;
+  store: IStore;
   user: Iuser | null;
   logIn: boolean;
   cookie: string;
@@ -62,12 +73,6 @@ class YangSikDang extends App<Props> {
     } else if (ctx.isServer && cookie && ctx.pathname !== "/") {
       //쿠키가 있는데 패스가 다른 걸로 들어오면 로그인으로 만들어야해.
       axios.defaults.headers.Cookie = cookie;
-      // ctx.store.dispatch({
-      //   type: FORM_LIST_REQUEST,
-      // });
-      // ctx.store.dispatch({
-      //   type: GET_USER_REQUEST,
-      // });
     }
 
     if (Component.getInitialProps) {
@@ -80,6 +85,7 @@ class YangSikDang extends App<Props> {
     const { Component, store, pageProps, cookie, logIn } = this.props;
     return (
       <Provider store={store}>
+        <PersistGate persistor={store.__PERSISTOR} loading={null}>
         {!cookie && !logIn ? (
           <Component {...pageProps} />
         ) : (
@@ -87,21 +93,21 @@ class YangSikDang extends App<Props> {
             <Component {...pageProps} />
           </AppLayout>
         )}
+        </PersistGate>
       </Provider>
     );
   }
 }
 
-interface IStore extends Store {
-  sagaTask?: Task;
-}
-const configureStore = (initialState) => {
-  const sagaMiddleware = createSagaMiddleware();
-  const middlewares = [sagaMiddleware];
-  const enhancer = composeWithDevTools(applyMiddleware(...middlewares));
-  const store: IStore = createStore(reducer, initialState, enhancer);
-  store.sagaTask = sagaMiddleware.run(rootSaga);
-  return store;
-};
+export default withRedux(reduxStore)(YangSikDang);
 
-export default withRedux(configureStore)(withReduxSaga(YangSikDang));
+
+// const configureStore = (initialState) => {
+//   const sagaMiddleware = createSagaMiddleware();
+//   const middlewares = [sagaMiddleware];
+//   const enhancer = composeWithDevTools(applyMiddleware(...middlewares));
+//   const store: IStore = createStore(reducer, initialState, enhancer);
+//   store.sagaTask = sagaMiddleware.run(rootSaga);
+//   return store;
+// };
+// export default withRedux(configureStore)(withReduxSaga(YangSikDang));
