@@ -3,7 +3,7 @@ import {
 	SUGGESTION_UPLOAD_SUCCESS,
 	SUGGESTION_UPLOAD_FAILURE,
 } from "../reducers/suggestion";
-import { all, call, fork, put, takeLatest } from "redux-saga/effects";
+import { all, call, fork, takeLatest } from "redux-saga/effects";
 import axios from "axios";
 
 export default function* suggestionSaga() {
@@ -19,7 +19,6 @@ export default function* suggestionSaga() {
 		try {
 			yield call(suggestionAPI, action.data);
 		} catch (e) {
-			console.log(e);
 		}
 	}
 	function* watchSuggestionFile() {

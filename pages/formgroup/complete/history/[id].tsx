@@ -1,14 +1,13 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { IReducerState } from "../../../../reducers";
-import { Iuser } from "../../../../containers/UserProfile";
 import { GET_USER_REQUEST } from "../../../../reducers/user";
-import { styles } from "../../../../styles/preview";
-import { Page, Text, Document, PDFViewer, Image } from "@react-pdf/renderer";
+import { styles } from "../../../../styles/FormComplete/preview";
+import { PDFViewer } from "@react-pdf/renderer";
 import { useRouter } from "next/router";
 import Documents from "../../../../containers/Documents";
 import { IFormReducerState } from "../../../../reducers/form";
-import style from "../../../../styles/CompleteForm.module.css";
+import style from "../../../../styles/FormComplete/CompleteForm.module.css";
 import Head from "next/head";
 
 const PreviewHistory = () => {
@@ -77,8 +76,6 @@ const PreviewHistory = () => {
 
 PreviewHistory.getInitialProps = async (context) => {
   const { id } = context.query;
-
-  console.log("hashtag getInitialProps", id);
 
   context.store.dispatch({
     type: GET_USER_REQUEST,

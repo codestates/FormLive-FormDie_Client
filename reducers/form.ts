@@ -2,7 +2,7 @@ import produce from "immer";
 
 export const initialState = {
   isGettingFormList: false,
-  formList: [], // 팔로잉 리스트
+  formList: [],
   formTotalNumber: 0,
   getFormListErrorReason: "",
   isGettingFormGroup: false,
@@ -30,41 +30,41 @@ export const initialState = {
 
 export type IFormReducerState = typeof initialState;
 
-export const FORM_LIST_REQUEST = "FORM_LIST_REQUEST"; // 액션의 이름
-export const FORM_LIST_SUCCESS = "FORM_LIST_SUCCESS"; // 액션의 이름
-export const FORM_LIST_FAILURE = "FORM_LIST_FAILURE"; // 액션의 이름
+export const FORM_LIST_REQUEST = "FORM_LIST_REQUEST"; 
+export const FORM_LIST_SUCCESS = "FORM_LIST_SUCCESS"; 
+export const FORM_LIST_FAILURE = "FORM_LIST_FAILURE"; 
 
-export const FORM_GROUP_REQUEST = "FORM_GROUP_REQUEST"; // 액션의 이름
-export const FORM_GROUP_SUCCESS = "FORM_GROUP_SUCCESS"; // 액션의 이름
-export const FORM_GROUP_FAILURE = "FORM_GROUP_FAILURE"; // 액션의 이름
+export const FORM_GROUP_REQUEST = "FORM_GROUP_REQUEST"; 
+export const FORM_GROUP_SUCCESS = "FORM_GROUP_SUCCESS"; 
+export const FORM_GROUP_FAILURE = "FORM_GROUP_FAILURE"; 
 
-export const WRITE_GROUP_REQUEST = "WRITE_GROUP_REQUEST"; // 액션의 이름
-export const WRITE_GROUP_SUCCESS = "WRITE_GROUP_SUCCESS"; // 액션의 이름
-export const WRITE_GROUP_FAILURE = "WRITE_GROUP_FAILURE"; // 액션의 이름
+export const WRITE_GROUP_REQUEST = "WRITE_GROUP_REQUEST"; 
+export const WRITE_GROUP_SUCCESS = "WRITE_GROUP_SUCCESS"; 
+export const WRITE_GROUP_FAILURE = "WRITE_GROUP_FAILURE"; 
 
-export const GET_FORM_REQUEST = "GET_FORM_REQUEST"; // 액션의 이름
-export const GET_FORM_SUCCESS = "GET_FORM_SUCCESS"; // 액션의 이름
-export const GET_FORM_FAILURE = "GET_FORM_FAILURE"; // 액션의 이름
+export const GET_FORM_REQUEST = "GET_FORM_REQUEST"; 
+export const GET_FORM_SUCCESS = "GET_FORM_SUCCESS"; 
+export const GET_FORM_FAILURE = "GET_FORM_FAILURE"; 
 
-export const SEND_FORM_REQUEST = "SEND_FORM_REQUEST"; // 액션의 이름
-export const SEND_FORM_SUCCESS = "SEND_FORM_SUCCESS"; // 액션의 이름
-export const SEND_FORM_FAILURE = "SEND_FORM_FAILURE"; // 액션의 이름
+export const SEND_FORM_REQUEST = "SEND_FORM_REQUEST"; 
+export const SEND_FORM_SUCCESS = "SEND_FORM_SUCCESS"; 
+export const SEND_FORM_FAILURE = "SEND_FORM_FAILURE"; 
 
-export const RESEND_FORM_REQUEST = "RESEND_FORM_REQUEST"; // 액션의 이름
-export const RESEND_FORM_SUCCESS = "RESEND_FORM_SUCCESS"; // 액션의 이름
-export const RESEND_FORM_FAILURE = "RESEND_FORM_FAILURE"; // 액션의 이름
+export const RESEND_FORM_REQUEST = "RESEND_FORM_REQUEST"; 
+export const RESEND_FORM_SUCCESS = "RESEND_FORM_SUCCESS"; 
+export const RESEND_FORM_FAILURE = "RESEND_FORM_FAILURE"; 
 
-export const NEW_GROUP_REQUEST = "NEW_GROUP_REQUEST"; // 액션의 이름
-export const NEW_GROUP_SUCCESS = "NEW_GROUP_SUCCESS"; // 액션의 이름
-export const NEW_GROUP_FAILURE = "NEW_GROUP_FAILURE"; // 액션의 이름
+export const NEW_GROUP_REQUEST = "NEW_GROUP_REQUEST"; 
+export const NEW_GROUP_SUCCESS = "NEW_GROUP_SUCCESS"; 
+export const NEW_GROUP_FAILURE = "NEW_GROUP_FAILURE"; 
 
-export const START_GROUP_REQUEST = "START_GROUP_REQUEST"; // 액션의 이름
-export const START_GROUP_SUCCESS = "START_GROUP_SUCCESS"; // 액션의 이름
-export const START_GROUP_FAILURE = "START_GROUP_FAILURE"; // 액션의 이름
+export const START_GROUP_REQUEST = "START_GROUP_REQUEST"; 
+export const START_GROUP_SUCCESS = "START_GROUP_SUCCESS"; 
+export const START_GROUP_FAILURE = "START_GROUP_FAILURE"; 
 
-export const EDIT_GROUP_REQUEST = "EDIT_GROUP_REQUEST"; // 액션의 이름
-export const EDIT_GROUP_SUCCESS = "EDIT_GROUP_SUCCESS"; // 액션의 이름
-export const EDIT_GROUP_FAILURE = "EDIT_GROUP_FAILURE"; // 액션의 이름
+export const EDIT_GROUP_REQUEST = "EDIT_GROUP_REQUEST"; 
+export const EDIT_GROUP_SUCCESS = "EDIT_GROUP_SUCCESS"; 
+export const EDIT_GROUP_FAILURE = "EDIT_GROUP_FAILURE"; 
 
 export const HISTORY_LIST_REQUEST = "HISTORY_LIST_REQUEST";
 export const HISTORY_LIST_SUCCESS = "HISTORY_LIST_SUCCESS";

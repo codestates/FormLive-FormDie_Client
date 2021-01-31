@@ -20,9 +20,6 @@ import {
   RESEND_FORM_REQUEST,
   RESEND_FORM_FAILURE,
   RESEND_FORM_SUCCESS,
-  START_GROUP_REQUEST,
-  START_GROUP_SUCCESS,
-  START_GROUP_FAILURE,
   HISTORY_LIST_REQUEST,
   HISTORY_LIST_FAILURE,
   HISTORY_LIST_SUCCESS,
@@ -41,7 +38,6 @@ import axios from "axios";
 
 export default function* formSaga() {
   function formListAPI(formQuery) {
-    // 서버에 요청을 보내는 부분
     return axios.get("/form", {
       params: {
         q: formQuery.q,
@@ -55,14 +51,12 @@ export default function* formSaga() {
   function* formList(action) {
     try {
       const result = yield call(formListAPI, action.data);
-      console.log(result);
+
       yield put({
-        // put은 dispatch 동일
         type: FORM_LIST_SUCCESS,
         data: result.data,
       });
     } catch (e) {
-      // loginAPI 실패
       console.error(e);
       yield put({
         type: FORM_LIST_FAILURE,
@@ -76,7 +70,6 @@ export default function* formSaga() {
   }
 
   function formGroupAPI(formQuery) {
-    // 서버에 요청을 보내는 부분
     return axios.get("/group", {
       params: {
         q: formQuery.q,
@@ -90,14 +83,12 @@ export default function* formSaga() {
   function* formGroup(action) {
     try {
       const result = yield call(formGroupAPI, action.data);
-      console.log(result);
+
       yield put({
-        // put은 dispatch 동일
         type: FORM_GROUP_SUCCESS,
         data: result.data,
       });
     } catch (e) {
-      // loginAPI 실패
       console.error(e);
       yield put({
         type: FORM_GROUP_FAILURE,
@@ -111,7 +102,6 @@ export default function* formSaga() {
   }
 
   function writeGroupAPI(groupId) {
-    // 서버에 요청을 보내는 부분
     return axios.get(`/group/${encodeURIComponent(groupId)}`, {
       withCredentials: true,
     });
@@ -120,14 +110,12 @@ export default function* formSaga() {
   function* writeGroup(action) {
     try {
       const result = yield call(writeGroupAPI, action.data);
-      console.log(result);
+
       yield put({
-        // put은 dispatch 동일
         type: WRITE_GROUP_SUCCESS,
         data: action.data,
       });
     } catch (e) {
-      // loginAPI 실패
       console.error(e);
       yield put({
         type: WRITE_GROUP_FAILURE,
@@ -141,7 +129,6 @@ export default function* formSaga() {
   }
 
   function sendFormAPI(formData) {
-    // 서버에 요청을 보내는 부분
     return axios.post("/form", formData, {
       withCredentials: true,
     });
@@ -150,14 +137,12 @@ export default function* formSaga() {
   function* sendForm(action) {
     try {
       const result = yield call(sendFormAPI, action.data);
-      console.log(result);
+
       yield put({
-        // put은 dispatch 동일
         type: SEND_FORM_SUCCESS,
         data: result.data,
       });
     } catch (e) {
-      // loginAPI 실패
       console.error(e);
       yield put({
         type: SEND_FORM_FAILURE,
@@ -171,7 +156,6 @@ export default function* formSaga() {
   }
 
   function getFormAPI(formId) {
-    // 서버에 요청을 보내는 부분
     return axios.get(`/form/${encodeURIComponent(formId)}`, {
       withCredentials: true,
     });
@@ -180,14 +164,12 @@ export default function* formSaga() {
   function* getForm(action) {
     try {
       const result = yield call(getFormAPI, action.data);
-      console.log(result);
+
       yield put({
-        // put은 dispatch 동일
         type: GET_FORM_SUCCESS,
         data: result.data,
       });
     } catch (e) {
-      // loginAPI 실패
       console.error(e);
       yield put({
         type: GET_FORM_FAILURE,
@@ -201,7 +183,6 @@ export default function* formSaga() {
   }
 
   function resendFormAPI(formData) {
-    // 서버에 요청을 보내는 부분
     return axios.patch("/form", formData, {
       withCredentials: true,
     });
@@ -210,14 +191,12 @@ export default function* formSaga() {
   function* resendForm(action) {
     try {
       const result = yield call(resendFormAPI, action.data);
-      console.log(result);
+
       yield put({
-        // put은 dispatch 동일
         type: RESEND_FORM_SUCCESS,
         data: result.data,
       });
     } catch (e) {
-      // loginAPI 실패
       console.error(e);
       yield put({
         type: RESEND_FORM_FAILURE,
@@ -230,23 +209,19 @@ export default function* formSaga() {
     yield takeLatest(RESEND_FORM_REQUEST, resendForm);
   }
 
-
   function newGroupAPI(groupData) {
-    // 서버에 요청을 보내는 부분
     return axios.post("/group", groupData, { withCredentials: true });
   }
 
   function* newGroup(action) {
     try {
       const result = yield call(newGroupAPI, action.data);
-      console.log(result);
+
       yield put({
-        // put은 dispatch 동일
         type: NEW_GROUP_SUCCESS,
         data: result.data,
       });
     } catch (e) {
-      // loginAPI 실패
       console.error(e);
       yield put({
         type: NEW_GROUP_FAILURE,
@@ -259,23 +234,19 @@ export default function* formSaga() {
     yield takeLatest(NEW_GROUP_REQUEST, newGroup);
   }
 
-
   function editGroupAPI(groupData) {
-    // 서버에 요청을 보내는 부분
     return axios.patch("/group", groupData, { withCredentials: true });
   }
 
   function* editGroup(action) {
     try {
       const result = yield call(editGroupAPI, action.data);
-      console.log(result);
+
       yield put({
-        // put은 dispatch 동일
         type: EDIT_GROUP_SUCCESS,
         data: result.data,
       });
     } catch (e) {
-      // loginAPI 실패
       console.error(e);
       yield put({
         type: EDIT_GROUP_FAILURE,
@@ -287,7 +258,6 @@ export default function* formSaga() {
   function* watchEditGroup() {
     yield takeLatest(EDIT_GROUP_REQUEST, editGroup);
   }
-
 
   function historyAPI(historyQuery) {
     return axios.get("/history", {
@@ -303,14 +273,13 @@ export default function* formSaga() {
   function* historyList(action) {
     try {
       const result = yield call(historyAPI, action.data);
-      console.log(result);
+
       yield put({
         type: HISTORY_LIST_SUCCESS,
         data: result.data.data,
         page: action.data.page,
       });
     } catch (e) {
-      console.log(e);
       yield put({
         type: HISTORY_LIST_FAILURE,
         reason: e,
@@ -323,7 +292,6 @@ export default function* formSaga() {
   }
 
   function currentHistoryAPI(groupId) {
-    // 서버에 요청을 보내는 부분
     return axios.get(`/group/${encodeURIComponent(groupId)}`, {
       withCredentials: true,
     });
@@ -332,15 +300,12 @@ export default function* formSaga() {
   function* currentHistory(action) {
     try {
       const result = yield call(currentHistoryAPI, action.data);
-      console.log(result);
-      console.log(action.data, 1111);
+
       yield put({
-        // put은 dispatch 동일
         type: CURRENT_HISTORY_SUCCESS,
         data: action.data,
       });
     } catch (e) {
-      // loginAPI 실패
       console.error(e);
       yield put({
         type: CURRENT_HISTORY_FAILURE,
@@ -354,7 +319,6 @@ export default function* formSaga() {
   }
 
   function historyDeleteAPI(deleteData) {
-    // 서버에 요청을 보내는 부분
     return axios.delete("/group", {
       data: {
         groupId: deleteData,
@@ -366,15 +330,13 @@ export default function* formSaga() {
   function* historyDelete(action) {
     try {
       const result = yield call(historyDeleteAPI, action.data);
-      console.log(result);
+
       yield put({
-        // put은 dispatch 동일
         type: HISTORY_DELETE_SUCCESS,
         data: result.data,
         id: action.data,
       });
     } catch (e) {
-      // loginAPI 실패
       console.error(e);
       yield put({
         type: HISTORY_DELETE_FAILURE,

@@ -1,0 +1,167 @@
+@value makerWhite from "../common/colors.css";
+@value makerBlack from "../common/colors.css";
+@value makerDarkRed from "../common/colors.css";
+@value makerGray from "../common/colors.css";
+@value Yoon_Gothic_770 from '../common/fonts.css';
+@value Yoon_Gothic_790 from '../common/fonts.css';
+
+.container {
+  display: flex;
+  flex: 1;
+  padding-top: 2.8rem;
+  box-sizing: border-box;
+  position: relative;
+  padding-left: 3.3rem;
+}
+
+.form {
+  display: flex;
+  margin: auto;
+  height: 100%;
+}
+
+.form__content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.form__path {
+  display: flex;
+  font-family: Yoon_Gothic_770;
+  font-size: 0.65rem;
+  padding-bottom: 0.5rem;
+}
+
+.form__path span:last-child {
+  color: makerGray;
+  margin-left: 0.3rem;
+}
+
+.form__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-bottom: 4rem;
+  box-sizing: border-box;
+  height: 38.7rem;
+  margin-left: 3.3rem;
+  padding-top: 1rem;
+}
+
+.form__right__list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 12.5rem;
+  height: 19rem;
+  background-color: black;
+  color: white;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  padding-top: 1.2rem;
+  box-sizing: border-box;
+}
+
+.form__right__list__title {
+  text-align: center;
+  font-family: Yoon_Gothic_790;
+  font-size: 0.95rem;
+  margin-bottom: 0.65rem;
+}
+
+.form__right__list__text {
+  font-family: Yoon_Gothic_770;
+  font-size: 0.7rem;
+  width: 100%;
+  padding-left: 0.9rem;
+  box-sizing: border-box;
+}
+
+.form__right__list__text div:nth-child(2) {
+  margin-top: 0.15rem;
+}
+
+.form__right__list__text div:nth-child(3) {
+  margin-top: 0.65rem;
+}
+
+.form__right__list__text div:nth-child(4) {
+  margin-top: 0.15rem;
+}
+
+.form__right__list__text div:nth-child(5) {
+  margin-top: 0.65rem;
+}
+
+.form__right__list__text div:nth-child(6) {
+  margin-top: 0.15rem;
+}
+
+.form__right__list__text div:nth-child(7) {
+  margin-top: 0.65rem;
+}
+
+.form__right__list__text div:nth-child(8) {
+  margin-top: 0.15rem;
+}
+
+.form__right__list__text div:nth-child(9) {
+  margin-top: 0.65rem;
+}
+
+.form__right__list__text div:nth-child(10) {
+  margin-top: 0.15rem;
+}
+
+.formListBox {
+  display: flex;
+  align-items: center;
+}
+
+.formListBox__border {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: 1px solid makerWhite;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formListBox__border img {
+  width: 0.75rem;
+  border-radius: 50%;
+}
+
+.formListBox__title {
+  margin-left: 0.9rem;
+  position: relative;
+  bottom: 0.1rem;
+}
+
+.form__right__btns {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.form__right__btns div {
+  background-color: makerBlack;
+  color: makerWhite;
+  font-family: Yoon_Gothic_770;
+  font-size: 0.9rem;
+  width: 8.5rem;
+  height: 2.5rem;
+  border-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 0.7rem;
+  cursor: pointer;
+}
+
+.form__right__btns div:last-child {
+  background-color: makerDarkRed;
+}

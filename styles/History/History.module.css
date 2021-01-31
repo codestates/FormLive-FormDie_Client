@@ -1,0 +1,68 @@
+@value MavenPro_Medium from "../common/fonts.css";
+@value Yoon_Gothic_740 from "../common/fonts.css";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto 0;
+  height: 100%;
+  padding-top: 3.2rem;
+  flex: 1;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 57.8rem;
+  justify-content: space-between;
+}
+
+.header__left {
+  display: flex;
+  align-items: flex-end;
+}
+
+.header__title {
+  font-family: MavenPro_Medium;
+  font-size: 1.75rem;
+}
+
+.header__sort {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.3rem;
+  margin-left: 1rem;
+}
+
+.header__sort div {
+  font-family: Yoon_Gothic_740;
+  color: #6b6b72;
+  font-size: 0.75rem;
+}
+
+.header__sort div:not(:nth-child(2)) {
+  cursor: pointer;
+}
+
+.main {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 2.5rem;
+  padding-left: 1rem;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 2rem;
+}
+
+.icon {
+  width: 1.5rem;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.icon:hover {
+  transform: scale(1.1);
+}

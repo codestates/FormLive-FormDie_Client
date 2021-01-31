@@ -1,5 +1,5 @@
 import { FC, useEffect, useRef, useState } from "react";
-import styles from "../styles/HistoryCard.module.css";
+import styles from "../styles/History/HistoryCard.module.css";
 import { faFolder, faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch, useSelector } from "react-redux";
@@ -52,7 +52,7 @@ const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
       data: {
         groupId,
         title: nameData.name,
-      }
+      },
     });
   };
 
@@ -86,7 +86,6 @@ const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
       window.alert("그룹 이름은 15글자 이하로 지어주세요.");
     }
 
-
     if (GoToLink && getCurrentHistory) {
       const finish = currentGroup.forms.every(
         (form) => form.isComplete === true
@@ -94,16 +93,11 @@ const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
       setGoToLink(false);
 
       if (finish) {
-        console.log(1);
         window.location.href = `http://localhost:2500/formgroup/complete/history/${groupId}`;
       } else {
-        console.log(groupId);
         formWritePage.current.click();
       }
     }
-
-
-    
   }, [errors, getCurrentHistory]);
 
   return (
@@ -196,4 +190,3 @@ const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
   );
 };
 export default HistoryCard;
-

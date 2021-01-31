@@ -1,0 +1,222 @@
+@value makerWhite from "../common/colors.css";
+@value makerBlack from "../common/colors.css";
+@value makerYellow from "../common/colors.css";
+@value makerMediumGray from "../common/colors.css";
+@value Multi_Colore from "../common/fonts.css";
+@value Noto_Sans_CJK_Bold from "../common/fonts.css";
+@value Yoon_Gothic_790 from "../common/fonts.css";
+@value Yoon_Gothic_750 from "../common/fonts.css";
+
+/* profile */
+.user {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: makerBlack;
+  font-family: Noto_Sans_CJK_Bold;
+  padding-bottom: 2.5rem;
+  box-sizing: border-box;
+}
+
+.user__img {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.user__nickname {
+  margin-top: 0.7rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  left: 0.4rem;
+}
+
+.user__nickname span {
+  color: makerWhite;
+  margin-right: 0.3rem;
+  font-size: 0.8rem;
+}
+
+.user__editIcon {
+  cursor: pointer;
+}
+
+.user__email__wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.user__email {
+  color: makerMediumGray;
+  font-size: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.user__email__down {
+  color: makerMediumGray;
+  font-size: 0.5rem;
+}
+
+.user__logout {
+  width: 5rem;
+  height: 1.4rem;
+  font-family: Noto_Sans_CJK_Bold;
+  font-size: 0.7rem;
+  background-color: makerYellow;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  margin-top: 0.9rem;
+  cursor: pointer;
+}
+
+/* edit */
+.edit__container {
+  width: 12rem;
+  height: 18rem;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  box-sizing: border-box;
+}
+
+.edit__form {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: makerBlack;
+  border-top-right-radius: 30px;
+  border-bottom-right-radius: 30px;
+}
+
+.edit__cancel {
+  color: makerWhite;
+  font-family: Yoon_Gothic_790;
+  font-size: 0.45rem;
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+  cursor: pointer;
+}
+
+.edit__title {
+  color: makerWhite;
+  font-size: 0.7rem;
+  font-family: Multi_Colore;
+  margin-top: 1.5rem;
+}
+
+.edit__content {
+  width: 100%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.edit__imgBox {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: 0.2rem;
+}
+
+.edit__userImage {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+}
+
+.edit__cameraIcon {
+  position: relative;
+  right: 0.95rem;
+  bottom: 0.35rem;
+  cursor: pointer;
+}
+
+.edit__imageInput {
+  display: none;
+}
+
+.edit__userInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.edit__userInfo input {
+  margin-top: 0.6rem;
+  height: 1.75rem;
+  width: 9.5rem;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding-left: 0.5rem;
+  box-sizing: border-box;
+}
+
+.edit__userInfo input::placeholder {
+  font-family: Yoon_Gothic_750;
+  font-size: 0.65rem;
+  color: MakerMediumGray;
+}
+
+.edit__notice_red {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 1rem;
+  left: 1.2rem;
+  width: 9.5rem;
+  height: 1.5rem;
+  border-radius: 5px;
+  background-color: #af3025;
+  cursor: pointer;
+  color: makerWhite;
+  font-size: 0.65rem;
+  opacity: 0.9;
+  font-family: Yoon_Gothic_750;
+}
+
+.edit__notice_green {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 1rem;
+  left: 1.2rem;
+  width: 9.5rem;
+  height: 1.5rem;
+  border-radius: 5px;
+  background-color: green;
+  color: makerWhite;
+  font-size: 0.65rem;
+  opacity: 0.9;
+  font-family: Yoon_Gothic_750;
+}
+
+.btn {
+  display: flex;
+  margin-top: 1.5rem;
+  justify-content: space-between;
+  width: 5.2rem;
+}
+
+.btn__edit {
+  background-color: makerBlack;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+
+.btn__delete {
+  cursor: pointer;
+}

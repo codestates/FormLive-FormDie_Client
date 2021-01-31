@@ -1,0 +1,85 @@
+@value makerDarkGray from "../common/colors.css";
+@value MavenPro_Medium from '../common/fonts.css';
+@value Yoon_Gothic_740 from '../common/fonts.css';
+
+.container {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  padding-right: 4.1rem;
+}
+
+.header__title {
+  font-family: MavenPro_Medium;
+  font-size: 1.75rem;
+  padding-left: 4.1rem;
+}
+
+.header__left {
+  display: flex;
+  align-items: flex-end;
+}
+
+.header__sort {
+  display: flex;
+  align-items: center;
+  margin-left: 1rem;
+  margin-bottom: 0.3rem;
+}
+
+.header__sort div {
+  font-family: Yoon_Gothic_740;
+  color: makerDarkGray;
+  font-size: 0.75rem;
+}
+
+.header__sort div:not(:nth-child(2)) {
+  cursor: pointer;
+}
+
+.formGroup {
+  display: flex;
+  align-items: center;
+}
+
+.number {
+  display: flex;
+  font-family: Yoon_Gothic_740;
+  font-size: 0.75rem;
+  justify-content: flex-end;
+  width: 100%;
+  padding-right: 4.1rem;
+  margin-top: 0.7rem;
+}
+
+.formGroupCard {
+  display: grid;
+  grid-template-columns: repeat(5, 10rem);
+  grid-template-rows: repeat(2, 9rem);
+  grid-row-gap: 2.1rem;
+  grid-column-gap: 2.1rem;
+  margin-top: 1rem;
+  margin-bottom: 1.9rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+  height: 20.099rem;
+  width: 58.399rem;
+}
+
+.cheveronRight,
+.cheveronLeft {
+  cursor: pointer;
+}
+
+.cheveronRight:hover,
+.cheveronLeft:hover {
+  transform: scale(1.2);
+}

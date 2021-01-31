@@ -1,20 +1,19 @@
-import styles from "../styles/Home.module.css";
+import styles from "../styles/Home/Home.module.css";
+import HomeFormCard from "../components/HomeFormCard";
+import HomeFormGroupCard from "../components/HomeFormGroupCard";
 import { useSelector } from "react-redux";
 import { IReducerState } from "../reducers";
 import { Iuser } from "../containers/UserProfile";
-import HomeFormCard from "../components/HomeFormCard";
 import {
   FORM_LIST_REQUEST,
   IFormReducerState,
   FORM_GROUP_REQUEST,
   HISTORY_LIST_REQUEST,
 } from "../reducers/form";
-import HomeFormGroupCard from "../components/HomeFormGroupCard";
 import { GET_USER_REQUEST } from "../reducers/user";
 import Head from "next/head";
 
 const Home = () => {
-  
   const userInfo = useSelector<IReducerState, Iuser>((state) => state.user.me);
   const { formList, formGroup } = useSelector<IReducerState, IFormReducerState>(
     (state) => state.form
@@ -74,8 +73,6 @@ const queryParameter: IFormList = {
 };
 
 Home.getInitialProps = async (context) => {
-  // const state = context.store.getState();
-  // 이 직전에 LOAD_USERS_REQUEST
   context.store.dispatch({
     type: FORM_LIST_REQUEST,
     data: formRequest,

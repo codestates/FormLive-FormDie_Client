@@ -18,7 +18,6 @@ import Id15 from "./documents/Id15";
 import Id16 from "./documents/Id16";
 
 const Documents = ({ formList }) => {
-
   return (
     <Document>
       {formList.findIndex((form) => form.id === "Id1") >= 0 && (

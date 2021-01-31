@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import styles from "../../styles/FormsId.module.css";
+import styles from "../../styles/FormWrite/FormsId.module.css";
 import { useForm } from "react-hook-form";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -59,8 +59,6 @@ const Id6 = ({
           data: tempData,
         });
       }
-
-      console.log(1);
     } else {
       const data = {
         formId: FORM_ID,

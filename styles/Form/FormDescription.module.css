@@ -1,0 +1,139 @@
+@value makerYellow from "../common/colors.css";
+@value makerLightGray from "../common/colors.css";
+@value makerShadow from "../common/colors.css";
+@value Yoon_Gothic_750 from '../common/fonts.css';
+@value Yoon_Gothic_780 from '../common/fonts.css';
+@value Noto_Sans_CJK_Bold from '../common/fonts.css';
+
+.container {
+  background-color: makerLightGray;
+  width: 58.5rem;
+  height: 8.5rem;
+  display: flex;
+  border-radius: 30px;
+  box-shadow: makerShadow;
+  padding: 0 3rem 0 2.5rem;
+  box-sizing: border-box;
+}
+
+.groupName {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 8rem;
+}
+
+.groupName__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.groupName__title {
+  font-family: Yoon_Gothic_780;
+  font-size: 0.8rem;
+  cursor: pointer;
+}
+
+.groupName__form__btn {
+  display: flex;
+  align-items: center;
+  margin-top: 0.2rem;
+}
+
+.groupName__form__input {
+  width: 7rem;
+  line-height: 1.3rem;
+  border-radius: 30px;
+  outline: none;
+  border: 1px solid makerYellow;
+  font-family: Noto_Sans_CJK_Bold;
+  font-size: 0.7rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  box-sizing: border-box;
+}
+
+.groupName__form__input:focus {
+  outline: none;
+  border: none;
+  border: 1px solid makerYellow;
+}
+
+.groupName__form__submit {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.groupName__form__cancel {
+  cursor: pointer;
+  margin-left: 1rem;
+}
+
+.groupName__form__submit:focus {
+  outline: none;
+  border: none;
+}
+
+.description {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding-left: 2rem;
+  box-sizing: border-box;
+}
+
+.description__text {
+  display: flex;
+  font-family: Yoon_Gothic_750;
+  font-size: 0.75rem;
+  margin-top: 0.1rem;
+  padding-right: 2rem;
+}
+
+.description__text:last-child {
+  margin-top: 1rem;
+}
+
+.number {
+  font-family: Yoon_Gothic_780;
+  font-size: 0.55rem;
+  margin-bottom: 0.4rem;
+}
+
+.buttonBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.border {
+  width: 2.7rem;
+  height: 2.7rem;
+  background-color: #e6e6e6;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border:hover {
+  background-color: makerYellow;
+}
+
+.button {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  cursor: pointer;
+}

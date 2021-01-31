@@ -1,0 +1,46 @@
+@value makerGreen from '../common/colors.css';
+@value makerWhite from '../common/colors.css';
+
+.container {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  background-color: makerGreen;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  margin-top: 0.5rem;
+  border-top: 0.1rem solid makerWhite;
+}
+.container__register {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: makerGreen;
+  transition: 0.5s;
+  border-top-left-radius: 10%;
+  margin-top: 0.5rem;
+  border-top: 0.1rem solid makerWhite;
+  border-left: 0.1rem solid makerWhite;
+}
+
+.close {
+  display: flex;
+  justify-content: flex-end;
+  color: makerWhite;
+  padding-top: 1.8rem;
+  padding-right: 2rem;
+  box-sizing: border-box;
+  font-family: MavenPro_Medium;
+  transition: 0.3s;
+}
+
+.close div {
+  cursor: pointer;
+}

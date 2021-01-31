@@ -1,0 +1,119 @@
+@value makerGreen from '../common/colors.css';
+@value makerBlack from '../common/colors.css';
+@value makerWhite from '../common/colors.css';
+@value makerDarkRed from '../common/colors.css';
+
+@value MavenPro_Medium from '../common/fonts.css';
+@value Yoon_Gothic_740 from '../common/fonts.css';
+@value Yoon_Gothic_770 from '../common/fonts.css';
+
+/**=========================register============================================*/
+.containerRegister {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  right: 0;
+  top: 0;
+  background-color: makerGreen;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+  margin-top: 0.5rem;
+  border-top: 0.1rem solid makerWhite;
+}
+
+.container__register {
+  height: 100%;
+  width: 50%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0;
+  background-color: makerGreen;
+  transition: 0.5s;
+  border-top-left-radius: 10%;
+  margin-top: 0.5rem;
+  border-top: 0.1rem solid makerWhite;
+  border-left: 0.1rem solid makerWhite;
+}
+
+.sectionRegister {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  padding-left: 50px;
+  padding-right: 50px;
+  color: makerWhite;
+  transition: 0.3s;
+  min-width: 640px;
+}
+
+.sectionRegister div:nth-child(1) {
+  font-size: 3.2rem;
+  font-family: MavenPro_Medium;
+  margin-top: 5rem;
+}
+
+.sectionRegister div:nth-child(2) {
+  margin-top: 0.7rem;
+  margin-bottom: 2rem;
+  font-size: 0.82rem;
+  font-family: Yoon_Gothic_740;
+}
+
+.sectionRegister__box {
+  margin-top: 0.5rem;
+  border: 0.1rem solid makerWhite;
+}
+
+.sectionRegister__input {
+  background-color: rgba(255, 255, 255, 0.21);
+  border: 0;
+  width: 20rem;
+  height: 3rem;
+  padding-left: 1rem;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.sectionRegister__input:focus {
+  outline: none;
+}
+
+.sectionRegister__input::placeholder {
+  text-align: center;
+  right: 0.5rem;
+  color: makerWhite;
+  font-family: Yoon_Gothic_740;
+  position: relative;
+}
+
+.sectionRegister__input:focus::placeholder {
+  color: transparent;
+}
+
+.sectionRegister__register {
+  background-color: makerBlack;
+  width: 20.3rem;
+  height: 3rem;
+  color: makerWhite;
+  border: 0;
+  margin-top: 1.1rem;
+  cursor: pointer;
+  font-family: Yoon_Gothic_770;
+  text-align: center;
+}
+
+.sectionRegister__register:focus {
+  outline: none;
+}
+
+.errorMessage {
+  color: makerDarkRed;
+  width: 20rem;
+  text-align: start;
+  font-size: 0.75rem;
+  margin-top: 0.5rem;
+}

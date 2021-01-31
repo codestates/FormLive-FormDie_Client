@@ -1,0 +1,89 @@
+@value makerLightGray from "../common/colors.css";
+@value makerWhite from "../common/colors.css";
+@value makerYellow from "../common/colors.css";
+@value makerGray from "../common/colors.css";
+@value makerCardBackground from "../common/colors.css";
+@value makerShadow from "../common/colors.css";
+@value MavenPro_Medium from "../common/fonts.css";
+@value Yoon_Gothic_750 from "../common/fonts.css";
+@value Yoon_Gothic_780 from "../common/fonts.css";
+
+.container {
+  width: 20rem;
+  height: 5rem;
+  margin: 0 0.85rem;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  background-color: makerCardBackground;
+  opacity: 0.74;
+  padding-left: 2rem;
+  box-sizing: border-box;
+  box-shadow: makerShadow;
+}
+
+.infoBox {
+  display: flex;
+  flex-direction: column;
+  width: 10.2rem;
+  margin-left: 1.5rem;
+}
+
+.title {
+  font-family: Yoon_Gothic_780;
+  font-size: 0.9rem;
+  margin-bottom: 0.3rem;
+}
+
+.operation {
+  color: makerGray;
+  font-family: Yoon_Gothic_750;
+  font-size: 0.75rem;
+}
+
+.buttonBox {
+  display: flex;
+  justify-content: center;
+}
+
+.border {
+  width: 2.7rem;
+  height: 2.7rem;
+  background-color: makerLightGray;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border:hover {
+  background-color: makerYellow;
+}
+
+.button {
+  width: 1.9rem;
+  height: 1.9rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: makerWhite;
+  cursor: pointer;
+}
+
+.number {
+  font-family: MavenPro_Medium;
+  font-size: 3rem;
+  margin-bottom: 0.4rem;
+}
+
+.formInfo {
+  display: flex;
+  align-items: center;
+}
+
+.formInfo__click {
+  font-family: Yoon_Gothic_780;
+  font-size: 0.82rem;
+  margin-left: 0.7rem;
+}

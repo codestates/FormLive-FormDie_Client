@@ -1,9 +1,8 @@
 import React from "react";
 import { Page, Text, Image } from "@react-pdf/renderer";
-import { styles } from "../../styles/preview";
+import { styles } from "../../styles/FormComplete/preview";
 
 const Id10 = ({ formData }) => {
-
   const today: string[] = new Date().toLocaleDateString("ko").split(". ");
   const serviceStart: string[] = formData?.serviceStart?.split("-");
   const serviceEnd: string[] = formData?.serviceEnd?.split("-");
@@ -110,7 +109,7 @@ const Id10 = ({ formData }) => {
         </Text>
       )}
 
-      {(formData?.school === "대학교") && (
+      {formData?.school === "대학교" && (
         <Text style={styles.text__academic__year2}>
           {formData?.finalYear?.slice(2, 4)}
         </Text>
@@ -122,7 +121,7 @@ const Id10 = ({ formData }) => {
         </Text>
       )}
 
-      {(formData?.school === "대학교") && (
+      {formData?.school === "대학교" && (
         <Text style={styles.text__academic__university}>
           {formData?.schoolName}
         </Text>

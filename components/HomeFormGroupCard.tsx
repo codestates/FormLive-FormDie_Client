@@ -1,10 +1,7 @@
 import React, { FC } from "react";
 import { faPen, faFolder } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import styles from "../styles/HomeFormGroupCard.module.css";
-import { useSelector } from "react-redux";
-import { IReducerState } from "../reducers";
-import { Iuser } from "../containers/UserProfile";
+import styles from "../styles/Home/HomeFormGroupCard.module.css";
 import Link from "next/link";
 
 interface Props {

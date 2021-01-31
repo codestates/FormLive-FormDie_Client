@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../styles/FormGroup.module.css";
+import styles from "../styles/FormGroup/FormGroup.module.css";
 import FormGroupCard from "../components/FormGroupCard";
 import FormGroupDescription from "../components/FormGroupDescription";
 import {
@@ -7,11 +7,9 @@ import {
   faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SearchBar from "../components/SearchBar";
-
+import SearchBar from "../utils/SearchBar";
 import { useSelector, useDispatch } from "react-redux";
 import { IReducerState } from "../reducers";
-import { Iuser } from "../containers/UserProfile";
 import { IFormReducerState, FORM_GROUP_REQUEST } from "../reducers/form";
 import { GET_USER_REQUEST } from "../reducers/user";
 import Head from "next/head";
@@ -66,7 +64,6 @@ const FormGroup = () => {
         selectFormGroup={SelectFormGroup}
       />
     ));
-  console.log(SelectFormGroup);
 
   const onChangePageUpHandler = () => {
     const maxPage = Math.ceil(formGroupTotalNumber / 10);
@@ -194,6 +191,7 @@ FormGroup.getInitialProps = async (context) => {
     type: FORM_GROUP_REQUEST,
     data: formGroupRequest,
   });
+
   context.store.dispatch({
     type: GET_USER_REQUEST,
   });

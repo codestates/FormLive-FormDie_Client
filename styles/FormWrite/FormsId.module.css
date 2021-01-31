@@ -1,0 +1,169 @@
+@value makerLightGreen from "../common/colors.css";
+@value makerWhite from "../common/colors.css";
+@value makerYellow from "../common/colors.css";
+@value makerWhiteBackground from "../common/colors.css";
+@value makerInputGray from "../common/colors.css";
+@value Yoon_Gothic_750 from '../common/fonts.css';
+@value Yoon_Gothic_770 from '../common/fonts.css';
+@value Yoon_Gothic_780 from '../common/fonts.css';
+
+.form {
+  background-color: makerWhite;
+  width: 100%;
+  border-top: 1.5rem solid makerWhiteBackground;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.form__content {
+  width: 52.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  grid-template-rows: repeat(auto, auto);
+  grid-row-gap: 1.8rem;
+  grid-column-gap: 1.5rem;
+  padding: 0 2.5rem;
+  box-sizing: border-box;
+}
+
+.form__header {
+  border-bottom: 3px solid makerLightGreen;
+  padding: 1.7rem 1.7rem 1.7rem 1.7rem;
+  box-sizing: border-box;
+  margin-bottom: 2.2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.form__header__title {
+  font-family: Yoon_Gothic_780;
+  font-size: 1.5rem;
+}
+
+.form__header__button {
+  font-family: Yoon_Gothic_770;
+  background-color: makerYellow;
+  font-size: 0.9rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  width: 6rem;
+  height: 2rem;
+  border-radius: 6px;
+  color: makerWhite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form__btn {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  font-family: Yoon_Gothic_770;
+  padding: 3rem 2.5rem;
+}
+
+.form__btn__submit {
+  background-color: makerYellow;
+  font-family: Yoon_Gothic_770;
+  font-size: 0.95rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  width: 6rem;
+  height: 2rem;
+  border-radius: 6px;
+  color: makerWhite;
+}
+
+.form__btn__before,
+.form__btn__next {
+  background-color: makerLightGreen;
+  font-size: 0.95rem;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  width: 6rem;
+  height: 2rem;
+  border-radius: 6px;
+  color: makerWhite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.label {
+  display: flex;
+  flex-direction: column;
+  font-family: Yoon_Gothic_750;
+  font-size: 0.8rem;
+  color: makerInputGray;
+}
+
+.input {
+  margin-top: 0.5rem;
+  width: 22rem;
+  height: 2rem;
+  border: none;
+  border-bottom: 2px solid #e6e6e6;
+  font-family: Yoon_Gothic_750;
+  font-size: 0.9rem;
+  color: makerInputGray;
+  padding-bottom: 0.5rem;
+  box-sizing: border-box;
+  padding-left: 0;
+}
+
+.input:focus {
+  margin-top: 0.5rem;
+  width: 22rem;
+  height: 2rem;
+  border: none;
+  border-bottom: 3px solid makerLightGreen;
+  color: makerInputGray;
+  outline: none;
+  font-family: Yoon_Gothic_750;
+  font-size: 0.9rem;
+}
+
+.input::placeholder {
+  color: makerInputGray;
+  font-family: Yoon_Gothic_750;
+  font-size: 0.9rem;
+}
+
+.inputBox {
+  display: flex;
+  margin-top: 1.3rem;
+  width: 22rem;
+}
+
+.radio {
+  margin-left: 1.5rem;
+}
+
+.inputBox span {
+  color: makerInputGray;
+  font-size: 0.9rem;
+  margin-left: 0.2rem;
+}
+
+.select {
+  margin-top: 0.5rem;
+  width: 22rem;
+  height: 2rem;
+  border: none;
+  border-bottom: 2px solid #e6e6e6;
+  font-family: Yoon_Gothic_750;
+  font-size: 0.9rem;
+  color: makerInputGray;
+  padding-bottom: 0.5rem;
+  box-sizing: border-box;
+  padding-left: 0;
+  background-color: makerWhite;
+  outline: none;
+  cursor: pointer;
+}

@@ -2,10 +2,10 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { useState } from "react";
 import { SUGGESTION_UPLOAD_REQUEST } from "../reducers/suggestion";
-import styles from "../styles/Suggestion.module.css";
+import styles from "../styles/Suggestion/Suggestion.module.css";
 import Head from "next/head";
 
-export default function Suggestion() {
+const Suggestion = () => {
   const { handleSubmit, register } = useForm();
   const dispatch = useDispatch();
   const [fileName, setFileName] = useState<string>("");
@@ -18,7 +18,6 @@ export default function Suggestion() {
     const frm = new FormData();
     frm.append("doc", fileData.upload[0]);
     frm.append("title", fileData.title);
-    console.log(fileData);
     dispatch({ type: SUGGESTION_UPLOAD_REQUEST, data: frm });
   };
   return (
@@ -68,3 +67,5 @@ export default function Suggestion() {
     </div>
   );
 }
+
+export default Suggestion;

@@ -1,5 +1,5 @@
 import React, { FC, ReactElement } from "react";
-import styles from "../styles/AppLayout.module.css";
+import styles from "../styles/Home/AppLayout.module.css";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import {
@@ -8,7 +8,6 @@ import {
   faFileAlt,
   faHistory,
   faEnvelopeOpenText,
-  faKey,
   IconDefinition,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

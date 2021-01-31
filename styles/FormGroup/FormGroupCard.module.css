@@ -1,0 +1,61 @@
+@value makerLightYellow from "../common/colors.css";
+@value makerCardBackground from "../common/colors.css";
+@value makerShadow from "../common/colors.css";
+@value Yoon_Gothic_740 from '../common/fonts.css';
+@value Yoon_Gothic_750 from '../common/fonts.css';
+@value Yoon_Gothic_780 from '../common/fonts.css';
+
+.container {
+  width: 10rem;
+  height: 9rem;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: makerCardBackground;
+  opacity: 0.74;
+  box-shadow: makerShadow;
+  cursor: pointer;
+}
+
+.container__click {
+  background-color: makerLightYellow;
+  box-shadow: none;
+}
+
+.title {
+  font-family: Yoon_Gothic_780;
+  color: makerBlack;
+  font-size: 0.82rem;
+  margin-top: 0.4rem;
+}
+
+.formGroupInfo {
+  display: flex;
+  align-items: center;
+  margin-top: 0.3rem;
+}
+
+.formGroupInfo__organization {
+  font-family: Yoon_Gothic_750;
+  font-size: 0.72rem;
+  margin-right: 0.4rem;
+}
+
+.formGroupInfo__count {
+  display: flex;
+  font-family: Yoon_Gothic_780;
+  font-size: 0.72rem;
+}
+
+.formGroupInfo__count img {
+  width: 0.6rem;
+  margin-right: 0.2rem;
+}
+
+.date {
+  font-family: Yoon_Gothic_740;
+  font-size: 0.6rem;
+  margin-top: 0.3rem;
+}

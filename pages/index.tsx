@@ -1,11 +1,10 @@
 import Head from "next/head";
-import styles from "../styles/Index.module.css";
+import styles from "../styles/Index/Index.module.css";
 import LoginForm from "../containers/LoginForm";
 import RegisterForm from "../containers/RegisterForm";
 import { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { IUserReducerState, LOG_IN_REQUEST } from "../reducers/user";
-import { IReducerState } from "../reducers";
+import { useDispatch } from "react-redux";
+import { LOG_IN_REQUEST } from "../reducers/user";
 
 interface IimageInfo {
   url: string;
@@ -20,9 +19,6 @@ const Index = () => {
   const [registerClick, setRegisterClick] = useState<boolean>(false);
   const [Slide, setSlide] = useState<boolean>(true);
 
-  const { isLoggedIn } = useSelector<IReducerState, IUserReducerState>(
-    (state) => state.user
-  );
   const imageInfo: IimageInfo[] = [
     {
       url: "/image/home.png",

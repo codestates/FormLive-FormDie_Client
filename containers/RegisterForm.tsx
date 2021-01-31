@@ -1,10 +1,9 @@
-import styles from "../styles/RegisterForm.module.css";
+import styles from "../styles/Index/RegisterForm.module.css";
 import Register from "../components/Register";
 import { useEffect } from "react";
 import { IReducerState } from "../reducers";
 import { IUserReducerState } from "../reducers/user";
 import { useSelector } from "react-redux";
-import { useRouter } from "next/router";
 
 const RegisterForm = ({
   registerClick,

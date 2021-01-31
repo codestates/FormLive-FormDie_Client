@@ -1,0 +1,132 @@
+@value Yoon_Gothic_740 from "../common/fonts.css";
+@value Yoon_Gothic_750 from "../common/fonts.css";
+@value Yoon_Gothic_770 from "../common/fonts.css";
+@value Yoon_Gothic_780 from "../common/fonts.css";
+@value makerBlack from "../common/colors.css";
+@value makerWhite from "../common/colors.css";
+@value makerInputGray from "../common/colors.css";
+
+.container {
+  margin: auto;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0 0 9999px;
+}
+
+.form {
+  padding: 2.5rem 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: makerWhite;
+}
+
+.form div:nth-child(1) {
+  font-family: Yoon_Gothic_780;
+  font-size: 1.7rem;
+}
+
+.form div:nth-child(2) {
+  font-family: Yoon_Gothic_780;
+  font-size: 1.7rem;
+}
+
+.form div:nth-child(3) {
+  font-family: Yoon_Gothic_750;
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+}
+
+.form div:nth-child(4) {
+  font-family: Yoon_Gothic_750;
+  margin-top: 0.2rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.75rem;
+}
+
+.form div:nth-child(7) {
+  font-family: Yoon_Gothic_740;
+  font-size: 0.7rem;
+  margin-top: 1.5rem;
+}
+
+.title {
+  width: 20.5rem;
+  height: 2.5rem;
+  margin-bottom: 1rem;
+  border: 2px inset;
+  font-family: Yoon_Gothic_770;
+}
+
+.title::placeholder {
+  padding-left: 1rem;
+  font-size: 0.78rem;
+  font-family: Yoon_Gothic_770;
+  color: makerInputGray;
+}
+
+.title:focus {
+  outline: none;
+  font-family: Yoon_Gothic_770;
+}
+
+.title:focus::placeholder {
+  color: makerWhite;
+}
+
+.fileUpload {
+  display: flex;
+  justify-content: center;
+}
+
+.files {
+  display: flex;
+  border: 2px inset;
+  height: 2.5rem;
+}
+
+.fileName {
+  border: 0;
+  width: 12.5rem;
+  height: 100%;
+  font-family: Yoon_Gothic_770;
+  color: makerBlack;
+  background-color: makerWhite;
+}
+
+.fileName::placeholder {
+  font-family: Yoon_Gothic_770;
+  font-size: 0.78rem;
+  padding-left: 1rem;
+  color: makerInputGray;
+}
+
+.fileName:focus {
+  outline: none;
+  font-size: 1rem;
+}
+
+.uploadImg {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background-color: makerWhite;
+}
+
+.uploadImg img {
+  width: 1.2rem;
+  height: 1.2rem;
+  margin-right: 0.8rem;
+}
+
+.fileUpload input[type="file"] {
+  display: none;
+}
+
+.submit {
+  width: 5.8rem;
+  font-size: 0.7rem;
+  background-color: makerBlack;
+  color: makerWhite;
+  border-color: makerBlack;
+  font-family: Yoon_Gothic_770;
+  cursor: pointer;
+}
