@@ -117,7 +117,7 @@ const FormWriteCustom = () => {
     if (CompleteForm.length !== currentGroup.forms.length) {
       window.alert("아직 작성하지 않은 폼이 있습니다.");
     } else {
-      window.location.href = `http://localhost:2500/formgroup/complete/new/${id}`;
+      window.location.href = `https://yangsikdang.ml/formgroup/complete/new/${id}`;
     }
   };
   return (

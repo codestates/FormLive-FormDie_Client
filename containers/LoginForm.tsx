@@ -72,19 +72,19 @@ const LoginForm = ({ loginClick, setLoginClick, setSlide }) => {
             <figure className={styles.section__figure}>
               <img
                 onClick={() =>
-                  window.location.assign("http://localhost:5000/auth/kakao")
+                  window.location.assign("https://yangsikdang.ml:5000/auth/kakao")
                 }
                 src="/image/kakao.png"
               ></img>
               <img
                 onClick={() =>
-                  window.location.assign("http://localhost:5000/auth/naver")
+                  window.location.assign("https://yangsikdang.ml:5000/auth/naver")
                 }
                 src="/image/naver.png"
               ></img>
               <img
                 onClick={() =>
-                  window.location.assign("http://localhost:5000/auth/google")
+                  window.location.assign("https://yangsikdang.ml:5000/auth/google")
                 }
                 src="/image/google.png"
               ></img>

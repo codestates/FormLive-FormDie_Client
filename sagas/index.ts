@@ -3,7 +3,7 @@ import axios from "axios";
 import user from "./user";
 import form from "./form";
 import suggestion from "./suggestion";
-axios.defaults.baseURL = `http://localhost:5000`;
+axios.defaults.baseURL = `https://yangsikdang.ml:5000`;
 // https://yangsikdang.ml:5000
 // http://localhost:5000
 export default function* rootSaga() {
