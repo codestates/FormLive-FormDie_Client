@@ -7,12 +7,14 @@ import {
   FORM_LIST_REQUEST,
   IFormReducerState,
   FORM_GROUP_REQUEST,
+  HISTORY_LIST_REQUEST,
 } from "../reducers/form";
 import HomeFormGroupCard from "../components/HomeFormGroupCard";
 import { GET_USER_REQUEST } from "../reducers/user";
 import Head from "next/head";
 
 const Home = () => {
+  
   const userInfo = useSelector<IReducerState, Iuser>((state) => state.user.me);
   const { formList, formGroup } = useSelector<IReducerState, IFormReducerState>(
     (state) => state.form
@@ -67,6 +69,10 @@ const formGroupRequest: IFormList = {
   page: 1,
 };
 
+const queryParameter: IFormList = {
+  page: 1,
+};
+
 Home.getInitialProps = async (context) => {
   // const state = context.store.getState();
   // 이 직전에 LOAD_USERS_REQUEST
@@ -78,6 +84,11 @@ Home.getInitialProps = async (context) => {
   context.store.dispatch({
     type: FORM_GROUP_REQUEST,
     data: formGroupRequest,
+  });
+
+  context.store.dispatch({
+    type: HISTORY_LIST_REQUEST,
+    data: queryParameter,
   });
 
   context.store.dispatch({

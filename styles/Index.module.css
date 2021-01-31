@@ -2,6 +2,7 @@
 @value makerBlack from "./common/colors.css";
 @value makerWhite from "./common/colors.css";
 @value makerYellow from "./common/colors.css";
+@value makerWhiteBackground from "./common/colors.css";
 @value MavenPro_Medium from "./common/fonts.css";
 @value Yoon_Gothic_730 from "./common/fonts.css";
 @value Yoon_Gothic_740 from "./common/fonts.css";
@@ -103,8 +104,9 @@
   padding-top: 2.9rem;
   display: flex;
   align-items: center;
-  padding-left: 8rem;
+  padding-left: 4.9rem;
   box-sizing: border-box;
+  justify-content: center;
 }
 
 .main__view__article {
@@ -163,6 +165,7 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  background-color: makerWhiteBackground;
 }
 
 .main__view__animation__buttonsSlide {
@@ -207,10 +210,11 @@
 
 .main__view__animation__imgSlide {
   border-radius: 20px;
-  border: 5px solid makerBlack;
-  height: 345px;
+  border: 0.313rem solid makerBlack;
+  height: 21.563rem;
   overflow: hidden;
   position: relative;
+  background-color: makerBlack;
 }
 
 .borderNone {
@@ -219,7 +223,7 @@
 
 .main__view__animation__imgSlide__img img {
   width: 37rem;
-  height: 335px;
+  height: 20.938rem;
 }
 
 .main__view__animation__imgSlide__img li {
@@ -271,37 +275,37 @@
 
 @keyframes slide {
   0% {
-    margin-top: 0px;
+    margin-top: 0rem;
   }
   10% {
-    margin-top: 0px;
+    margin-top: 0rem;
   }
   20% {
-    margin-top: -338px;
+    margin-top: -21.125rem;
   }
   30% {
-    margin-top: -338px;
+    margin-top: -21.125rem;
   }
   40% {
-    margin-top: -676px;
+    margin-top: -42.250rem;
   }
   50% {
-    margin-top: -676px;
+    margin-top: -42.250rem;
   }
   60% {
-    margin-top: -1014px;
+    margin-top: -63.375rem;
   }
   70% {
-    margin-top: -1014px;
+    margin-top: -63.375rem;
   }
   80% {
-    margin-top: -1352px;
+    margin-top: -84.500rem;
   }
   90% {
-    margin-top: -1352px;
+    margin-top: -84.500rem;
   }
   100% {
-    margin-top: 0px;
+    margin-top: 0rem;
   }
 }
 @keyframes buttonSlide1 {

@@ -89,6 +89,7 @@ const userReducer = (state = initialState, action) =>
       }
       case LOG_IN_FAILURE: {
         draft.isLoggingIn = false;
+        draft.isLoggedIn = false;
         draft.logInErrorReason = action.reason;
         break;
       }
@@ -118,6 +119,7 @@ const userReducer = (state = initialState, action) =>
       }
       case GET_USER_FAILURE: {
         draft.me = null;
+        draft.isLoggedIn = false;
         draft.getUserErrorReason = action.reason;
         break;
       }

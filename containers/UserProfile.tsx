@@ -148,16 +148,20 @@ const UserProfile = () => {
       setNonePassword(true);
       setTimeout(() => setNonePassword(false), 2000);
     } else {
-      setDelete(true);
+      // setDelete(true);
       setVerifyDelete(false);
-      setTimeout(() => {
-        setDelete(false);
+      dispatch({
+        type: DELETE_USER_REQUEST,
+        data: { password: deletePassword },
+      });
+      // setTimeout(() => {
+      //   setDelete(false);
 
-        dispatch({
-          type: DELETE_USER_REQUEST,
-          data: { password: deletePassword },
-        });
-      }, 2000);
+      //   dispatch({
+      //     type: DELETE_USER_REQUEST,
+      //     data: { password: deletePassword },
+      //   });
+      // }, 2000);
     }
   };
   const onLogoutHandler = () => {
@@ -173,7 +177,7 @@ const UserProfile = () => {
     <div className={styles.edit__container}>
       <form className={styles.edit__form} onSubmit={handleSubmit(onSubmit)}>
         <div className={styles.edit__cancel} onClick={onCancelHandler}>
-          X
+          x
         </div>
         <h2 className={styles.edit__title}>Edit Profile</h2>
         <div className={styles.edit__content}>

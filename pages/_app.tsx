@@ -14,11 +14,12 @@ import { GET_USER_REQUEST } from "../reducers/user";
 import "../styles/globals.css";
 import AppLayout from "../components/AppLayout";
 import rootReducer from "../reducers";
-import { persistStore, persistReducer } from 'redux-persist';
-import storage from 'redux-persist/lib/storage';
-import { PersistGate } from 'redux-persist/integration/react';
-import reduxStore from '../store/store';
+import { persistStore, persistReducer } from "redux-persist";
+import storage from "redux-persist/lib/storage";
+import { PersistGate } from "redux-persist/integration/react";
+import reduxStore from "../store/store";
 import { Persistor } from "redux-persist/es/types";
+import { FORM_LIST_REQUEST } from "../reducers/form";
 
 interface IStore extends Store<IReducerState> {
   sagaTask?: Task;
@@ -53,13 +54,23 @@ class YangSikDang extends App<Props> {
     if (ctx.isServer && cookie && ctx.pathname === "/") {
       //로그인에 성공한 경우.
       axios.defaults.headers.Cookie = cookie;
-      if (ctx.req && ctx.res) {
-        ctx.res.writeHead(302, { Location: "/home" });
-        ctx.res.end();
-      }
+
       ctx.store.dispatch({
         type: GET_USER_REQUEST,
       });
+
+      // if (ctx.req && ctx.res) {
+      //   ctx.res.writeHead(302, { Location: "/home" });
+      //   ctx.res.end();
+      // }
+
+      // ctx.store.dispatch({
+      //   type: FORM_LIST_REQUEST,
+      //   data: {
+      //     page: 1,
+      //   },
+      // });
+      console.log("cookie");
     } else if (ctx.isServer && !cookie && ctx.pathname !== "/") {
       //쿠기가 없는데 다른 경로로 접속하려함.
       axios.defaults.headers.Cookie = "";
@@ -67,40 +78,53 @@ class YangSikDang extends App<Props> {
         ctx.res.writeHead(302, { Location: "/" });
         ctx.res.end();
       }
+      // ctx.store.dispatch({
+      //   type: GET_USER_REQUEST,
+      // });
     } else if (ctx.isServer && !cookie && ctx.pathname === "/") {
       //일반적인 접근 홈으로 온 경우.
       axios.defaults.headers.Cookie = "";
     } else if (ctx.isServer && cookie && ctx.pathname !== "/") {
       //쿠키가 있는데 패스가 다른 걸로 들어오면 로그인으로 만들어야해.
       axios.defaults.headers.Cookie = cookie;
-    }
+      ctx.store.dispatch({
+        type: GET_USER_REQUEST,
+      });
 
+      // if (ctx.req && ctx.res) {
+      //   ctx.res.writeHead(302, { Location: "/home" });
+      //   ctx.res.end();
+      // }
+      // user.isLoggedIn = true;
+    }
+    console.log(pageProps);
     if (Component.getInitialProps) {
       pageProps = (await Component.getInitialProps(ctx)) || {};
+      console.log(pageProps);
     }
     return { pageProps, cookie, logIn };
   }
 
   render() {
     const { Component, store, pageProps, cookie, logIn } = this.props;
+    console.log(logIn);
     return (
       <Provider store={store}>
         <PersistGate persistor={store.__PERSISTOR} loading={null}>
-        {!cookie && !logIn ? (
-          <Component {...pageProps} />
-        ) : (
-          <AppLayout>
+          {!cookie && !logIn ? (
             <Component {...pageProps} />
-          </AppLayout>
-        )}
+          ) : (
+            <AppLayout>
+              <Component {...pageProps} />
+            </AppLayout>
+          )}
         </PersistGate>
       </Provider>
     );
   }
 }
 
-export default withRedux(reduxStore)(YangSikDang);
-
+export default withRedux(reduxStore)(withReduxSaga(YangSikDang));
 
 // const configureStore = (initialState) => {
 //   const sagaMiddleware = createSagaMiddleware();
