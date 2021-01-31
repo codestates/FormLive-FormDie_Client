@@ -1,19 +1,20 @@
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { IReducerState } from "../../../../reducers";
+import { Iuser } from "../../../../containers/UserProfile";
 import { GET_USER_REQUEST } from "../../../../reducers/user";
 import { styles } from "../../../../styles/preview";
-import { PDFViewer } from "@react-pdf/renderer";
+import { Page, Text, Document, PDFViewer, Image } from "@react-pdf/renderer";
 import { useRouter } from "next/router";
 import Documents from "../../../../containers/Documents";
 import { IFormReducerState } from "../../../../reducers/form";
 import style from "../../../../styles/CompleteForm.module.css";
 import Head from "next/head";
 
-
-const PreviewNew = () => {
+const PreviewHistory = () => {
   const router = useRouter();
   const { id } = router.query;
+
   const { currentGroup } = useSelector<IReducerState, IFormReducerState>(
     (state) => state.form
   );
@@ -74,8 +75,7 @@ const PreviewNew = () => {
   );
 };
 
-
-PreviewNew.getInitialProps = async (context) => {
+PreviewHistory.getInitialProps = async (context) => {
   const { id } = context.query;
 
   console.log("hashtag getInitialProps", id);
@@ -87,4 +87,4 @@ PreviewNew.getInitialProps = async (context) => {
   return { id };
 };
 
-export default PreviewNew;
+export default PreviewHistory;

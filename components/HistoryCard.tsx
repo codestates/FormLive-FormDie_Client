@@ -1,11 +1,17 @@
-import { FC } from "react";
+import { FC, useEffect, useRef, useState } from "react";
 import styles from "../styles/HistoryCard.module.css";
-import { faFolder, faTrashAlt, faEye } from "@fortawesome/free-solid-svg-icons";
+import { faFolder, faCheck, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import axios from "axios";
-import { useDispatch } from "react-redux";
-import { HISTORY_LIST_REQUEST } from "../reducers/history";
-import { historyQuery } from "../pages/history";
+import { useDispatch, useSelector } from "react-redux";
+import { IReducerState } from "../reducers";
+import {
+  CURRENT_HISTORY_REQUEST,
+  EDIT_GROUP_REQUEST,
+  HISTORY_DELETE_REQUEST,
+  IFormReducerState,
+} from "../reducers/form";
+import Link from "next/link";
+import { useForm } from "react-hook-form";
 
 interface Props {
   groupId: number;
@@ -13,25 +19,133 @@ interface Props {
   updatedAt: string;
   forms: [{ id: number; title: string }];
 }
+
+interface groupNameEdit {
+  name: string;
+}
+
 const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
   const dispatch = useDispatch();
-  const queryParameter: historyQuery = {
-    page: 1,
-  };
   const LIGHT_GREEN = "#83cd7f";
-  const onDeleteClick = () => {
-    console.log(groupId);
-    axios
-      .delete("/group", { data: { groupId: groupId }, withCredentials: true })
-      .then((result) =>
-        dispatch({ type: HISTORY_LIST_REQUEST, data: queryParameter })
-      );
+
+  const { historyList, getCurrentHistory, currentGroup } = useSelector<
+    IReducerState,
+    IFormReducerState
+  >((state) => state.form);
+  const [GoToLink, setGoToLink] = useState(false);
+  const [LinkPage, setLinkPage] = useState(false);
+  const [newName, setNewName] = useState<string>(title);
+  const [changeName, setChangeName] = useState<boolean>(false);
+
+  const { register, handleSubmit, errors } = useForm<groupNameEdit>({
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
+  });
+
+  const onSubmit = (nameData, event) => {
+    event.preventDefault();
+    setNewName(nameData.name);
+    setChangeName(false);
+
+    dispatch({
+      type: EDIT_GROUP_REQUEST,
+      data: {
+        groupId,
+        title: nameData.name,
+      }
+    });
   };
+
+  const formWritePage = useRef(null);
+
+  const goToFormPageHandler = () => {
+    setGoToLink(true);
+    setLinkPage(true);
+
+    dispatch({
+      type: CURRENT_HISTORY_REQUEST,
+      data: groupId,
+    });
+  };
+
+  const onDeleteClick = () => {
+    const confirm = window.confirm(`${title} 기록을 정말 삭제하시겠습니까?`);
+
+    if (confirm) {
+      dispatch({
+        type: HISTORY_DELETE_REQUEST,
+        data: groupId,
+      });
+    }
+  };
+
+  useEffect(() => {
+    if (errors?.name?.type === "required") {
+      window.alert("그룹 이름은 필수 사항입니다.");
+    } else if (errors?.name?.type === "maxLength") {
+      window.alert("그룹 이름은 15글자 이하로 지어주세요.");
+    }
+
+
+    if (GoToLink && getCurrentHistory) {
+      const finish = currentGroup.forms.every(
+        (form) => form.isComplete === true
+      );
+      setGoToLink(false);
+
+      if (finish) {
+        console.log(1);
+        window.location.href = `http://localhost:2500/formgroup/complete/history/${groupId}`;
+      } else {
+        console.log(groupId);
+        formWritePage.current.click();
+      }
+    }
+
+
+    
+  }, [errors, getCurrentHistory]);
+
   return (
     <section className={styles.container}>
       <div className={styles.section}>
         <FontAwesomeIcon icon={faFolder} size={"4x"} color={LIGHT_GREEN} />
-        <div className={styles.section__title}>{title}</div>
+        {changeName ? (
+          <form
+            className={styles.groupName__form}
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <input
+              type="text"
+              name="name"
+              className={styles.groupName__form__input}
+              ref={register({ required: true, maxLength: 15 })}
+            />
+            <div className={styles.groupName__form__btn}>
+              <button className={styles.groupName__form__submit}>
+                <FontAwesomeIcon icon={faCheck} size="sm" color="black" />
+              </button>
+
+              <div
+                className={styles.groupName__form__cancel}
+                onClick={() => {
+                  setChangeName(!changeName);
+                }}
+              >
+                <FontAwesomeIcon icon={faTimes} size="sm" color="black" />
+              </div>
+            </div>
+          </form>
+        ) : (
+          <div
+            className={styles.section__title}
+            onClick={() => {
+              setChangeName(!changeName);
+            }}
+          >
+            {newName}
+          </div>
+        )}
       </div>
       <section className={styles.description}>
         <div className={styles.description__text}>
@@ -50,11 +164,23 @@ const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
         </div>
       </section>
       <div className={styles.buttonBox}>
-        <div className={styles.border}>
-          <div className={styles.button}>
-            <img src="/image/002-eye.svg" className={styles.icon} />
+        {LinkPage ? (
+          <Link href={`/formgroup/history/${groupId}`}>
+            <a ref={formWritePage}>
+              <div className={styles.border}>
+                <div className={styles.button}>
+                  <img src="/image/002-eye.svg" className={styles.icon} />
+                </div>
+              </div>
+            </a>
+          </Link>
+        ) : (
+          <div className={styles.border}>
+            <div className={styles.button} onClick={goToFormPageHandler}>
+              <img src="/image/002-eye.svg" className={styles.icon} />
+            </div>
           </div>
-        </div>
+        )}
         <div className={styles.border}>
           <div
             className={styles.button}
@@ -70,3 +196,4 @@ const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
   );
 };
 export default HistoryCard;
+

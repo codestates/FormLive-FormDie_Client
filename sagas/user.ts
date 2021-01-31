@@ -1,5 +1,3 @@
-import { useDispatch } from "react-redux";
-import { IRegister } from "./../components/Register";
 import {
   REGISTER_REQUEST,
   REGISTER_FAILURE,
@@ -23,14 +21,7 @@ import {
   DELETE_USER_SUCCESS,
   DELETE_USER_FAILURE,
 } from "./../reducers/user";
-import {
-  all,
-  call,
-  fork,
-  put,
-  takeLatest,
-  takeEvery,
-} from "redux-saga/effects";
+import { all, call, fork, put, takeEvery } from "redux-saga/effects";
 import axios, { AxiosResponse } from "axios";
 import {} from "../reducers/user";
 
@@ -65,7 +56,7 @@ export default function* userSaga() {
 
   function logInAPI(loginData) {
     // 서버에 요청을 보내는 부분
-    return axios.post("/user/signin", loginData, { withCredentials: true });
+    return axios.post("/user/signin", loginData, { withCredentials: true })
   }
 
   function* logIn(action) {
@@ -80,6 +71,7 @@ export default function* userSaga() {
     } catch (e) {
       // loginAPI 실패
       console.error(e);
+      window.alert("이메일 또는 비밀번호가 일치하지 않습니다.");
       yield put({
         type: LOG_IN_FAILURE,
         reason: e,
@@ -214,7 +206,9 @@ export default function* userSaga() {
   function deleteUserAPI(deleteData) {
     // 서버에 요청을 보내는 부분
     console.log(deleteData);
-    return axios.delete("/user", { data: deleteData, withCredentials: true });
+    return axios
+      .delete("/user", { data: deleteData, withCredentials: true })
+      .catch((error) => console.log(error.message));
   }
 
   function* deleteUser(action) {
@@ -230,6 +224,7 @@ export default function* userSaga() {
     } catch (e) {
       // loginAPI 실패
       console.error(e);
+      console.log(e);
       yield put({
         type: DELETE_USER_FAILURE,
         reason: e,

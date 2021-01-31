@@ -20,6 +20,12 @@ export const initialState = {
   makeNewFormGroup: false,
   makeNewFormGroupErrorReason: "",
   startNewFormGroup: false,
+  historyList: [],
+	historyTotal: 0,
+  gethistoryListErrorReason: "",
+  getCurrentHistoryErrorReason: "",
+  getCurrentHistory: false,
+  historyDeleteErrorReason: "",
 };
 
 export type IFormReducerState = typeof initialState;
@@ -55,6 +61,22 @@ export const NEW_GROUP_FAILURE = "NEW_GROUP_FAILURE"; // 액션의 이름
 export const START_GROUP_REQUEST = "START_GROUP_REQUEST"; // 액션의 이름
 export const START_GROUP_SUCCESS = "START_GROUP_SUCCESS"; // 액션의 이름
 export const START_GROUP_FAILURE = "START_GROUP_FAILURE"; // 액션의 이름
+
+export const EDIT_GROUP_REQUEST = "EDIT_GROUP_REQUEST"; // 액션의 이름
+export const EDIT_GROUP_SUCCESS = "EDIT_GROUP_SUCCESS"; // 액션의 이름
+export const EDIT_GROUP_FAILURE = "EDIT_GROUP_FAILURE"; // 액션의 이름
+
+export const HISTORY_LIST_REQUEST = "HISTORY_LIST_REQUEST";
+export const HISTORY_LIST_SUCCESS = "HISTORY_LIST_SUCCESS";
+export const HISTORY_LIST_FAILURE = "HISTORY_LIST_FAILURE";
+
+export const CURRENT_HISTORY_REQUEST = "CURRENT_HISTORY_REQUEST";
+export const CURRENT_HISTORY_SUCCESS = "CURRENT_HISTORY_SUCCESS";
+export const CURRENT_HISTORY_FAILURE = "CURRENT_HISTORY_FAILURE";
+
+export const HISTORY_DELETE_REQUEST = "HISTORY_DELETE_REQUEST";
+export const HISTORY_DELETE_SUCCESS = "HISTORY_DELETE_SUCCESS";
+export const HISTORY_DELETE_FAILURE = "HISTORY_DELETE_FAILURE";
 
 const formReducer = (state = initialState, action) =>
   produce(state, (draft) => {
@@ -160,6 +182,62 @@ const formReducer = (state = initialState, action) =>
         draft.makeNewFormGroupErrorReason = action.reason;
         break;
       }
+      case EDIT_GROUP_REQUEST: {
+        break;
+      }
+      case EDIT_GROUP_SUCCESS: {
+        break;
+      }
+      case EDIT_GROUP_FAILURE: {
+        break;
+      }
+      case HISTORY_LIST_REQUEST: {
+				break;
+			}
+			case HISTORY_LIST_SUCCESS: {
+				if (action.page > 1) {
+					draft.historyList = [...draft.historyList, ...action.data.content];
+					draft.historyTotal = action.data.total;
+				} else if (action.page < 2) {
+					draft.historyList = action.data.content;
+					draft.historyTotal = action.data.total;
+        }
+        break;
+			}
+			case HISTORY_LIST_FAILURE: {
+        draft.gethistoryListErrorReason = action.reaseon;
+        break;
+      }
+      case CURRENT_HISTORY_REQUEST: {
+        draft.getCurrentHistory = false;
+				break;
+			}
+			case CURRENT_HISTORY_SUCCESS: {
+        draft.currentGroup = draft.historyList.find(
+          (history) => history.groupId === Number(action.data)
+        );
+        draft.getCurrentHistory = true;
+        break;
+			}
+			case CURRENT_HISTORY_FAILURE: {
+        draft.getCurrentHistory = false;
+        draft.getCurrentHistoryErrorReason = action.reaseon;
+        break;
+      }
+      case HISTORY_DELETE_REQUEST: {
+				break;
+			}
+			case HISTORY_DELETE_SUCCESS: {
+        const index = draft.historyList.find(
+          (history) => history.groupId === Number(action.id)
+        );
+        draft.historyList.splice(index, 1)
+        break;
+			}
+			case HISTORY_DELETE_FAILURE: {
+        draft.historyDeleteErrorReason = action.reaseon;
+        break;
+			}
       default: {
         break;
       }

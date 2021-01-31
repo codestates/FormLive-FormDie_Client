@@ -23,6 +23,18 @@ import {
   START_GROUP_REQUEST,
   START_GROUP_SUCCESS,
   START_GROUP_FAILURE,
+  HISTORY_LIST_REQUEST,
+  HISTORY_LIST_FAILURE,
+  HISTORY_LIST_SUCCESS,
+  CURRENT_HISTORY_REQUEST,
+  CURRENT_HISTORY_FAILURE,
+  CURRENT_HISTORY_SUCCESS,
+  HISTORY_DELETE_REQUEST,
+  HISTORY_DELETE_SUCCESS,
+  HISTORY_DELETE_FAILURE,
+  EDIT_GROUP_REQUEST,
+  EDIT_GROUP_FAILURE,
+  EDIT_GROUP_SUCCESS,
 } from "./../reducers/form";
 import { all, call, fork, put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
@@ -218,6 +230,7 @@ export default function* formSaga() {
     yield takeLatest(RESEND_FORM_REQUEST, resendForm);
   }
 
+
   function newGroupAPI(groupData) {
     // 서버에 요청을 보내는 부분
     return axios.post("/group", groupData, { withCredentials: true });
@@ -246,7 +259,134 @@ export default function* formSaga() {
     yield takeLatest(NEW_GROUP_REQUEST, newGroup);
   }
 
-  
+
+  function editGroupAPI(groupData) {
+    // 서버에 요청을 보내는 부분
+    return axios.patch("/group", groupData, { withCredentials: true });
+  }
+
+  function* editGroup(action) {
+    try {
+      const result = yield call(editGroupAPI, action.data);
+      console.log(result);
+      yield put({
+        // put은 dispatch 동일
+        type: EDIT_GROUP_SUCCESS,
+        data: result.data,
+      });
+    } catch (e) {
+      // loginAPI 실패
+      console.error(e);
+      yield put({
+        type: EDIT_GROUP_FAILURE,
+        reason: e,
+      });
+    }
+  }
+
+  function* watchEditGroup() {
+    yield takeLatest(EDIT_GROUP_REQUEST, editGroup);
+  }
+
+
+  function historyAPI(historyQuery) {
+    return axios.get("/history", {
+      params: {
+        q: historyQuery.q,
+        page: historyQuery.page,
+        sort: historyQuery.sort,
+      },
+      withCredentials: true,
+    });
+  }
+
+  function* historyList(action) {
+    try {
+      const result = yield call(historyAPI, action.data);
+      console.log(result);
+      yield put({
+        type: HISTORY_LIST_SUCCESS,
+        data: result.data.data,
+        page: action.data.page,
+      });
+    } catch (e) {
+      console.log(e);
+      yield put({
+        type: HISTORY_LIST_FAILURE,
+        reason: e,
+      });
+    }
+  }
+
+  function* watchHistoryList() {
+    yield takeLatest(HISTORY_LIST_REQUEST, historyList);
+  }
+
+  function currentHistoryAPI(groupId) {
+    // 서버에 요청을 보내는 부분
+    return axios.get(`/group/${encodeURIComponent(groupId)}`, {
+      withCredentials: true,
+    });
+  }
+
+  function* currentHistory(action) {
+    try {
+      const result = yield call(currentHistoryAPI, action.data);
+      console.log(result);
+      console.log(action.data, 1111);
+      yield put({
+        // put은 dispatch 동일
+        type: CURRENT_HISTORY_SUCCESS,
+        data: action.data,
+      });
+    } catch (e) {
+      // loginAPI 실패
+      console.error(e);
+      yield put({
+        type: CURRENT_HISTORY_FAILURE,
+        reason: e,
+      });
+    }
+  }
+
+  function* watchCurrentHistory() {
+    yield takeLatest(CURRENT_HISTORY_REQUEST, currentHistory);
+  }
+
+  function historyDeleteAPI(deleteData) {
+    // 서버에 요청을 보내는 부분
+    return axios.delete("/group", {
+      data: {
+        groupId: deleteData,
+      },
+      withCredentials: true,
+    });
+  }
+
+  function* historyDelete(action) {
+    try {
+      const result = yield call(historyDeleteAPI, action.data);
+      console.log(result);
+      yield put({
+        // put은 dispatch 동일
+        type: HISTORY_DELETE_SUCCESS,
+        data: result.data,
+        id: action.data,
+      });
+    } catch (e) {
+      // loginAPI 실패
+      console.error(e);
+      yield put({
+        type: HISTORY_DELETE_FAILURE,
+        reason: e,
+      });
+    }
+  }
+
+  function* watchHistoryDelete() {
+    yield takeLatest(HISTORY_DELETE_REQUEST, historyDelete);
+  }
+
   yield all([
     fork(watchFormList),
     fork(watchFormGroup),
@@ -255,5 +395,9 @@ export default function* formSaga() {
     fork(watchGetForm),
     fork(watchResendForm),
     fork(watchNewGroup),
+    fork(watchHistoryList),
+    fork(watchCurrentHistory),
+    fork(watchHistoryDelete),
+    fork(watchEditGroup),
   ]);
 }

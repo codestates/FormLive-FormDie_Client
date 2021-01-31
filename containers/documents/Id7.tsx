@@ -5,16 +5,16 @@ import { styles } from "../../styles/preview";
 const Id7 = ({ formData }) => {
 
   const today: string[] = new Date().toLocaleDateString("ko").split(". ");
-  const serviceStart: string[] = formData?.serviceStart.split("-");
-  const serviceEnd: string[] = formData?.serviceEnd.split("-");
-  const jobStart: string[] = formData?.jobStart.split("-");
+  const serviceStart: string[] = formData?.serviceStart?.split("-");
+  const serviceEnd: string[] = formData?.serviceEnd?.split("-");
+  const jobStart: string[] = formData?.jobStart?.split("-");
 
   return (
     <Page>
       <Image src={require("../../public/form/Id7.png")} style={styles.image} />
       <Text style={styles.text__name}>{formData?.name}</Text>
       <Text style={styles.text__birthday}>
-        {formData?.birth.replace(/-/g, ". ")}
+        {formData?.birth?.replace(/-/g, ". ")}
       </Text>
       <Text style={styles.text__numbers}>{formData?.phone}</Text>
       <Text style={styles.text__position}>{formData?.position}</Text>
@@ -28,7 +28,7 @@ const Id7 = ({ formData }) => {
 
       {formData?.service === "필" && (
         <Text style={styles.text__service__start__year1}>
-          {serviceStart[0].slice(2, 4)}
+          {serviceStart[0]?.slice(2, 4)}
         </Text>
       )}
 
@@ -46,7 +46,7 @@ const Id7 = ({ formData }) => {
 
       {formData?.service === "필" && (
         <Text style={styles.text__service__end__year1}>
-          {serviceEnd[0].slice(2, 4)}
+          {serviceEnd[0]?.slice(2, 4)}
         </Text>
       )}
 
@@ -60,7 +60,7 @@ const Id7 = ({ formData }) => {
 
       {formData?.service === "전역예정" && (
         <Text style={styles.text__service__start__year2}>
-          {serviceStart[0].slice(2, 4)}
+          {serviceStart[0]?.slice(2, 4)}
         </Text>
       )}
 
@@ -78,7 +78,7 @@ const Id7 = ({ formData }) => {
 
       {formData?.service === "전역예정" && (
         <Text style={styles.text__service__end__year2}>
-          {serviceEnd[0].slice(2, 4)}
+          {serviceEnd[0]?.slice(2, 4)}
         </Text>
       )}
 
@@ -92,7 +92,7 @@ const Id7 = ({ formData }) => {
 
       {formData?.service === "전역예정" && (
         <Text style={styles.text__job__start__year}>
-          {jobStart[0].slice(2, 4)}
+          {jobStart[0]?.slice(2, 4)}
         </Text>
       )}
 
@@ -106,13 +106,13 @@ const Id7 = ({ formData }) => {
 
       {(formData?.school === "중학교" || formData?.school === "고등학교") && (
         <Text style={styles.text__academic__year1}>
-          {formData?.finalYear.slice(2, 4)}
+          {formData?.finalYear?.slice(2, 4)}
         </Text>
       )}
 
       {(formData?.school === "대학교") && (
         <Text style={styles.text__academic__year2}>
-          {formData?.finalYear.slice(2, 4)}
+          {formData?.finalYear?.slice(2, 4)}
         </Text>
       )}
 
@@ -130,13 +130,13 @@ const Id7 = ({ formData }) => {
 
       {(formData?.school === "중학교" || formData?.school === "고등학교") && (
         <Text style={styles.text__academic__grade1}>
-          {formData?.grade.slice(0, 1)}
+          {formData?.grade?.slice(0, 1)}
         </Text>
       )}
 
       {formData?.school === "대학교" && (
         <Text style={styles.text__academic__grade2}>
-          {formData?.grade.slice(0, 1)}
+          {formData?.grade?.slice(0, 1)}
         </Text>
       )}
 

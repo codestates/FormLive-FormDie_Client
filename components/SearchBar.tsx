@@ -3,8 +3,7 @@ import styles from "../styles/SearchBar.module.css";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useDispatch } from "react-redux";
-import { FORM_LIST_REQUEST, FORM_GROUP_REQUEST } from "../reducers/form";
-import { HISTORY_LIST_REQUEST } from "../reducers/history";
+import { FORM_LIST_REQUEST, FORM_GROUP_REQUEST, HISTORY_LIST_REQUEST } from "../reducers/form";
 export default function SearchBar({ where, setQuery }) {
 	const dispatch = useDispatch();
 	const [Value, setValue] = useState("");
