@@ -94,7 +94,7 @@ const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms, organization
       setGoToLink(false);
 
       if (finish) {
-        window.location.href = `http://localhost:2500/formgroup/complete/history/${groupId}`;
+        window.location.href = `https://yangsikdang.ml/formgroup/complete/history/${groupId}`;
       } else {
         formWritePage.current.click();
       }
