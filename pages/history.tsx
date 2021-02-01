@@ -118,6 +118,7 @@ const History = () => {
             updatedAt={el.updatedAt}
             forms={el.forms}
             organization={el.organization}
+            isDefaultGroup={el.isDefaultGroup}
             key={idx}
           />
         ))}

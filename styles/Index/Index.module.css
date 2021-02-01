@@ -12,11 +12,12 @@
 .container {
   display: flex;
   flex-direction: column;
-  background-color: makerLightGreen;
   height: 100vh;
   width: 100vw;
   min-height: 600px;
   min-width: 1280px;
+  background-image: url("/image/mainBG.png");
+  background-size: cover;
 }
 
 .header {
@@ -37,7 +38,7 @@
 
 .header button {
   font-family: MavenPro_Medium;
-  background-color: makerLightGreen;
+  background-color: transparent;
   color: makerWhite;
   border: 1px solid makerWhite;
   margin-right: 3.5rem;
@@ -52,7 +53,6 @@
 }
 
 .header div:hover {
-  color: makerBlack;
   cursor: pointer;
 }
 
@@ -84,19 +84,21 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  border-bottom: 1px solid makerBlack;
+  border-bottom: 1px solid makerWhite;
   padding-bottom: 0.5rem;
 }
 
 .main__article__text1 {
   font-family: Yoon_Gothic_740;
   font-size: 0.81rem;
+  color: makerWhite;
 }
 
 .main__article__text2 {
   font-family: Yoon_Gothic_780;
   margin-left: 0.4rem;
   font-size: 0.81rem;
+  color: makerWhite;
 }
 
 .main__view {
@@ -111,6 +113,7 @@
 .main__view__article {
   display: flex;
   flex-direction: column;
+  color: makerWhite;
 }
 
 .main__view__article div:nth-child(1) {
@@ -135,11 +138,12 @@
   margin-top: 2.6rem;
   width: 11rem;
   height: 2.7rem;
-  background-color: makerLightGreen;
-  border: 0.01px solid makerBlack;
+  background-color: transparent;
+  border: 0.01px solid makerWhite;
   display: flex;
   justify-content: center;
   align-items: center;
+  color: makerWhite;
 }
 
 .main__view__article button:focus {
@@ -150,6 +154,8 @@
   color: makerWhite;
   background-color: makerBlack;
   cursor: pointer;
+  outline: none;
+  border: none;
 }
 
 .main__view__animation {
@@ -231,10 +237,10 @@
 
 .main__view__animation__imgSlide__desc {
   position: absolute;
-  height: 1.5rem;
+  height: 1.7rem;
   background-color: makerBlack;
   color: makerWhite;
-  bottom: 0.5rem;
+  bottom: 0.65rem;
   right: 0.5rem;
   border-radius: 10px;
   padding: 0 0.7rem;
@@ -245,13 +251,13 @@
 
 .main__view__animation__imgSlide__desc span:first-child {
   font-family: Yoon_Gothic_780;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   margin-right: 0.7rem;
 }
 
 .main__view__animation__imgSlide__desc span:last-child {
   font-family: Yoon_Gothic_750;
-  font-size: 0.85rem;
+  font-size: 0.8rem;
 }
 
 .main__view__animation__imgSlide__img {
