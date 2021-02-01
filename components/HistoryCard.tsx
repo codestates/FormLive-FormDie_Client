@@ -18,6 +18,7 @@ interface Props {
   title: string;
   updatedAt: string;
   organization: string;
+  isDefaultGroup: boolean;
   forms: [{ id: number; title: string }];
 }
 
@@ -25,7 +26,14 @@ interface groupNameEdit {
   name: string;
 }
 
-const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms, organization }) => {
+const HistoryCard: FC<Props> = ({
+  groupId,
+  title,
+  updatedAt,
+  forms,
+  organization,
+  isDefaultGroup,
+}) => {
   const dispatch = useDispatch();
   const LIGHT_GREEN = "#83cd7f";
 
@@ -107,7 +115,7 @@ const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms, organization
     <section className={styles.container}>
       <div className={styles.section}>
         <FontAwesomeIcon icon={faFolder} size={"4x"} color={LIGHT_GREEN} />
-        {changeName ? (
+        {changeName && !isDefaultGroup ? (
           <form
             className={styles.groupName__form}
             onSubmit={handleSubmit(onSubmit)}
