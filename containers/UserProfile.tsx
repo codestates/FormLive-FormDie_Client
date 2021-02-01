@@ -17,7 +17,6 @@ import {
   DELETE_USER_REQUEST,
 } from "../reducers/user";
 import { useRouter } from "next/router";
-import { useCookies } from "react-cookie";
 
 export interface Iuser {
   id: number;
@@ -42,7 +41,6 @@ interface IEditUser {
 const UserProfile = () => {
   const dispatch = useDispatch();
   const router = useRouter();
-  const [cookies, removeCookie] = useCookies(["connect.sid"]);
   let userInfo = useSelector<IReducerState, Iuser>((state) => state.user.me);
   let logIn = useSelector<IReducerState, boolean>(
     (state) => state.user.isLoggedIn
