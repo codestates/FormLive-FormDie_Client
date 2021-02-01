@@ -83,7 +83,7 @@ const FormCard: FC<Props> = ({
       <section className={styles.section2__formView__text}>
         <div className={styles.section2__formView__text__title}>{title}</div>
         <div className={styles.section2__formView__text__main}>
-          <div>{description}</div>
+          <div>{organization}</div>
           <div>({new Date(updated_at).toLocaleDateString("ko")} updated)</div>
         </div>
       </section>

@@ -17,6 +17,7 @@ import {
   DELETE_USER_REQUEST,
 } from "../reducers/user";
 import { useRouter } from "next/router";
+import { useCookies } from "react-cookie";
 
 export interface Iuser {
   id: number;
@@ -41,6 +42,7 @@ interface IEditUser {
 const UserProfile = () => {
   const dispatch = useDispatch();
   const router = useRouter();
+  const [cookies, removeCookie] = useCookies(["connect.sid"]);
   let userInfo = useSelector<IReducerState, Iuser>((state) => state.user.me);
   let logIn = useSelector<IReducerState, boolean>(
     (state) => state.user.isLoggedIn
@@ -104,9 +106,7 @@ const UserProfile = () => {
 
   const onSubmit = async (editData, event) => {
     event.preventDefault();
-    console.log(editData);
     const Imgfile = ImageUpload.file;
-    console.log(Imgfile);
     if (!editData.name && !editData.password && !Imgfile) {
       setNoneEdit(true);
       setTimeout(() => setNoneEdit(false), 2000);
@@ -157,7 +157,11 @@ const UserProfile = () => {
   };
 
   useEffect(() => {
-    !logIn && router.push("/");
+    if (!logIn) {
+      localStorage.removeItem("persist:root");
+      document.cookie = 'connect.sid=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT';
+      router.push("/");
+    }
     changeImage && setImage(userInfo?.profileIconURL);
   }, [logIn, userInfo?.profileIconURL]);
 

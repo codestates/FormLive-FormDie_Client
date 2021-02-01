@@ -21,27 +21,27 @@ const Index = () => {
 
   const imageInfo: IimageInfo[] = [
     {
-      url: "/image/home.png",
+      url: "/image/main__formgroup.png",
       title: "Form Group",
       content: "그룹 단위로 묶여 있어 빠르게 문서를 작성할 수 있어요.",
     },
     {
-      url: "/image/form-group.png",
+      url: "/image/main__form.png",
       title: "Form",
       content: "개별 폼들을 모아 커스텀한 폼 그룹을 만들 수 있어요.",
     },
     {
-      url: "/image/form.png",
+      url: "/image/main__write.png",
       title: "Fill Out",
       content: "각 항목에 필요한 정보만 쏙쏙 넣어주면 작성 완료!",
     },
     {
-      url: "/image/home.png",
+      url: "/image/main__complete.png",
       title: "Print & Download",
       content: "다 작성한 문서는 프린트하거나 다운로드 할 수 있어요.",
     },
     {
-      url: "/image/form-group.png",
+      url: "/image/main__history.png",
       title: "History",
       content: "작성한 폼들은 히스토리에서 다시 확인 또는 작성이 가능해요.",
     },

@@ -37,6 +37,7 @@
   flex: 1;
   flex-direction: column;
   justify-content: center;
+  padding-right: 1.5rem;
 }
 
 .description__text {
