@@ -17,6 +17,7 @@ interface Props {
   groupId: number;
   title: string;
   updatedAt: string;
+  organization: string;
   forms: [{ id: number; title: string }];
 }
 
@@ -24,11 +25,11 @@ interface groupNameEdit {
   name: string;
 }
 
-const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
+const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms, organization }) => {
   const dispatch = useDispatch();
   const LIGHT_GREEN = "#83cd7f";
 
-  const { historyList, getCurrentHistory, currentGroup } = useSelector<
+  const { getCurrentHistory, currentGroup } = useSelector<
     IReducerState,
     IFormReducerState
   >((state) => state.form);
@@ -93,12 +94,14 @@ const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
       setGoToLink(false);
 
       if (finish) {
-        window.location.href = `https://yangsikdang.ml/formgroup/complete/history/${groupId}`;
+        window.location.href = `http://localhost:2500/formgroup/complete/history/${groupId}`;
       } else {
         formWritePage.current.click();
       }
     }
-  }, [errors, getCurrentHistory]);
+
+    setNewName(title);
+  }, [errors, getCurrentHistory, title]);
 
   return (
     <section className={styles.container}>
@@ -143,7 +146,7 @@ const HistoryCard: FC<Props> = ({ groupId, title, updatedAt, forms }) => {
       </div>
       <section className={styles.description}>
         <div className={styles.description__text}>
-          <div>주최기관 ｜ {title}</div>
+          <div>주최기관 ｜ {organization}</div>
         </div>
         <div className={styles.description__text}>
           <div>

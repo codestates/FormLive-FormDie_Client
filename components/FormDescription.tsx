@@ -78,6 +78,15 @@ const FormDescription: FC<Props> = ({ selectForm }) => {
     }
   };
 
+  const organizationSet = () => {
+
+    const organizationList = selectForm.map((form) => form.organization)
+
+    const set: any = new Set<string>(organizationList);
+
+    return [...set]
+  }
+
   return (
     <section className={styles.container}>
       <section className={styles.groupName}>
@@ -122,7 +131,7 @@ const FormDescription: FC<Props> = ({ selectForm }) => {
       <section className={styles.description}>
         <div className={styles.description__text}>
           <div>
-            주최기관 ｜ {selectForm.map((form) => form.organization).join(", ")}
+            주최기관 ｜ {organizationSet().join(", ")}
           </div>
         </div>
         <div className={styles.description__text}>

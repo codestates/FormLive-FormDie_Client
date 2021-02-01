@@ -9,6 +9,7 @@ import Documents from "../../../../containers/Documents";
 import { IFormReducerState } from "../../../../reducers/form";
 import style from "../../../../styles/FormComplete/CompleteForm.module.css";
 import Head from "next/head";
+import Link from "next/link";
 
 const PreviewHistory = () => {
   const router = useRouter();
@@ -66,7 +67,11 @@ const PreviewHistory = () => {
             </div>
           </div>
           <div className={style.form__right__btns}>
-            <div onClick={() => router.back()}>수 정 하 기</div>
+            <Link href={`/formgroup/history/${id}`}>
+              <a>
+                <div>수 정 하 기</div>
+              </a>
+            </Link>
           </div>
         </div>
       </div>

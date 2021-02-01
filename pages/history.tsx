@@ -117,6 +117,7 @@ const History = () => {
             title={el.title}
             updatedAt={el.updatedAt}
             forms={el.forms}
+            organization={el.organization}
             key={idx}
           />
         ))}
