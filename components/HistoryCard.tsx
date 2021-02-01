@@ -143,7 +143,7 @@ const HistoryCard: FC<Props> = ({
           </form>
         ) : (
           <div
-            className={styles.section__title}
+            className={`${styles.section__title} ${!isDefaultGroup && styles.cursor}`}
             onClick={() => {
               setChangeName(!changeName);
             }}
