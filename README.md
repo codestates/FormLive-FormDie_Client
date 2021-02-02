@@ -230,3 +230,9 @@ _필요한 부분만 바꾸어서 빠르게 제출하고 싶어요._
 <img src="https://user-images.githubusercontent.com/67185299/106529854-8d646500-652e-11eb-8d1c-53d63f586e93.gif" width="1000"></img>
 <br>
 <br>
+
+- 새제안하기
+  
+<img src="https://user-images.githubusercontent.com/67185299/106559257-7fcbd100-6568-11eb-92f8-c2a360afd7fc.gif" width="1000"></img>
+<br>
+<br>
