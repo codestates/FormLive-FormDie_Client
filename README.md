@@ -201,3 +201,30 @@ _필요한 부분만 바꾸어서 빠르게 제출하고 싶어요._
 </div>
 </details>
 <br>
+
+### 프로젝트에서 사용한 스택  
+<br>
+<img src="https://user-images.githubusercontent.com/67185299/106525546-7e2de900-6527-11eb-8dac-b1ed03757b6d.png" width="1000"></img>
+
+### 서비스 플로우 차트[요약 버전] 
+[To See Full Version | Click!](https://miro.com/app/board/o9J_lWGueg8=/)    
+<img src="https://user-images.githubusercontent.com/67185299/106451204-8fe0a380-64c9-11eb-8603-c34ee48fd387.jpg" width="1000"></img>
+
+### 양식당 주요 페이지 뷰
+- Main & Scrap Page  
+  
+<img src="https://user-images.githubusercontent.com/67185299/103616516-ee207200-4f6f-11eb-9a4d-79ef74140ccb.gif" width="1000"></img>
+<br>
+<br>
+
+- Save News  
+  
+<img src="https://user-images.githubusercontent.com/67185299/106529854-8d646500-652e-11eb-8d1c-53d63f586e93.gif" width="1000"></img>
+<br>
+<br>
+
+- Filtering News by Category
+  
+<img src="https://user-images.githubusercontent.com/67185299/103617149-1066bf80-4f71-11eb-8a39-f7106c016b97.gif" width="1000"></img>
+<br>
+<br>
