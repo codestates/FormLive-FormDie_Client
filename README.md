@@ -120,7 +120,7 @@ _필요한 부분만 바꾸어서 빠르게 제출하고 싶어요._
 - **백승용(@baekseungyong | Frontend)**   
 `나도 할 수 있다` 퍼스트 프로젝트하면서 프론트엔드의 지식이 조금은 쌓였다고 생각했는데 새로운 스택을 도입하면서 처음부터 공부해야되는 것과 새로운 것에 도전하면서 두려움과 막막함이 있었는데 팀원들이 공유한 것을 바탕으로 다시 공부해 보니 이해할 수 있었습니다. 그리고 내가 맡은 업무를 찾아보면서 할 수 있는 것과 할 수 없는 것을 구분할 수 있었고 팀원들에게 그 상황을 공유해 보고 같이 해결 할 수 있으면 해결해보고 아니면 다른 방법으로 할 수 있는지 논의해서 해결 방안을 찾으려고 했었습니다. 팀원들의 도움을 많이 받을 수 있었습니다. 또한, 각자만의 의사소통 방법이 있어 이해하지 못하거나 헷갈리는 것이 있으면 다시 물어 보면서 집고 넘어갔었습니다. 이번 프로젝트를 경험으로 같이 일하는 것에 힘든 점과 좋은 점이 있었고 이번 경험으로 같이 업무를 진행했을 때 좀 더 수월했을 것으로 생각합니다.
 <details>
-<summary>'s Worklog📜 | Click!</summary>
+<summary>백승용's Worklog📜 | Click!</summary>
 <div markdown="1">
 <br>
 
@@ -205,10 +205,12 @@ _필요한 부분만 바꾸어서 빠르게 제출하고 싶어요._
 ### 프로젝트에서 사용한 스택  
 <br>
 <img src="https://user-images.githubusercontent.com/67185299/106525546-7e2de900-6527-11eb-8dac-b1ed03757b6d.png" width="1000"></img>
+<br>
 
 ### 서비스 플로우 차트[요약 버전] 
 [To See Full Version | Click!](https://miro.com/app/board/o9J_lWGueg8=/)    
 <img src="https://user-images.githubusercontent.com/67185299/106451204-8fe0a380-64c9-11eb-8603-c34ee48fd387.jpg" width="1000"></img>
+<br>
 
 ### 양식당 주요 페이지 뷰
 - Main & Scrap Page  
