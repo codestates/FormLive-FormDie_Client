@@ -29,7 +29,6 @@
   font-family: Yoon_Gothic_780;
   font-size: 0.8rem;
   text-align: center;
-  cursor: pointer;
 }
 
 .description {
@@ -166,4 +165,8 @@
 .groupName__form__submit:focus {
   outline: none;
   border: none;
+}
+
+.cursor {
+  cursor: pointer;
 }

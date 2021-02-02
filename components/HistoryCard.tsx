@@ -19,7 +19,7 @@ interface Props {
   updatedAt: string;
   organization: string;
   isDefaultGroup: boolean;
-  forms: [{ id: number; title: string }];
+  forms: [{ id: number; title: string; organization: string }];
 }
 
 interface groupNameEdit {
@@ -88,6 +88,14 @@ const HistoryCard: FC<Props> = ({
     }
   };
 
+  const organizationSet = () => {
+    const organizationList = forms.map((form) => form.organization);
+
+    const set: any = new Set<string>(organizationList);
+
+    return [...set];
+  };
+
   useEffect(() => {
     if (errors?.name?.type === "required") {
       window.alert("그룹 이름은 필수 사항입니다.");
@@ -143,7 +151,9 @@ const HistoryCard: FC<Props> = ({
           </form>
         ) : (
           <div
-            className={styles.section__title}
+            className={`${styles.section__title} ${
+              !isDefaultGroup && styles.cursor
+            }`}
             onClick={() => {
               setChangeName(!changeName);
             }}
@@ -154,7 +164,10 @@ const HistoryCard: FC<Props> = ({
       </div>
       <section className={styles.description}>
         <div className={styles.description__text}>
-          <div>주최기관 ｜ {organization}</div>
+          <div>
+            주최기관 ｜{" "}
+            {organization ? organization : organizationSet().join(", ")}
+          </div>
         </div>
         <div className={styles.description__text}>
           <div>
