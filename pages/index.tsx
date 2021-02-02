@@ -70,94 +70,99 @@ const Index = () => {
   };
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>양식당 ｜ Welcome</title>
-        <link rel="shortcut icon" href="/image/favicon.ico" />
-      </Head>
+    <div className={styles.box}>
+      <div className={styles.bg}></div>
 
-      <LoginForm
-        loginClick={loginClick}
-        setLoginClick={setLoginClick}
-        setSlide={setSlide}
-      />
+      <div className={styles.container}>
+      
+        <Head>
+          <title>양식당 ｜ Welcome</title>
+          <link rel="shortcut icon" href="/image/favicon.ico" />
+        </Head>
 
-      <RegisterForm
-        registerClick={registerClick}
-        setRegisterClick={setRegisterClick}
-        setSlide={setSlide}
-        setLoginClick={setLoginClick}
-      />
+        <LoginForm
+          loginClick={loginClick}
+          setLoginClick={setLoginClick}
+          setSlide={setSlide}
+        />
 
-      <header className={styles.header}>
-        <div
-          onClick={() => {
-            setLoginClick(true);
-            setTimeout(() => {
-              setSlide(false);
-            }, 380);
-          }}
-        >
-          Login
-        </div>
-        <button
-          onClick={() => {
-            setRegisterClick(true);
-            setTimeout(() => {
-              setSlide(false);
-            }, 380);
-          }}
-        >
-          Register
-        </button>
-      </header>
-      <main className={styles.main}>
-        <div className={styles.main__headerWriting}>
-          <div className={styles.main__article}>
-            <div className={styles.main__article__text1}>For Your Form</div>
-            <div className={styles.main__article__text2}>Form Place</div>
+        <RegisterForm
+          registerClick={registerClick}
+          setRegisterClick={setRegisterClick}
+          setSlide={setSlide}
+          setLoginClick={setLoginClick}
+        />
+
+        <header className={styles.header}>
+          <div
+            onClick={() => {
+              setLoginClick(true);
+              setTimeout(() => {
+                setSlide(false);
+              }, 380);
+            }}
+          >
+            Login
           </div>
-          <div className={styles.main__headerWriting__blank}></div>
-        </div>
-
-        <div className={styles.main__view}>
-          <article className={styles.main__view__article}>
-            <div>폼플레이스 양식당</div>
-            <div>한 번 작성한 그 양식, 또 필요할 때 있잖아요.</div>
-            <div>써두었던 양식을 바로바로 꺼내보세요.</div>
-            <div>양식당은 여러분의 편리함을 추구하고자 완성되었습니다.</div>
-            <button onClick={onLoginGuestMode}>GUEST MODE</button>
-          </article>
-
-          <div className={styles.main__view__animation}>
-            <div className={styles.main__view__animation__buttonsSlide}>
-              {Slide && (
-                <>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </>
-              )}
+          <button
+            onClick={() => {
+              setRegisterClick(true);
+              setTimeout(() => {
+                setSlide(false);
+              }, 380);
+            }}
+          >
+            Register
+          </button>
+        </header>
+        <main className={styles.main}>
+          <div className={styles.main__headerWriting}>
+            <div className={styles.main__article}>
+              <div className={styles.main__article__text1}>For Your Form</div>
+              <div className={styles.main__article__text2}>Form Place</div>
             </div>
-            <div
-              className={`${styles.main__view__animation__imgSlide} ${
-                !Slide && styles.borderNone
-              }`}
-            >
-              {Slide && (
-                <ul className={styles.main__view__animation__imgSlide__img}>
-                  {renderImage()}
-                </ul>
-              )}
+            <div className={styles.main__headerWriting__blank}></div>
+          </div>
+
+          <div className={styles.main__view}>
+            <article className={styles.main__view__article}>
+              <div>폼플레이스 양식당</div>
+              <div>한 번 작성한 그 양식, 또 필요할 때 있잖아요.</div>
+              <div>써두었던 양식을 바로바로 꺼내보세요.</div>
+              <div>양식당은 여러분의 편리함을 추구하고자 완성되었습니다.</div>
+              <button onClick={onLoginGuestMode}>GUEST MODE</button>
+            </article>
+
+            <div className={styles.main__view__animation}>
+              <div className={styles.main__view__animation__buttonsSlide}>
+                {Slide && (
+                  <>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </>
+                )}
+              </div>
+              <div
+                className={`${styles.main__view__animation__imgSlide} ${
+                  !Slide && styles.borderNone
+                }`}
+              >
+                {Slide && (
+                  <ul className={styles.main__view__animation__imgSlide__img}>
+                    {renderImage()}
+                  </ul>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      </main>
-      <footer className={styles.footer}>
-        <img className={styles.footer__img} src="/image/logo_white.png"></img>
-      </footer>
+        </main>
+        <footer className={styles.footer}>
+          <img className={styles.footer__img} src="/image/logo_white.png"></img>
+        </footer>
+      </div>
     </div>
   );
 };
