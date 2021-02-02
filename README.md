@@ -231,6 +231,12 @@ _필요한 부분만 바꾸어서 빠르게 제출하고 싶어요._
 <br>
 <br>
 
+- 히스토리 기록 보기
+  
+<img src="https://user-images.githubusercontent.com/67185299/106565790-b0b10380-6572-11eb-8e74-6e34b9066542.gif" width="1000"></img>
+<br>
+<br>
+
 - 새로운 폼 제안하기
   
 <img src="https://user-images.githubusercontent.com/67185299/106559257-7fcbd100-6568-11eb-92f8-c2a360afd7fc.gif" width="1000"></img>
