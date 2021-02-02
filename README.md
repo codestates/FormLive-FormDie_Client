@@ -213,20 +213,20 @@ _필요한 부분만 바꾸어서 빠르게 제출하고 싶어요._
 <br>
 
 ### 양식당 주요 페이지 뷰
-- Main & Scrap Page  
+- 양식당 메인 화면  
   
-<img src="https://user-images.githubusercontent.com/67185299/103616516-ee207200-4f6f-11eb-9a4d-79ef74140ccb.gif" width="1000"></img>
+<img src="https://user-images.githubusercontent.com/67185299/106558906-ef8d8c00-6567-11eb-900b-5ce97a184cf5.gif" width="1000"></img>
 <br>
 <br>
 
-- Save News  
+- 폼 그룹 작성 플로우  
+  
+<img src="https://user-images.githubusercontent.com/67185299/106529768-686ff200-652e-11eb-84b9-934b528648bc.gif" width="1000"></img>
+<br>
+<br>
+
+- 커스텀 폼 그룹 작성 플로우
   
 <img src="https://user-images.githubusercontent.com/67185299/106529854-8d646500-652e-11eb-8d1c-53d63f586e93.gif" width="1000"></img>
-<br>
-<br>
-
-- Filtering News by Category
-  
-<img src="https://user-images.githubusercontent.com/67185299/103617149-1066bf80-4f71-11eb-8a39-f7106c016b97.gif" width="1000"></img>
 <br>
 <br>
