@@ -43,7 +43,15 @@ class YangSikDang extends App<Props> {
     const state = ctx.store.getState();
     const logIn = state.user.isLoggedIn;
 
+    /*
+    * SSR인지 CSR인지에 따라서 쿠키를 다르게 처리.
+    * CSR의 경우 브라우저가 자동적으로 헤더에 세팅하여 서버로 보내지만,
+    * SSR의 경우에는 브라우저로 오기 전 서버 단에서
+    * 페이지가 완성됨으로 별도로 쿠키 세팅을 해주어야 함.
+    * ctx 안에는 CSR과 SSR의 여부를 구별할 수 있는 메소드가 존재함.
+    */
     const cookie = ctx.isServer ? ctx.req.headers.cookie : "";
+    
     if (ctx.isServer && cookie && ctx.pathname === "/") {
       //로그인에 성공한 경우
       axios.defaults.headers.Cookie = cookie;
