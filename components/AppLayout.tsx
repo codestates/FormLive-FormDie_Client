@@ -25,6 +25,11 @@ interface ICategory {
   text: string;
 }
 
+/*
+* 상위 컴포넌트 상에서 하위 컴포넌트는 children 이라는 값에 담겨져 있음(React)
+* children은 각 페이지로, 페이지가 변환되면 AppLayout 컴포넌트에서 children의 값이 바뀜
+*/
+
 const AppLayout: FC<Props> = ({ children }) => {
   const router = useRouter();
   const ICON_COLOR: string = "white";

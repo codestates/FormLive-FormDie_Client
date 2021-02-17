@@ -87,6 +87,11 @@ class YangSikDang extends App<Props> {
   render() {
     const { Component, store, pageProps, cookie, logIn } = this.props;
 
+    /*
+    * 쿠키와 로그인 상태에 따라 Nav 바 노출 상태를 결정
+    * AppLayout(Nav바)는 상위 컴포넌트로, 변화되는 페이지를 감싼 형태
+    */
+
     return (
       <Provider store={store}>
         <PersistGate persistor={store.__PERSISTOR} loading={null}>
