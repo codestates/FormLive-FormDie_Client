@@ -3,8 +3,8 @@ import styles from "../styles/Form/Form.module.css";
 import FormCard from "../components/FormCard";
 import FormDescription from "../components/FormDescription";
 import {
-  faChevronRight,
-  faChevronLeft,
+	faChevronRight,
+	faChevronLeft,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SearchBar from "../utils/SearchBar";
@@ -15,180 +15,185 @@ import { GET_USER_REQUEST } from "../reducers/user";
 import Head from "next/head";
 
 interface IselectForm {
-  formId: number;
-  title: string;
-  description: string;
-  updated_at: string;
-  organization: string;
-  views: number;
+	formId: number;
+	title: string;
+	description: string;
+	updated_at: string;
+	organization: string;
+	views: number;
 }
 
 interface IFormList {
-  q?: string;
-  page: number;
-  sort?: string;
+	q?: string;
+	page: number;
+	sort?: string;
 }
 
 const Form = () => {
-  const MEDIUM_GRAY = "#bfbfbf";
+	const MEDIUM_GRAY = "#bfbfbf";
 
-  const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
-  const { formList, formTotalNumber } = useSelector<
-    IReducerState,
-    IFormReducerState
-  >((state) => state.form);
+	// * /pages 안의 파일들이 useSelector로 store의 state 값을 불러오는데 타입스크립트에서 useSelector를 사용하는 방법이 조금 다릅니다.
+	// * 타입을 지정해야되기 때문에 제네릭의 첫번째 매개변수에는 /reducers/index에서 지정한 IReducerState
+	// * 두번째 매개변수에는 /reducers/form에서 지정한 IFormReducerState를 지정해주었습니다.
+	// * 제네릭을 사용하지 않아도 useSelector((state:IReducerState) => state.form)과 같이 사용가능합니다.
 
-  const [Page, setPage] = useState<number>(1);
-  const [Sort, setSort] = useState<string | null>(null);
-  const [Query, setQuery] = useState<string>("");
-  const [SelectForm, setSelectForm] = useState<IselectForm[]>([]);
+	const { formList, formTotalNumber } = useSelector<
+		IReducerState,
+		IFormReducerState
+	>((state) => state.form);
 
-  const renderFormCard = () =>
-    formList.map((form, index) => (
-      <FormCard
-        {...form}
-        key={index}
-        page={Page}
-        selectForm={SelectForm}
-        selectFormHandler={onSelectFormHandler}
-        number={index + 1}
-      />
-    ));
+	const [Page, setPage] = useState<number>(1);
+	const [Sort, setSort] = useState<string | null>(null);
+	const [Query, setQuery] = useState<string>("");
+	const [SelectForm, setSelectForm] = useState<IselectForm[]>([]);
 
-  const onChangePageUpHandler = () => {
-    const maxPage = Math.ceil(formTotalNumber / 12);
+	const renderFormCard = () =>
+		formList.map((form, index) => (
+			<FormCard
+				{...form}
+				key={index}
+				page={Page}
+				selectForm={SelectForm}
+				selectFormHandler={onSelectFormHandler}
+				number={index + 1}
+			/>
+		));
 
-    if (Page === maxPage) {
-      window.alert("현재 마지막 페이지에 있습니다.");
-      return;
-    }
-    const params = {
-      page: Page + 1,
-      sort: Sort,
-      q: Query,
-    };
+	const onChangePageUpHandler = () => {
+		const maxPage = Math.ceil(formTotalNumber / 12);
 
-    dispatch({
-      type: FORM_LIST_REQUEST,
-      data: params,
-    });
+		if (Page === maxPage) {
+			window.alert("현재 마지막 페이지에 있습니다.");
+			return;
+		}
+		const params = {
+			page: Page + 1,
+			sort: Sort,
+			q: Query,
+		};
 
-    setPage(Page + 1);
-  };
+		dispatch({
+			type: FORM_LIST_REQUEST,
+			data: params,
+		});
 
-  const onChangePageDownHandler = () => {
-    if (Page === 1) {
-      window.alert("현재 1 페이지에 있습니다.");
-      return;
-    } else {
-      const params = {
-        page: Page - 1,
-        sort: Sort,
-        q: Query,
-      };
+		setPage(Page + 1);
+	};
 
-      dispatch({
-        type: FORM_LIST_REQUEST,
-        data: params,
-      });
+	const onChangePageDownHandler = () => {
+		if (Page === 1) {
+			window.alert("현재 1 페이지에 있습니다.");
+			return;
+		} else {
+			const params = {
+				page: Page - 1,
+				sort: Sort,
+				q: Query,
+			};
 
-      setPage(Page - 1);
-    }
-  };
+			dispatch({
+				type: FORM_LIST_REQUEST,
+				data: params,
+			});
 
-  const onChangeSortPopularHandler = () => {
-    const params = {
-      page: Page,
-      sort: "popular",
-      q: Query,
-    };
+			setPage(Page - 1);
+		}
+	};
 
-    dispatch({
-      type: FORM_LIST_REQUEST,
-      data: params,
-    });
+	const onChangeSortPopularHandler = () => {
+		const params = {
+			page: Page,
+			sort: "popular",
+			q: Query,
+		};
 
-    setSort("popular");
-  };
+		dispatch({
+			type: FORM_LIST_REQUEST,
+			data: params,
+		});
 
-  const onChangeSortLatestHandler = () => {
-    const params = {
-      page: Page,
-      sort: null,
-      q: Query,
-    };
+		setSort("popular");
+	};
 
-    dispatch({
-      type: FORM_LIST_REQUEST,
-      data: params,
-    });
+	const onChangeSortLatestHandler = () => {
+		const params = {
+			page: Page,
+			sort: null,
+			q: Query,
+		};
 
-    setSort(null);
-  };
+		dispatch({
+			type: FORM_LIST_REQUEST,
+			data: params,
+		});
 
-  const onSelectFormHandler = (formArr: IselectForm[]): void => {
-    setSelectForm(formArr);
-  };
+		setSort(null);
+	};
 
-  return (
-    <div className={styles.container}>
-      <Head>
-        <title>양식당 ｜ Form</title>
-        <link rel="shortcut icon" href="/image/favicon.ico" />
-      </Head>
-      <header className={styles.header}>
-        <div className={styles.header__left}>
-          <div className={styles.header__title}>Form</div>
-          <div className={styles.header__sort}>
-            <div onClick={onChangeSortLatestHandler}>최신순</div>
-            <div> ｜ </div>
-            <div onClick={onChangeSortPopularHandler}>인기순</div>
-          </div>
-        </div>
-        <SearchBar where={"form"} setQuery={setQuery} />
-      </header>
-      <div className={styles.subHeader}>
-        <div className={styles.subHeader__desc}>
-          * 원하는 폼을 클릭 시, 최대 10개의 폼 목록을 한 번에 작성할 수 있어요.
-        </div>
-        <div className={styles.subHeader__number}>(총 {formTotalNumber}개)</div>
-      </div>
-      <div className={styles.form}>
-        <div className={styles.cheveronLeft} onClick={onChangePageDownHandler}>
-          <FontAwesomeIcon
-            icon={faChevronLeft}
-            size={"1x"}
-            color={MEDIUM_GRAY}
-          />
-        </div>
-        <div className={styles.formCard}>{renderFormCard()}</div>
-        <div className={styles.cheveronRight} onClick={onChangePageUpHandler}>
-          <FontAwesomeIcon
-            icon={faChevronRight}
-            size={"1x"}
-            color={MEDIUM_GRAY}
-          />
-        </div>
-      </div>
-      <FormDescription selectForm={SelectForm} />
-    </div>
-  );
+	const onSelectFormHandler = (formArr: IselectForm[]): void => {
+		setSelectForm(formArr);
+	};
+
+	return (
+		<div className={styles.container}>
+			<Head>
+				<title>양식당 ｜ Form</title>
+				<link rel="shortcut icon" href="/image/favicon.ico" />
+			</Head>
+			<header className={styles.header}>
+				<div className={styles.header__left}>
+					<div className={styles.header__title}>Form</div>
+					<div className={styles.header__sort}>
+						<div onClick={onChangeSortLatestHandler}>최신순</div>
+						<div> ｜ </div>
+						<div onClick={onChangeSortPopularHandler}>인기순</div>
+					</div>
+				</div>
+				<SearchBar where={"form"} setQuery={setQuery} />
+			</header>
+			<div className={styles.subHeader}>
+				<div className={styles.subHeader__desc}>
+					* 원하는 폼을 클릭 시, 최대 10개의 폼 목록을 한 번에 작성할 수 있어요.
+				</div>
+				<div className={styles.subHeader__number}>(총 {formTotalNumber}개)</div>
+			</div>
+			<div className={styles.form}>
+				<div className={styles.cheveronLeft} onClick={onChangePageDownHandler}>
+					<FontAwesomeIcon
+						icon={faChevronLeft}
+						size={"1x"}
+						color={MEDIUM_GRAY}
+					/>
+				</div>
+				<div className={styles.formCard}>{renderFormCard()}</div>
+				<div className={styles.cheveronRight} onClick={onChangePageUpHandler}>
+					<FontAwesomeIcon
+						icon={faChevronRight}
+						size={"1x"}
+						color={MEDIUM_GRAY}
+					/>
+				</div>
+			</div>
+			<FormDescription selectForm={SelectForm} />
+		</div>
+	);
 };
 
 const formRequest: IFormList = {
-  page: 1,
+	page: 1,
 };
 
 Form.getInitialProps = async (context) => {
-  context.store.dispatch({
-    type: FORM_LIST_REQUEST,
-    data: formRequest,
-  });
+	context.store.dispatch({
+		type: FORM_LIST_REQUEST,
+		data: formRequest,
+	});
 
-  context.store.dispatch({
-    type: GET_USER_REQUEST,
-  });
+	context.store.dispatch({
+		type: GET_USER_REQUEST,
+	});
 };
 
 export default Form;
