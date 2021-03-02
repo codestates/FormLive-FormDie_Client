@@ -1,5 +1,8 @@
 import { StyleSheet, Font } from "@react-pdf/renderer";
-
+// @react-pdf/renderer에서 css는 자바스크립트로 이루어져 있습니다.
+// 저희가 배웠던 css와는 다른 문법입니다.
+//  라이브러리에서 사용하는 고유한 css 문법이 따로 있어 다음과 같이 적용했습니다.
+//  StyleSheet를 사용하여 css를 적용하는 것을 볼수 있고 margin-left가 아닌 marginLeft와 같이 camelCase 형식의 이름으로 되어 있고 객체 형식으로 selector 이름을 적용하고 있습니다.
 Font.register({
 	family: "YoonGothic",
 	src: "https://cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf",
