@@ -75,6 +75,17 @@ const Index = () => {
 
       <div className={styles.container}>
       
+      {/* Next.js의 헤드 컴포넌트
+        * 각 페이지 별로 Head 영역을 별도로 설정을 해줄 수 있음
+        * 만약 별도의 설정이 되어 있지 않으면, _app 부분에서 설정한 값으로 지정됨
+        * Head 부분만 별도로 Next JS를 사용하여 검색 최적화를 적용하는 경우도 있음
+        * 예시 : <meta name="description" content="Brandon's Baseball Cards provides a large selection of
+        * vintage and modern baseball cards for sale.
+        * We also offer daily baseball news and events.">
+        * 
+        * <meta property="og:type" content="website">
+        * og:OOO 관련된 것은 SNS에 링크를 보낼 때, 콘탠츠에 대한 내용이 잘 나오게 하기 위한 것 
+        */}
         <Head>
           <title>양식당 ｜ Welcome</title>
           <link rel="shortcut icon" href="/image/favicon.ico" />
