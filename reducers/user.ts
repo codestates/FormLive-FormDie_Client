@@ -1,5 +1,11 @@
 import produce from "immer";
 
+	/*
+	* 리덕스의 스토어에 저장되는 초기 값을 정의하는 공간.
+	* 타입스크립트의 타입 추론 기능으로 인해 initial 객체의 타입이 별도 지정없이 생성됨.
+  * 새로 고침을 하면, 스토어의 데이터가 초기화 되기 때문에 펄시스트로 초기화되는 현상을 방지함.
+  */
+
 export const initialState = {
   isLoggingOut: false, // 로그아웃 시도중
   logOutErrorReason: "", // 로그아웃 실패 사유
