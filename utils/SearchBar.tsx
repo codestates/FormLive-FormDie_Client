@@ -68,7 +68,8 @@ const SearchBar = ({ where, setQuery }) => {
       setValue("");
     }
   };
-
+  // * 검색 시 엔터 버튼으로 검색을 눌렀을 때는 onKeyPress를 사용했고
+  // * 검색 버튼 클릭 시 onClick을 사용하여 사용자가 편하게 검색하도록 기능구현했습니다. 
   return (
     <section className={styles.section1__searchBar}>
       <input
