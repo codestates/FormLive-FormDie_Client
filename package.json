@@ -15,7 +15,7 @@
     "@react-pdf/renderer": "^1.6.13",
     "@types/react-helmet": "^6.1.0",
     "@types/react-redux": "^7.1.15",
-    "axios": "^0.21.1",
+    "axios": "^0.21.2",
     "iconv-lite": "^0.6.2",
     "immer": "^8.0.0",
     "next": "^9.3.1",
